@@ -3,8 +3,8 @@ Flashforward::Application.routes.draw do
   root 'welcome#index'
 
 
-  get 'auth/:provider/callback', to: 'welcome#show'
-  get 'auth/failure', to: redirect('/')
+  get '/auth/:provider/callback', to: 'welcome#show'
+  get '/auth/failure', to: redirect('/')
 
 
   # Example of regular route:
