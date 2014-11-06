@@ -3,8 +3,9 @@ class WelcomeController < ApplicationController
   end
 
   def show
-    p @response = request.env["omniauth.auth"]
-    p "*"*30
-    p @response['uid']
+    response = request.env["omniauth.auth"]
+    session['uid'] = response['uid']
+    session['access_token'] = response['extra'].access_token
+    redirect_to users_create_path
   end
 end

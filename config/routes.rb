@@ -1,5 +1,7 @@
 Flashforward::Application.routes.draw do
 
+  get "users/create"
+  get "users/new"
   root 'welcome#index'
 
 
