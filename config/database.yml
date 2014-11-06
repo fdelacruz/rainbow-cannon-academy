@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: flashforward_development
   pool: 5
-  username: flashforward
+  username:
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
