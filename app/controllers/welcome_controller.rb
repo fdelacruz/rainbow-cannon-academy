@@ -3,6 +3,8 @@ class WelcomeController < ApplicationController
   end
 
   def show
-    @response = request.env["omniauth.auth"]
+    p @response = request.env["omniauth.auth"]
+    p "*"*30
+    p @response['uid']
   end
 end
