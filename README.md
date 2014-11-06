@@ -14,7 +14,25 @@ Technology used:
 - Javascript
 - Quizlet Oauth
 - Quizlet API
-- Postgres 
+- Postgres
 - Deploy in Heroku
- 
+
+Git workflow:
+
+git clone https://github.com/znagler/flashforward.git
+git checkout -b <branch-name>
+
+git add
+git commit
+git pull origin master
+  if merge conflicts
+    fix all merge conflicts locally
+    git add
+    git commit -m "fix merge conflicts"
+git push origin <branch-name>
+
+Other member review code, create pull request from <branch-name>, merge
+
+URL: https://flashforward.herokuapp.com/
+
 
