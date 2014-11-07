@@ -4,6 +4,7 @@ window.onload = start
 // global modules
 var game = null // phaser game
 var phaserLifeCycleFunctions = {}
+var flashCardUI = {}
 
 // global state
 var gameState = {}
@@ -118,29 +119,34 @@ phaserLifeCycleFunctions.update = function () {
 
 }
 
+flashCardUI.isLetterKeyOrSpace =  function(keyCode) {
+  return !(keyCode < "A".charCodeAt(0) || keyCode > "Z".charCodeAt(0)) || // not outside letter range
+  keyCode == 32 // is space
+}
+
 function wordKeysHandler(evt){
   // handle backspace
   if (evt.which === 8 /* backspace */) { deleteLastScoreText(); return}
-  // handle NON letter (a-z) or space
-  if ((evt.which < "A".charCodeAt(0) || evt.which > "Z".charCodeAt(0)) && evt.which != 32 /* space */ ) {
+  // handle letter (a-z) or space
+  if (flashCardUI.isLetterKeyOrSpace(evt.which)) {
+    // handle letters
+    var letter = String.fromCharCode( evt.which )
+    if( !evt.shiftKey ) letter = letter.toLowerCase()
+    flashCardUI.inputLetter(letter)
     return
   }
   // handle enter
   if (evt.which === 13 /* enter */) {
-    checkUserGuess(gameState.userGuess.text,currentDeck.currentCard.a) 
+    flashCardUI.checkUserGuess(gameState.userGuess.text,currentDeck.currentCard.a) 
     currentDeck.advanceToNextCard()
     console.log(currentDeck.currentCard)
     /// updating view
     viewNextCard()
     return
   }
-  // handle letters
-  var letter = String.fromCharCode( evt.which )
-  if( !evt.shiftKey ) letter = letter.toLowerCase()
-  inputLetter(letter)
 }
 
-function inputLetter(letter){
+flashCardUI.inputLetter = function(letter){
   gameState.userGuess.text += letter
 } 
 
@@ -153,7 +159,7 @@ function deleteLastScoreText(){
   gameState.userGuess.text = gameState.userGuess.text.slice(0,-1)
 }
 
-function checkUserGuess(guess, rightAnswer){
+flashCardUI.checkUserGuess = function(guess, rightAnswer){
   if (guess === " " + rightAnswer){
     console.log("Correct")
   }
