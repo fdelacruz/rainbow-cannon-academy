@@ -1,5 +1,4 @@
 window.onload = function(){
-  myFunction()
   currentDeck = new CardDeck(exampleDeck)
   console.log(currentDeck.remainingCards)
 
@@ -23,7 +22,6 @@ window.onload = function(){
   var scoreText
   var platforms
   var userGuess
-  var correctAnswer = "apple"
 
   var questions = [
   {q: "talk", a: "hablar"},
@@ -91,7 +89,8 @@ window.onload = function(){
     // }
 
     //score text
-    userGuess = game.add.text(16,16, '', {fontSize: '32px', fill: '#000'})
+    userGuess = game.add.text(400,16, '', {fontSize: '32px', fill: '#000'})
+    rightAnswer = game.add.text(16,16, currentDeck.currentCard.q, {fontSize: '32px', fill: '#000'})
 
   }
 
@@ -122,7 +121,7 @@ window.onload = function(){
       player.body.velocity.y = -600
     }
 
-    checkUserGuess(userGuess.text, correctAnswer)
+    // checkUserGuess(userGuess.text, correctAnswer)
     // if (userGuess.text === " " + "apple"){
     // }
 
@@ -142,7 +141,16 @@ window.onload = function(){
         if (evt.which === 8){
           deleteLastScoreText()
           return
-        } else if( (evt.which < "A".charCodeAt(0) || evt.which > "Z".charCodeAt(0)) && evt.which != 32 )
+        } else if (evt.which === 13){
+          checkUserGuess(userGuess.text,currentDeck.currentCard.a) 
+          currentDeck.advanceToNextCard()
+          console.log(currentDeck.currentCard)
+          /// updating view
+          viewNextCard()
+
+          ///         
+        }
+         else if( (evt.which < "A".charCodeAt(0) || evt.which > "Z".charCodeAt(0)) && evt.which != 32 )
         {
             return;
         }
@@ -158,15 +166,11 @@ window.onload = function(){
 
   function deleteLastScoreText(){
     userGuess.text = userGuess.text.slice(0,-1)
-    if (userGuess.text === " "){
-      userGuess.text = ""
-      console.log("guess === space")
-    }
+
   }
   function checkUserGuess(guess, rightAnswer){
     if (guess === " " + rightAnswer){
       console.log("Correct")
-      userGuess.text = " "
     }
   }
 
@@ -174,6 +178,14 @@ window.onload = function(){
     for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
   }
+
+  function viewNextCard(){
+    console.log("view next")
+    userGuess.text = ""
+    rightAnswer.text = currentDeck.currentCard.q
+
+  }
+
 
 
 }

@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_cardset
+//= require game
 //= require_tree .
 
 
