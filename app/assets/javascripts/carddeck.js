@@ -1,15 +1,4 @@
 
-
-var exampleDeck = {deck:[
-	{q:"hello" ,a:"hola" },
-	{q: "bye",a:"adios"},
-	{q: "dog",a: "perro"},
-	{q: "cat",a: "gato"},
-	{q: "food",a: "comida"},
-	]}
-
-
-
 function CardDeck(carddeck_object){
 	this.solvedDeck = false
 	this.remainingCards = carddeck_object.deck
