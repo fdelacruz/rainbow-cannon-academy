@@ -1,4 +1,7 @@
 window.onload = function(){
+
+  myFunction()
+
   $(document).on("keydown", function (e) {
     if (e.which === 8) {
       e.preventDefault()
