@@ -1,6 +1,7 @@
 window.onload = function(){
-
   myFunction()
+  currentDeck = new CardDeck(exampleDeck)
+  console.log(currentDeck.remainingCards)
 
   $(document).on("keydown", function (e) {
     if (e.which === 8) {
@@ -61,12 +62,12 @@ window.onload = function(){
     player.animations.add('right', [5, 6, 7, 8], 10, true);
 
     //create baddie
-    baddie = game.add.sprite(32, game.world.height - 400, 'baddie')
-    game.physics.arcade.enable(baddie)
-    baddie.body.gravity.y = 1000
-    baddie.body.collideWorldBounds = true
-    baddie.body.velocity.x = 0
-    baddie.body.bounce.set(1)
+    // baddie = game.add.sprite(32, game.world.height - 400, 'baddie')
+    // game.physics.arcade.enable(baddie)
+    // baddie.body.gravity.y = 1000
+    // baddie.body.collideWorldBounds = true
+    // baddie.body.velocity.x = 0
+    // baddie.body.bounce.set(1)
 
 
 
@@ -80,14 +81,14 @@ window.onload = function(){
 
 
     //create star group of objects
-    stars = game.add.group()
-    stars.enableBody = true
-    for (var i = 0; i < 12; i++){
-      star = stars.create(i * 70, 50, 'star')
-      star.body.gravity.y = 600
-      star.body.bounce.y = 0.1 + Math.random() * 0.4
-      star.body.collideWorldBounds = true
-    }
+    // stars = game.add.group()
+    // stars.enableBody = true
+    // for (var i = 0; i < 12; i++){
+    //   star = stars.create(i * 70, 50, 'star')
+    //   star.body.gravity.y = 600
+    //   star.body.bounce.y = 0.1 + Math.random() * 0.4
+    //   star.body.collideWorldBounds = true
+    // }
 
     //score text
     userGuess = game.add.text(16,16, '', {fontSize: '32px', fill: '#000'})
@@ -97,12 +98,12 @@ window.onload = function(){
   function update() {
     //player colliders
     game.physics.arcade.collide(player, platforms)
-    game.physics.arcade.overlap(player, stars, collectStar, null, this)
+    // game.physics.arcade.overlap(player, stars, collectStar, null, this)
     //baddie collider
-    game.physics.arcade.collide(baddie, platforms)
-    game.physics.arcade.overlap(player, baddie, killPlayer, null, this)
-    //star collider
-    game.physics.arcade.collide(platforms, stars)
+    // game.physics.arcade.collide(baddie, platforms)
+    // game.physics.arcade.overlap(player, baddie, killPlayer, null, this)
+    // //star collider
+    // game.physics.arcade.collide(platforms, stars)
 
     //player controls
     player.body.velocity.x = 0
@@ -123,7 +124,6 @@ window.onload = function(){
 
     checkUserGuess(userGuess.text, correctAnswer)
     // if (userGuess.text === " " + "apple"){
-    //   console.log("fuck")
     // }
 
 
@@ -131,16 +131,6 @@ window.onload = function(){
 
   } //END OF UPDATE
 
-  function collectStar(player,star){
-    star.kill()
-    score += 10
-    scoreText.text = 'Score: ' + score
-  }
-
-  function killPlayer(player, baddie){
-    player.kill()
-    scoreText.text = 'YOU DEAD'
-  }
 
   function showLetter(letter){
     scoreText.text = letter
