@@ -1,7 +1,18 @@
-// globals
-window.game = null
+// entry point
+window.onload = start
 
-//
+// global modules
+var game = null // phaser game
+var phaserLifeCycleFunctions = {} // never change
+
+// global state
+var gameState = {}
+gameState.score = 0
+
+var score = 0
+var scoreText
+var platforms
+var userGuess
 
 function start(){
   window.game = new Phaser.Game(
@@ -9,10 +20,7 @@ function start(){
     600, // height
     Phaser.AUTO, // render backend
     'gamediv', // DOM id where game is injected
-    { preload: preload,
-      create: create,
-      update: update,
-    }
+    phaserLifeCycleFunctions
   )
   window.currentDeck = new CardDeck(exampleDeck)
 
@@ -24,16 +32,8 @@ function start(){
   })
 
 }
-// game state
 
-var score = 0
-var scoreText
-var platforms
-var userGuess
-
-
-
-window.preload = function(){
+phaserLifeCycleFunctions.preload = function(){
   game.load.image('sky', 'assets/sky.png')
   game.load.image('ground', 'assets/platform.png')
   game.load.image('star', 'assets/star.png')
@@ -41,7 +41,7 @@ window.preload = function(){
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32)
 }
 
-window.create = function(){
+phaserLifeCycleFunctions.create = function(){
   game.add.sprite(0,0, 'sky')
   game.physics.startSystem(Phaser.Physics.ARCADE)
   platforms = game.add.group();
@@ -63,17 +63,12 @@ window.create = function(){
   player.animations.add('left', [0, 1, 2, 3], 10, true);
   player.animations.add('right', [5, 6, 7, 8], 10, true);
 
-
   //create cursor listeners
   cursors = game.input.keyboard.createCursorKeys()
   // letterT = game.input.keyboard.addKey(Phaser.Keyboard.T)
-
   // letterT.onDown.add(showLetter, this)
 
   game.input.keyboard.addCallbacks(this, mykeydownhandler)
-
-
-
 
   //score text
   userGuess = game.add.text(400,16, '', {fontSize: '32px', fill: '#000'})
@@ -81,9 +76,7 @@ window.create = function(){
 
 }
 
-
-
-function update() {
+phaserLifeCycleFunctions.update = function () {
   game.physics.arcade.collide(player, platforms)
 
   player.body.velocity.x = 0
@@ -103,10 +96,6 @@ function update() {
   }
 
 }
-
-
-
-
 
 function mykeydownhandler(evt){
   // Skip it unless it's a-z.
@@ -162,8 +151,3 @@ function viewNextCard(){
 }
 
 
-window.onload = function(){
-
-  start()
-
-}
