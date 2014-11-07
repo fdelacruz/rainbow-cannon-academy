@@ -1,5 +1,6 @@
 Flashforward::Application.routes.draw do
 
+  get "decks/create"
   get "users/create"
   get "users/new"
   root 'welcome#index'
