@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106203016) do
+ActiveRecord::Schema.define(version: 20141107155453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cards", force: true do |t|
+    t.integer  "quizlet_card_id"
+    t.string   "term"
+    t.string   "definition"
+    t.integer  "deck_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "decks", force: true do |t|
+    t.integer  "quizlet_id"
+    t.string   "title"
+    t.integer  "term_count"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "uid"
