@@ -1,6 +1,16 @@
 // globals
 window.game = null
 
+window.preload = function(){
+  game.load.image('sky', 'assets/sky.png')
+  game.load.image('ground', 'assets/platform.png')
+  game.load.image('star', 'assets/star.png')
+  game.load.spritesheet('dude', 'assets/dude.png', 32, 48)
+  game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32)
+}
+
+// window.create = function(){}
+
 window.onload = function(){
   currentDeck = new CardDeck(exampleDeck)
   console.log(currentDeck.remainingCards)
@@ -23,13 +33,7 @@ window.onload = function(){
     }
   )
   
-  function preload() {
-    game.load.image('sky', 'assets/sky.png')
-    game.load.image('ground', 'assets/platform.png')
-    game.load.image('star', 'assets/star.png')
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48)
-    game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32)
-  }
+
 
   var score = 0
   var scoreText
