@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20141107155453) do
     t.integer  "quizlet_deck_id"
     t.string   "title"
     t.integer  "term_count"
+    t.integer  "quizlet_modified_date"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
