@@ -1,6 +1,20 @@
 // globals
 window.game = null
 
+//
+
+function initGame(){
+  window.game = new Phaser.Game(
+    800, // width
+    600, // height
+    Phaser.AUTO, // render backend
+    'gamediv', // DOM id where game is injected
+    { preload: preload,
+      create: create,
+      update: update,
+    }
+  )
+}
 // game state
 
 var score = 0
@@ -139,8 +153,6 @@ function viewNextCard(){
 }
 
 
-
-
 window.onload = function(){
   currentDeck = new CardDeck(exampleDeck)
   console.log(currentDeck.remainingCards)
@@ -152,14 +164,8 @@ window.onload = function(){
     }
   })
 
-  window.game = new Phaser.Game(
-    800, // width
-    600, // height
-    Phaser.AUTO, // render backend
-    'gamediv', // DOM id where game is injected
-    { preload: preload,
-      create: create,
-      update: update,
-    }
-  )
+  initGame()
+
+
+
 }
