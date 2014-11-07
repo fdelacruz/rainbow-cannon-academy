@@ -11,10 +11,10 @@ var gameState = {}
 gameState.player = null
 gameState.cursors = null
 gameState.groups = {}
+
 gameState.userGuess = null
 gameState.rightAnswer = null
-
-var currentDeck = new CardDeck({
+gameState.currentDeck = new CardDeck({
   deck:[
     {q:"hello" ,a:"hola" },
     {q: "bye",a:"adios"},
@@ -92,7 +92,7 @@ phaserLifeCycleFunctions.create = function(){
   // answer input
   gameState.userGuess = game.add.text(400,16, '', {fontSize: '32px', fill: '#000'})
   // flascard question
-  gameState.rightAnswer = game.add.text(16,16, currentDeck.currentCard.q, {fontSize: '32px', fill: '#000'})
+  gameState.rightAnswer = game.add.text(16,16, gameState.currentDeck.currentCard.q, {fontSize: '32px', fill: '#000'})
 }
 
 phaserLifeCycleFunctions.update = function () {
@@ -126,36 +126,29 @@ flashCardUI.isLetterKeyOrSpace =  function(keyCode) {
 
 function wordKeysHandler(evt){
   // handle backspace
-  if (evt.which === 8 /* backspace */) { deleteLastScoreText(); return}
+  if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
   // handle letter (a-z) or space
   if (flashCardUI.isLetterKeyOrSpace(evt.which)) {
     // handle letters
     var letter = String.fromCharCode( evt.which )
     if( !evt.shiftKey ) letter = letter.toLowerCase()
-    flashCardUI.inputLetter(letter)
+    flashCardUI.appendLetterToAnswer(letter)
     return
   }
   // handle enter
   if (evt.which === 13 /* enter */) {
-    flashCardUI.checkUserGuess(gameState.userGuess.text,currentDeck.currentCard.a) 
-    currentDeck.advanceToNextCard()
-    console.log(currentDeck.currentCard)
-    /// updating view
-    viewNextCard()
+    flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.a) 
+    gameState.currentDeck.advanceToNextCard()
+    flashCardUI.showNextCard()
     return
   }
 }
 
-flashCardUI.inputLetter = function(letter){
+flashCardUI.appendLetterToAnswer = function(letter){
   gameState.userGuess.text += letter
 } 
 
-
-function showLetter(letter){
-  scoreText.text = letter
-}
-
-function deleteLastScoreText(){
+flashCardUI.deleteLetterFromAnswer = function(){
   gameState.userGuess.text = gameState.userGuess.text.slice(0,-1)
 }
 
@@ -165,15 +158,7 @@ flashCardUI.checkUserGuess = function(guess, rightAnswer){
   }
 }
 
-function shuffle(o){
-  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-  return o;
-}
-
-function viewNextCard(){
-  console.log("view next")
+flashCardUI.showNextCard = function(){
   gameState.userGuess.text = ""
-  gameState.rightAnswer.text = currentDeck.currentCard.q
+  gameState.rightAnswer.text = gameState.currentDeck.currentCard.q
 }
-
-
