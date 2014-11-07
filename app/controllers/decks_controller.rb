@@ -1,20 +1,7 @@
 class DecksController < ApplicationController
   include DecksHelper
   def create
-    @decks = get_sets(session['uid'], session['access_token'])
-    user = User.find(session[:user_id])
-    @decks.each do |deck|
-      title = deck['title']
-      id = deck['id']
-      term_count = deck['term_count']
-      db_deck = Deck.create(title: title, quizlet_deck_id: id, term_count: term_count)
-      user.decks.push(db_deck)
-      deck['terms'].each do |card|
-        id = card['id']
-        term = card['term']
-        definition = card['definition']
-        db_deck.cards.push(Card.create(quizlet_card_id: id, term: term, definition: definition))
-      end
-    end
+    array_of_deck_hashes = get_sets(session['uid'], session['access_token'])
+    create_decks_for(User.find(session[:user_id]), array_of_deck_hashes)
   end
 end
