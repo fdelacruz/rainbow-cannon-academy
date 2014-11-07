@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20141107155453) do
   end
 
   create_table "decks", force: true do |t|
-    t.integer  "quizlet_id"
+    t.integer  "quizlet_deck_id"
     t.string   "title"
     t.integer  "term_count"
     t.integer  "user_id"
