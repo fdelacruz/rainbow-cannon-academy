@@ -11,11 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
+//= require phaser
+//= require carddeck
 //= require game
-//= require_tree .
-
 
 
 

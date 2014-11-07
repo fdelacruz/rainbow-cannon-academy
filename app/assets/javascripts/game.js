@@ -1,3 +1,6 @@
+// globals
+window.game = null
+
 window.onload = function(){
   currentDeck = new CardDeck(exampleDeck)
   console.log(currentDeck.remainingCards)
@@ -9,7 +12,16 @@ window.onload = function(){
     }
   })
 
-  var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gamediv', { preload: preload, create: create, update: update });
+  window.game = new Phaser.Game(
+    800, // width
+    600, // height
+    Phaser.AUTO, // render backend
+    'gamediv', // DOM id where game is injected
+    { preload: preload,
+      create: create,
+      update: update,
+    }
+  )
   
   function preload() {
     game.load.image('sky', 'assets/sky.png')
@@ -25,8 +37,6 @@ window.onload = function(){
   var userGuess
 
 
-  shuffledQuestions = shuffle(questions)
-  console.log(shuffledQuestions)
 
 
   function create() {
