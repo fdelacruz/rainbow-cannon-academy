@@ -3,7 +3,7 @@ window.game = null
 
 //
 
-function initGame(){
+function start(){
   window.game = new Phaser.Game(
     800, // width
     600, // height
@@ -14,6 +14,15 @@ function initGame(){
       update: update,
     }
   )
+  window.currentDeck = new CardDeck(exampleDeck)
+
+  // prevent back on backspace
+  document.addEventListener("keydown", function (e) {
+    if (e.which === 8) {
+      e.preventDefault()
+    }
+  })
+
 }
 // game state
 
@@ -154,18 +163,7 @@ function viewNextCard(){
 
 
 window.onload = function(){
-  currentDeck = new CardDeck(exampleDeck)
-  console.log(currentDeck.remainingCards)
 
-  // prevent back on backspace
-  $(document).on("keydown", function (e) {
-    if (e.which === 8) {
-      e.preventDefault()
-    }
-  })
-
-  initGame()
-
-
+  start()
 
 }
