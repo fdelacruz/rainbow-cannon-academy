@@ -2,6 +2,7 @@ window.onload = function(){
   currentDeck = new CardDeck(exampleDeck)
   console.log(currentDeck.remainingCards)
 
+  // prevent back on backspace
   $(document).on("keydown", function (e) {
     if (e.which === 8) {
       e.preventDefault()
@@ -23,13 +24,6 @@ window.onload = function(){
   var platforms
   var userGuess
 
-  var questions = [
-  {q: "talk", a: "hablar"},
-  {q: "hello", a: "hola"},
-  {q: "bye", a: "adios"},
-  {q: "dog", a: "perrrrro (con gusto)"},
-  {q: "cat", a: "gato"},
-  ]
 
   shuffledQuestions = shuffle(questions)
   console.log(shuffledQuestions)
