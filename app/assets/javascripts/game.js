@@ -6,6 +6,12 @@ var game = null // phaser game
 var phaserLifeCycleFunctions = {}
 var flashCardUI = {}
 var gameUI = {}
+var overallUI = {}
+
+// overallUI
+overallUI.millisecondsUntilSecondDecrement = null
+overallUI.gameTimeRemaining = null
+
 
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0

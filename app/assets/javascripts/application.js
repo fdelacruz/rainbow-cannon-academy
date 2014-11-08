@@ -8,4 +8,5 @@
 //= require lifecycle_create
 //= require lifecycle_update
 //= require lifecycle_render
+//= require overall_ui
 

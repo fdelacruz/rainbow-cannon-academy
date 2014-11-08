@@ -6,6 +6,13 @@ phaserLifeCycleFunctions.create = function(){
   // vector shapes
   gameUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
 
+  // timer
+  var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
+  overallUI.gameTimeRemaining = 300
+  timer.loop(1000, overallUI.decrementGameTimeRemaining, this)
+  timer.start()
+
+
 
   // rain
   var emitter = game.add.emitter(game.world.width, 475, 500)  //(x, y , max particles)
