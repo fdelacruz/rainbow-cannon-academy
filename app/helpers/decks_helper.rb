@@ -11,4 +11,22 @@ module DecksHelper
       user.decks.push(db_deck)
     end
   end
+
+  def quizlet_deck_comparison_array(quizlet_deck_hash)
+    quizlet_deck_hash.map {|deck| deck.slice("id", "modified_date")}
+  end
+
+  def db_deck_comparison_array(user)
+    user.decks.map {|deck| {"id" => deck.quizlet_deck_id, "modified_date" => deck.quizlet_modified_date} }
+  end
+
+  def update_decks_in_db(quizlet_deck_hash, db_deck_hash, user)
+    unless quizlet_deck_comparison_array(quizlet_deck_hash) == db_deck_comparison_array(user)
+      create_decks_for(user, quizlet_deck_hash)
+    end
+  end
+
 end
+
+
+
