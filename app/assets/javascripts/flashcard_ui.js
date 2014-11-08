@@ -14,7 +14,7 @@ flashCardUI.checkUserGuess = function(guess, currentQuestion){
 
 flashCardUI.showNextCard = function(){
   gameState.userGuess.text = ""
-  gameState.currentQuestion.text = gameState.currentDeck.currentCard.q
+  gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
 }
 
 flashCardUI.wordKeysHandler = function(evt){
@@ -30,7 +30,7 @@ flashCardUI.wordKeysHandler = function(evt){
   }
   // handle enter
   if (evt.which === 13 /* enter */) {
-    flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.a)
+    flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)
     gameState.currentDeck.advanceToNextCard()
     if (gameState.currentDeck.solvedDeck){
       console.log("you win")

@@ -27,20 +27,16 @@ phaserLifeCycleFunctions.create = function(){
   emitter.start(false, 3000,  0.5) //(explode, lifespan, frequency, quantity, forceQuantity)
   emitter.gravity.x = 1000
 
-  //  ---
-
   // bullets
 
-    bullets = game.add.group()
-    bullets.enableBody = true
-    bullets.physicsBodyType = Phaser.Physics.ARCADE
+  bullets = game.add.group()
+  bullets.enableBody = true
+  bullets.physicsBodyType = Phaser.Physics.ARCADE
 
-    //  All 40 of them
-    bullets.createMultiple(400, 'bullet')
-    bullets.setAll('anchor.x', 0.5)
-    bullets.setAll('anchor.y', 0.5)
-
-  // ---
+  //  All 40 of them
+  bullets.createMultiple(400, 'bullet')
+  bullets.setAll('anchor.x', 0.5)
+  bullets.setAll('anchor.y', 0.5)
 
   // create platforms (stuff the character can stand on)
 
@@ -53,12 +49,9 @@ phaserLifeCycleFunctions.create = function(){
 
   // var rightLedge = platforms.create(400, 400, 'ground')
   // rightLedge.body.immovable = true
-
   var screenSplit = platforms.create(0, 200, 'ground')
   screenSplit.scale.setTo(4,1)
   screenSplit.body.immovable = true
-
-  // ---
 
   // create player object
 
@@ -67,9 +60,6 @@ phaserLifeCycleFunctions.create = function(){
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
 
-
-  // ---
-
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
   game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
@@ -77,5 +67,5 @@ phaserLifeCycleFunctions.create = function(){
   // answer input
   gameState.userGuess = game.add.text(400,16, '', {fontSize: '32px', fill: '#000'})
   // flascard question
-  gameState.currentQuestion = game.add.text(16,16, gameState.currentDeck.currentCard.q, {fontSize: '32px', fill: '#000'})
+  gameState.currentQuestion = game.add.text(16,16, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#000'})
 }
