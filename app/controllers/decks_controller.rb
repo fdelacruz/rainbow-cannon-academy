@@ -13,4 +13,8 @@ class DecksController < ApplicationController
     update_decks_in_db(array_of_deck_hashes_from_quizlet, array_of_deck_objects_from_db, user)
     redirect_to root_path
   end
+
+  def index
+
+  end
 end
