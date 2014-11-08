@@ -25,7 +25,6 @@ gameState.currentDeck = new CardDeck({
 })
 
 var score = 0
-var scoreText
 var platforms
 
 // init all the globals
@@ -119,16 +118,16 @@ phaserLifeCycleFunctions.update = function () {
 
 }
 
-flashCardUI.isLetterKeyOrSpace =  function(keyCode) {
+flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
   return !(keyCode < "A".charCodeAt(0) || keyCode > "Z".charCodeAt(0)) || // not outside letter range
-  keyCode == 32 // is space
+  keyCode == 32 || (keyCode <= "9".charCodeAt(0) && keyCode >= "0".charCodeAt(0)) // is space or number
 }
 
 function wordKeysHandler(evt){
   // handle backspace
   if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
   // handle letter (a-z) or space
-  if (flashCardUI.isLetterKeyOrSpace(evt.which)) {
+  if (flashCardUI.isLetterKeyOrSpaceOrNumber(evt.which)) {
     // handle letters
     var letter = String.fromCharCode( evt.which )
     if( !evt.shiftKey ) letter = letter.toLowerCase()
