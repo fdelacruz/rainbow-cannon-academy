@@ -5,15 +5,23 @@ window.onload = start
 var game = null // phaser game
 var phaserLifeCycleFunctions = {}
 var flashCardUI = {}
+var gameUI = {}
+
+// global game variables
+gameUI.bulletTime = 0
+gameUI.shotDelayTime = 0
+gameUI.fireGunCounter = 0
+gameUI.fireGunRate = 10 // (60/rate) = shots per second
 
 // global state
 var gameState = {}
 gameState.player = null
 gameState.cursors = null
 gameState.groups = {}
+gameState.count = 0
 
 gameState.userGuess = null
-gameState.rightAnswer = null
+gameState.currentQuestion = null
 gameState.currentDeck = new CardDeck({
   deck:[
     {q:"hello" ,a:"hola" },
@@ -49,7 +57,8 @@ phaserLifeCycleFunctions.preload = function(){
   game.load.image('star', 'assets/star.png')
   game.load.image('dude', 'assets/ship.png')
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32)
-  game.load.spritesheet('rain', 'assets/rain.png', 17, 17);
+  game.load.spritesheet('rain', 'assets/rain.png', 17, 17)
+  game.load.image('bullet', 'assets/bullets.png')
 }
 
 phaserLifeCycleFunctions.create = function(){
@@ -60,29 +69,40 @@ phaserLifeCycleFunctions.create = function(){
 
   //rain
 
-  var emitter = game.add.emitter(game.world.width, 475, 500);  //(x, y , max particles)
+  var emitter = game.add.emitter(game.world.width, 475, 500)  //(x, y , max particles)
 
-  emitter.height = 400;
-  // emitter.angle = 30; // uncomment to set an angle for the rain.
+  emitter.height = 400
 
-  emitter.makeParticles('rain');
+  emitter.makeParticles('rain')
   // emitter.gravity.x = 0
 
-  emitter.minParticleScale = 1;
-  emitter.maxParticleScale = 1;
+  emitter.minParticleScale = 1
+  emitter.maxParticleScale = 1
 
   // emitter.setYSpeed(500,-500);
-  emitter.setXSpeed(-800, -1500);
-  emitter.setYSpeed(-5, 5);
+  emitter.setXSpeed(-800, -1500)
+  emitter.setYSpeed(0,0)
 
-  emitter.minRotation = 1;
-  emitter.maxRotation = 100;
+  emitter.minRotation = 1
+  emitter.maxRotation = 1
 
-  emitter.start(false, 3000,  0.5); //(explode, lifespan, frequency, quantity, forceQuantity)
+  emitter.start(false, 3000,  0.5) //(explode, lifespan, frequency, quantity, forceQuantity)
   emitter.gravity.x = 1000
 
-  //rain
+  //  ---
 
+  // bullets
+
+    bullets = game.add.group()
+    bullets.enableBody = true
+    bullets.physicsBodyType = Phaser.Physics.ARCADE
+
+    //  All 40 of them
+    bullets.createMultiple(400, 'bullet')
+    bullets.setAll('anchor.x', 0.5)
+    bullets.setAll('anchor.y', 0.5)
+
+  // ---
 
   // create platforms (stuff the character can stand on)
 
@@ -108,8 +128,7 @@ phaserLifeCycleFunctions.create = function(){
   game.physics.arcade.enable(player)
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
-  player.animations.add('left', [0, 1, 2, 3], 10, true);
-  player.animations.add('right', [5, 6, 7, 8], 10, true);
+
 
   // ---
 
@@ -120,31 +139,39 @@ phaserLifeCycleFunctions.create = function(){
   // answer input
   gameState.userGuess = game.add.text(400,16, '', {fontSize: '32px', fill: '#000'})
   // flascard question
-  gameState.rightAnswer = game.add.text(16,16, gameState.currentDeck.currentCard.q, {fontSize: '32px', fill: '#000'})
+  gameState.currentQuestion = game.add.text(16,16, gameState.currentDeck.currentCard.q, {fontSize: '32px', fill: '#000'})
 }
 
+  // UPDATE
 phaserLifeCycleFunctions.update = function () {
   var player = gameState.player
   var cursors = gameState.cursors
+  var shootTheGun = false
 
   game.physics.arcade.collide(player, gameState.groups.platforms)
 
-  player.body.velocity.x = 0
+  // player.body.velocity.x = 5
   if (cursors.left.isDown) {
-    player.body.velocity.y = -300;
+    player.body.velocity.y = -250;
     player.animations.play('up')
   } else if (cursors.right.isDown){
-    player.body.velocity.y = 300;
+    player.body.velocity.y = 250;
     player.animations.play('down')
   } else {
     player.animations.stop()
     player.frame = 4
+    player.body.velocity.y = 0
   }
 
-  if (cursors.up.isDown && player.body.touching.down) {
-    player.body.velocity.y = -600
+  // fire!
+  gameUI.fireGunCounter += 1
+  if (gameUI.fireGunCounter == gameUI.fireGunRate){
+    shootTheGun = true
+    gameUI.fireGunCounter = 0
   }
-
+  if (shootTheGun) {
+    gameUI.fireBullet()
+  }
 }
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
@@ -176,6 +203,24 @@ function wordKeysHandler(evt){
   }
 }
 
+// Gameplay functions
+
+gameUI.fireBullet = function() {
+  if (game.time.now > gameUI.bulletTime) {
+    bullet = bullets.getFirstExists(false);
+    if (bullet) {
+      bullet.reset(gameState.player.body.x + 16, gameState.player.body.y + 16);
+      bullet.lifespan = 4000;
+      bullet.rotation = gameState.player.rotation;
+      game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity);
+      bulletTime = game.time.now + 50
+    }
+  }
+}
+
+
+// Flash Card functions
+
 flashCardUI.appendLetterToAnswer = function(letter){
   gameState.userGuess.text += letter
 }
@@ -184,15 +229,15 @@ flashCardUI.deleteLetterFromAnswer = function(){
   gameState.userGuess.text = gameState.userGuess.text.slice(0,-1)
 }
 
-flashCardUI.checkUserGuess = function(guess, rightAnswer){
-  if (guess === " " + rightAnswer){
+flashCardUI.checkUserGuess = function(guess, currentQuestion){
+  if (guess === " " + currentQuestion){
     console.log("Correct")
   }
 }
 
 flashCardUI.showNextCard = function(){
   gameState.userGuess.text = ""
-  gameState.rightAnswer.text = gameState.currentDeck.currentCard.q
+  gameState.currentQuestion.text = gameState.currentDeck.currentCard.q
 }
 
 // flashCardUI.checkIfGameIsFinished = function(letter){
