@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails_12factor', group: :production
+
 gem 'pry'
 gem 'json'
 gem 'dotenv-rails'
@@ -36,6 +36,9 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+# Enable serving assets in production and setting your logger
+gem 'rails_serve_static_assets'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
