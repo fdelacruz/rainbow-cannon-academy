@@ -4,7 +4,7 @@ phaserLifeCycleFunctions.create = function(){
   game.physics.startSystem(Phaser.Physics.ARCADE)
 
   // vector shapes
-  gameUI.textInputLine = new Phaser.Rectangle(0, 550, 800, 50)
+  gameUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
 
 
   // rain
