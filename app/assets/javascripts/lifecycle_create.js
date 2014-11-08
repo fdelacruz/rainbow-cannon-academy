@@ -2,44 +2,34 @@ phaserLifeCycleFunctions.create = function(){
   var sky = game.add.sprite(0, 0, 'sky') // set background
   sky.scale.setTo(2,1)
   game.physics.startSystem(Phaser.Physics.ARCADE)
+
+  // vector shapes
   gameUI.textInputLine = new Phaser.Rectangle(0, 550, 800, 50)
 
 
-  //rain
-
+  // rain
   var emitter = game.add.emitter(game.world.width, 475, 500)  //(x, y , max particles)
-
   emitter.height = 400
-
   emitter.makeParticles('rain')
-  // emitter.gravity.x = 0
-
   emitter.minParticleScale = 1
   emitter.maxParticleScale = 1
-
-  // emitter.setYSpeed(500,-500);
   emitter.setXSpeed(-800, -1500)
   emitter.setYSpeed(0,0)
-
   emitter.minRotation = 1
   emitter.maxRotation = 1
-
   emitter.start(false, 3000,  0.5) //(explode, lifespan, frequency, quantity, forceQuantity)
   emitter.gravity.x = 1000
 
   // bullets
-
   bullets = game.add.group()
   bullets.enableBody = true
   bullets.physicsBodyType = Phaser.Physics.ARCADE
-
   //  All 40 of them
   bullets.createMultiple(400, 'bullet')
   bullets.setAll('anchor.x', 0.5)
   bullets.setAll('anchor.y', 0.5)
 
   // create platforms (stuff the character can stand on)
-
   var platforms = gameState.groups.platforms = game.add.group()
   platforms.enableBody = true
 
