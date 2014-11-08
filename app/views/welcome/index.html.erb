@@ -1,9 +1,11 @@
-
-
-    	<div id="gamediv">
-    		
-    	</div>
+<div id="gamediv"></div>
 <h1>Flashforward</h1>
 <p>Hello World</p>
 
-<%= link_to "Sign in with quizlet", "/auth/quizlet" %>
+<% unless session[:user_id] %>
+  <%= link_to "Sign in with quizlet", "/auth/quizlet" %>
+<% else %>
+  Hi <%= current_user.uid %>
+  <%= link_to "Signout", "/session/destroy" %>
+  <%= link_to "Choose your flashcard deck", "/decks/index" %>
+<% end %>
