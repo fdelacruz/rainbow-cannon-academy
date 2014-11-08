@@ -60,24 +60,26 @@ phaserLifeCycleFunctions.create = function(){
 
   //rain
 
-  var emitter = game.add.emitter(350, -1200, 500);  //(x, y , max particles)
+  var emitter = game.add.emitter(game.world.width, 475, 500);  //(x, y , max particles)
 
-  emitter.width = 150;
-  emitter.angle = 90
+  emitter.height = 400;
   // emitter.angle = 30; // uncomment to set an angle for the rain.
 
   emitter.makeParticles('rain');
+  // emitter.gravity.x = 0
 
-  emitter.minParticleScale = 0.4;
+  emitter.minParticleScale = 1;
   emitter.maxParticleScale = 1;
 
   // emitter.setYSpeed(500,-500);
-  emitter.setYSpeed(200, 1000);
+  emitter.setXSpeed(-800, -1500);
+  emitter.setYSpeed(-5, 5);
 
-  // emitter.minRotation = 0;
-  // emitter.maxRotation = 0;
+  emitter.minRotation = 1;
+  emitter.maxRotation = 100;
 
-  emitter.start(false, 3000,  500); //(explode, lifespan, frequency, quantity, forceQuantity)
+  emitter.start(false, 3000,  0.5); //(explode, lifespan, frequency, quantity, forceQuantity)
+  emitter.gravity.x = 1000
 
   //rain
 
