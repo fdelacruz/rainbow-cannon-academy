@@ -35,7 +35,7 @@ function start(){
   })
 
   game = new Phaser.Game(
-    800, // width
+    1200, // width
     600, // height
     Phaser.AUTO, // render backend
     'gamediv', // DOM id where game is injected
@@ -47,28 +47,56 @@ phaserLifeCycleFunctions.preload = function(){
   game.load.image('sky', 'assets/sky.png')
   game.load.image('ground', 'assets/platform.png')
   game.load.image('star', 'assets/star.png')
-  game.load.spritesheet('dude', 'assets/dude.png', 32, 48)
+  game.load.image('dude', 'assets/ship.png')
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32)
+  game.load.spritesheet('rain', 'assets/rain.png', 17, 17);
 }
 
 phaserLifeCycleFunctions.create = function(){
-  game.add.sprite(0, 0, 'sky') // set background
+  var sky = game.add.sprite(0, 0, 'sky') // set background
+  sky.scale.setTo(2,1)
   game.physics.startSystem(Phaser.Physics.ARCADE)
+
+
+  //rain
+
+  var emitter = game.add.emitter(350, -1200, 500);  //(x, y , max particles)
+
+  emitter.width = 150;
+  emitter.angle = 90
+  // emitter.angle = 30; // uncomment to set an angle for the rain.
+
+  emitter.makeParticles('rain');
+
+  emitter.minParticleScale = 0.4;
+  emitter.maxParticleScale = 1;
+
+  // emitter.setYSpeed(500,-500);
+  emitter.setYSpeed(200, 1000);
+
+  // emitter.minRotation = 0;
+  // emitter.maxRotation = 0;
+
+  emitter.start(false, 3000,  500); //(explode, lifespan, frequency, quantity, forceQuantity)
+
+  //rain
+
 
   // create platforms (stuff the character can stand on)
 
   var platforms = gameState.groups.platforms = game.add.group()
   platforms.enableBody = true
 
-  var ground = platforms.create(0, game.world.height - 64, 'ground')
-  ground.scale.setTo(2,2)
+  var ground = platforms.create(0, game.world.height -30, 'ground')
+  ground.scale.setTo(4,1)
   ground.body.immovable = true
 
-  var rightLedge = platforms.create(400, 400, 'ground')
-  rightLedge.body.immovable = true
-  
-  var leftLedge = platforms.create(-150, 250, 'ground')
-  leftLedge.body.immovable = true
+  // var rightLedge = platforms.create(400, 400, 'ground')
+  // rightLedge.body.immovable = true
+
+  var screenSplit = platforms.create(0, 200, 'ground')
+  screenSplit.scale.setTo(4,1)
+  screenSplit.body.immovable = true
 
   // ---
 
@@ -77,7 +105,6 @@ phaserLifeCycleFunctions.create = function(){
   var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
   game.physics.arcade.enable(player)
   player.body.bounce.y = 0.2
-  player.body.gravity.y = 1000
   player.body.collideWorldBounds = true
   player.animations.add('left', [0, 1, 2, 3], 10, true);
   player.animations.add('right', [5, 6, 7, 8], 10, true);
@@ -102,11 +129,11 @@ phaserLifeCycleFunctions.update = function () {
 
   player.body.velocity.x = 0
   if (cursors.left.isDown) {
-    player.body.velocity.x = -300;
-    player.animations.play('left')
+    player.body.velocity.y = -300;
+    player.animations.play('up')
   } else if (cursors.right.isDown){
-    player.body.velocity.x = 300;
-    player.animations.play('right')
+    player.body.velocity.y = 300;
+    player.animations.play('down')
   } else {
     player.animations.stop()
     player.frame = 4
@@ -136,12 +163,12 @@ function wordKeysHandler(evt){
   }
   // handle enter
   if (evt.which === 13 /* enter */) {
-    flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.a) 
+    flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.a)
     gameState.currentDeck.advanceToNextCard()
     if (gameState.currentDeck.solvedDeck){
       console.log("you win")
       return
-    } 
+    }
     flashCardUI.showNextCard()
     return
   }
@@ -149,7 +176,7 @@ function wordKeysHandler(evt){
 
 flashCardUI.appendLetterToAnswer = function(letter){
   gameState.userGuess.text += letter
-} 
+}
 
 flashCardUI.deleteLetterFromAnswer = function(){
   gameState.userGuess.text = gameState.userGuess.text.slice(0,-1)
@@ -167,5 +194,5 @@ flashCardUI.showNextCard = function(){
 }
 
 // flashCardUI.checkIfGameIsFinished = function(letter){
-  
-// } 
+
+// }
