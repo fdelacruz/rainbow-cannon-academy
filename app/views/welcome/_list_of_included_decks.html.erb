@@ -1,0 +1,7 @@
+<div>
+  <select>
+    <% IncludedDeck.all.each do |deck| %>
+    <option value=<%= deck.title %>><%= deck.title %></option>
+    <% end %>
+  </select>
+</div>

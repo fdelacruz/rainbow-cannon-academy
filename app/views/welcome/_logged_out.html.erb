@@ -1,0 +1,8 @@
+
+<% if !session[:user_id] %>
+  <p>You are logged out</p>
+  <%= link_to "Sign in with quizlet", "/auth/quizlet" %>
+  <h2>No quizlet? Play an Included Deck!</h2>
+  <%= render partial: "list_of_included_decks" %>
+
+<% end %>
