@@ -13,7 +13,4 @@ class UsersController < ApplicationController
       redirect_to decks_update_path
     end
   end
-
-  def new
-  end
 end

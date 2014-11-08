@@ -1,9 +1,6 @@
-
-
-    	<div id="gamediv">
-    		
-    	</div>
+<div id="gamediv"></div>
 <h1>Flashforward</h1>
 <p>Hello World</p>
 
-<%= link_to "Sign in with quizlet", "/auth/quizlet" %>
+<%= render partial: "logged_in" %>
+<%= render partial: "logged_out" %>
