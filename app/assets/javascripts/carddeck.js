@@ -1,4 +1,3 @@
-
 function CardDeck(carddeck_object){
 	this.solvedDeck = false
 	this.remainingCards = carddeck_object.deck
@@ -15,7 +14,6 @@ function CardDeck(carddeck_object){
 		this.remainingCards = shuffle(this.remainingCards)
 		this.currentCard = this.remainingCards[0]
 	}
-	// this.parseInput = function(){}
 
 }
 
