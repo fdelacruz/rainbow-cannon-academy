@@ -7,26 +7,8 @@ module DecksHelper
 
   def create_decks_for(user, array_of_deck_hashes)
     array_of_deck_hashes.each do |deck|
-      # title = deck['title']
-      # id = deck['id']
-      # term_count = deck['term_count']
-      # modified_date = deck['modified_date']
-      cards = deck['terms']
-      cards_json = deck['terms'].class
-      binding.pry
       db_deck = Deck.create(title: deck['title'], quizlet_modified_date: deck['modified_date'], quizlet_deck_id: deck['id'], term_count: deck['term_count'], cards: deck['terms'])
       user.decks.push(db_deck)
-      # create_cards_from_array_of_card_hashes(db_deck, deck['terms'])
     end
   end
-
-  # def create_cards_from_array_of_card_hashes(deck_object, array_of_card_hashes)
-  #   array_of_card_hashes.each do |card|
-  #       id = card['id']
-  #       term = card['term']
-  #       definition = card['definition']
-  #       deck_object.cards.push(Card.create(quizlet_card_id: id, term: term, definition: definition))
-  #     end
-  # end
-
 end
