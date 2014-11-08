@@ -1,0 +1,6 @@
+<% if session[:user_id] %>
+  <p>You are logged in </p>
+  Hi <%= current_user.uid %>
+  <%= link_to "Signout", "/session/destroy" %>
+  <%= link_to "Choose your flashcard deck", "/decks/index" %>
+<% end %>
