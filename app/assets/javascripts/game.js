@@ -161,16 +161,16 @@ phaserLifeCycleFunctions.update = function () {
     player.animations.stop()
     player.frame = 4
     player.body.velocity.y = 0
-  }
 
-  // fire!
-  gameUI.fireGunCounter += 1
-  if (gameUI.fireGunCounter == gameUI.fireGunRate){
-    shootTheGun = true
-    gameUI.fireGunCounter = 0
-  }
-  if (shootTheGun) {
-    gameUI.fireBullet()
+    // fire!
+    gameUI.fireGunCounter += 1
+    if (gameUI.fireGunCounter == gameUI.fireGunRate){
+      shootTheGun = true
+      gameUI.fireGunCounter = 0
+    }
+    if (shootTheGun) {
+      gameUI.fireBullet()
+    }
   }
 }
 
