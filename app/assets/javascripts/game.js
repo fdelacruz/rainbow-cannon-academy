@@ -12,6 +12,7 @@ gameUI.bulletTime = 0
 gameUI.shotDelayTime = 0
 gameUI.fireGunCounter = 0
 gameUI.fireGunRate = 10 // (60/rate) = shots per second
+gameUI.textInputLine
 
 // global state
 var gameState = {}
@@ -40,6 +41,7 @@ function start(){
   // prevent back on backspace
   document.addEventListener("keydown", function (e) {
     if (e.which === 8) e.preventDefault()
+    if (e.which === 32) e.preventDefault()
   })
 
   game = new Phaser.Game(
@@ -65,6 +67,7 @@ phaserLifeCycleFunctions.create = function(){
   var sky = game.add.sprite(0, 0, 'sky') // set background
   sky.scale.setTo(2,1)
   game.physics.startSystem(Phaser.Physics.ARCADE)
+  gameUI.textInputLine = new Phaser.Rectangle(0, 550, 800, 50)
 
 
   //rain
@@ -173,6 +176,11 @@ phaserLifeCycleFunctions.update = function () {
     }
   }
 }
+
+phaserLifeCycleFunctions.render = function () {
+  game.debug.geom(gameUI.textInputLine,'#0fffff');
+}
+
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
   return !(keyCode < "A".charCodeAt(0) || keyCode > "Z".charCodeAt(0)) || // not outside letter range
