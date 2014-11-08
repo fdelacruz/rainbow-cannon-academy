@@ -55,7 +55,7 @@ phaserLifeCycleFunctions.create = function(){
   game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
   // answer input
-  gameState.userGuess = game.add.text(400,16, '', {fontSize: '32px', fill: '#000'})
+  gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#000'})
   // flascard question
-  gameState.currentQuestion = game.add.text(16,16, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#000'})
+  gameState.currentQuestion = game.add.text(200, 128, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#000'})
 }
