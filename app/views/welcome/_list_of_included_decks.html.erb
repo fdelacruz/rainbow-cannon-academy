@@ -1,7 +1,6 @@
 <div>
-  <select>
-    <% IncludedDeck.all.each do |deck| %>
-    <option value=<%= deck.title %>><%= deck.title %></option>
-    <% end %>
-  </select>
+<%= form_for "play" do |f| %>
+  <%= f.select :quiz_selection, all_included_decks_in_nested_array_form%>
+  <%= f.submit %>
+<% end %>
 </div>
