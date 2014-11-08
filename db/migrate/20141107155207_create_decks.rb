@@ -5,6 +5,7 @@ class CreateDecks < ActiveRecord::Migration
       t.string :title
       t.integer :term_count
       t.integer :quizlet_modified_date
+      t.json :cards
       t.belongs_to :user
 
       t.timestamps
