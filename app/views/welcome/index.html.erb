@@ -2,10 +2,5 @@
 <h1>Flashforward</h1>
 <p>Hello World</p>
 
-<% unless session[:user_id] %>
-  <%= link_to "Sign in with quizlet", "/auth/quizlet" %>
-<% else %>
-  Hi <%= current_user.uid %>
-  <%= link_to "Signout", "/session/destroy" %>
-  <%= link_to "Choose your flashcard deck", "/decks/index" %>
-<% end %>
+<%= render partial: "logged_in" %>
+<%= render partial: "logged_out" %>
