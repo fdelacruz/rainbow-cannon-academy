@@ -178,7 +178,7 @@ phaserLifeCycleFunctions.update = function () {
 }
 
 phaserLifeCycleFunctions.render = function () {
-  game.debug.geom(gameUI.textInputLine,'#0fffff');
+  game.debug.geom(gameUI.textInputLine,'#FFFFFF');
 }
 
 
