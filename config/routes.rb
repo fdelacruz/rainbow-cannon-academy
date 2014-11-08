@@ -1,5 +1,7 @@
 Flashforward::Application.routes.draw do
 
+  get "session/destroy"
+  get "session/create"
   get "decks/create"
   get "decks/update"
   get "users/create"
