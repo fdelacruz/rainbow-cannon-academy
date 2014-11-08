@@ -1,0 +1,7 @@
+<div>
+  <select>
+<%= User.find(signed_in_user_id).decks.each do |deck| %>
+    <option value=<%= deck.title %>><%= deck.title %></option>
+    <% end %>
+  </select>
+</div>
