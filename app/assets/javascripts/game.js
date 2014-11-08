@@ -138,6 +138,10 @@ function wordKeysHandler(evt){
   if (evt.which === 13 /* enter */) {
     flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.a) 
     gameState.currentDeck.advanceToNextCard()
+    if (gameState.currentDeck.solvedDeck){
+      console.log("you win")
+      return
+    } 
     flashCardUI.showNextCard()
     return
   }
@@ -161,3 +165,7 @@ flashCardUI.showNextCard = function(){
   gameState.userGuess.text = ""
   gameState.rightAnswer.text = gameState.currentDeck.currentCard.q
 }
+
+// flashCardUI.checkIfGameIsFinished = function(letter){
+  
+// } 
