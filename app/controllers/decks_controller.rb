@@ -20,7 +20,6 @@ class DecksController < ApplicationController
   end
 
   def show
-    binding.pry
     @deck = Deck.find(params[:id])
   end
 
