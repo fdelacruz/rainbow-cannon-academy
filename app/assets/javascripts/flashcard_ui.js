@@ -20,6 +20,7 @@ flashCardUI.showNextCard = function(){
 }
 
 flashCardUI.wordKeysHandler = function(evt){
+  deck = gameState.currentDeck
   // handle backspace
   if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
   // handle letter (a-z) or space
@@ -32,15 +33,14 @@ flashCardUI.wordKeysHandler = function(evt){
   }
   // handle enter
   if (evt.which === 13 /* enter */) {
-    flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)
-    gameState.currentDeck.advanceToNextCard()
-    gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-    if (gameState.currentDeck.solvedDeck){
-      console.log("you win")
+    flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
+    if (deck.currentIndex === 9) {
+      overallUI.flashCardRoundComplete = true
       return
     }
+    deck.advanceToNextCard()
+    gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
     flashCardUI.showNextCard()
-    return
   }
 }
 
@@ -48,4 +48,13 @@ flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
   return !(keyCode < "A".charCodeAt(0) || keyCode > "Z".charCodeAt(0)) || // not outside letter range
   keyCode == 32 || (keyCode <= "9".charCodeAt(0) && keyCode >= "0".charCodeAt(0)) // is space or number
 }
+
+flashCardUI.clearFlashCardText = function(){
+  gameState.userGuess.text = ''
+  gameState.currentQuestion.text = ''
+  gameState.currentCardsRemaining.text = 'ROUND OVER. BEGIN GAME'
+  gameState.userFeedbackText.text = ''
+  flashCardUI.textInputLine.height = 0
+}
+
 
