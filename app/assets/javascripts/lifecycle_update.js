@@ -31,6 +31,12 @@ phaserLifeCycleFunctions.update = function () {
       gameUI.fireBullet()
     }
   }
+  // spawn aliens if new round is ready
+  if (gameUI.spawnAliens) {
+    gameUI.createAliens()
+    gameUI.spawnAliens = false
+  }
+
   overallUI.checkIfFlashcardsComplete()
 }
 

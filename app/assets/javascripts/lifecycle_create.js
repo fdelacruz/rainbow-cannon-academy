@@ -62,7 +62,6 @@ phaserLifeCycleFunctions.create = function(){
   aliens = gameState.groups.aliens = game.add.group()
   aliens.enableBody = true
   aliens.physicsBodyType = Phaser.Physics.ARCADE
-  createAliens()
 
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
