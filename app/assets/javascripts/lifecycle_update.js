@@ -37,6 +37,11 @@ phaserLifeCycleFunctions.update = function () {
     gameUI.spawnAliens = false
   }
 
+  //
   overallUI.checkIfFlashcardsComplete()
+  if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
+    console.log("round over")
+    overallUI.flashCardRoundComplete = false
+  }
 }
 

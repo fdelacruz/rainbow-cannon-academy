@@ -6,7 +6,6 @@ gameUI.fireBullet = function() {
       bullet.lifespan = 4000;
       bullet.rotation = gameState.player.rotation;
       game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity);
-      bulletTime = game.time.now + 50
     }
   }
 }
@@ -39,4 +38,8 @@ gameUI.createAliens = function(){
 gameUI.killAlien = function(bullet, alien){
   alien.kill()
   bullet.kill()
+}
+
+gameUI.aliensDead = function(){
+  return (gameState.groups.aliens.countLiving() === 0)
 }
