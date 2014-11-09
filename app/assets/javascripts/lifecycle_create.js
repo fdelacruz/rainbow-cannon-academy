@@ -68,6 +68,12 @@ phaserLifeCycleFunctions.create = function(){
   game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
   // create text fields ------------------------------------------------
+  overallUI.scoreObject = game.add.text(
+    32, 32, // x coord, y coord
+    'Score: ' + overallUI.score, // text field
+    {fontSize: '32px', fill: '#000'} // text styling
+    )
+
 
   // answer input
   gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#000'})
