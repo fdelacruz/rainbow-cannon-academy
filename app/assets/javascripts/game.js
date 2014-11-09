@@ -1,5 +1,5 @@
 // entry point
-// window.onload = start
+window.onload = start
 
 // global modules ---------------------------------------------------
 var game = null // phaser game
@@ -21,7 +21,7 @@ flashCardUI.textInputLine
 gameUI.bulletTime = 0
 gameUI.shotDelayTime = 0
 gameUI.fireGunCounter = 0
-gameUI.fireGunRate = 5 // (60/rate) = shots per second
+gameUI.fireGunRate = 20 // (60/rate) = shots per second
 
 gameUI.spawnAliens = false
 

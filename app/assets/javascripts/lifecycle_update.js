@@ -4,7 +4,7 @@ phaserLifeCycleFunctions.update = function () {
   var shootTheGun = false
 
   game.physics.arcade.collide(player, gameState.groups.platforms)
-  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.killAlien , null, this);
+  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this);
 
   // player.body.velocity.x = 5
   if (cursors.left.isDown) {

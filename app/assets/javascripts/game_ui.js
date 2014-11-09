@@ -35,9 +35,14 @@ gameUI.createAliens = function(){
   // tween.onLoop.add(descend, this);
 }
 
-gameUI.killAlien = function(bullet, alien){
-  alien.kill()
+gameUI.hitAlien = function(bullet, alien){
+  alien.health -= bullet.damage
+  if (alien.health <= 0) gameUI.killAlien(alien)
   bullet.kill()
+}
+
+gameUI.killAlien = function(alien){
+  alien.kill()
   overallUI.updateScore()
 }
 
