@@ -7,7 +7,12 @@ class IncludedDecksController < ApplicationController
   end
 
   def show
-    # binding.pry
+    @included_deck = IncludedDeck.find(params[:id])
+  end
+
+  def json
+    @included_deck = IncludedDeck.find(params[:id])
+    return @included_deck.cards.to_json
   end
 
 end
