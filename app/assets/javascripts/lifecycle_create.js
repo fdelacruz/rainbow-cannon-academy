@@ -59,6 +59,17 @@ phaserLifeCycleFunctions.create = function(){
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
 
+  // create bad guy
+
+    aliens = gameState.groups.aliens = game.add.group()
+    aliens.enableBody = true
+    aliens.physicsBodyType = Phaser.Physics.ARCADE
+    createAliens()
+
+
+
+
+
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
   game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
