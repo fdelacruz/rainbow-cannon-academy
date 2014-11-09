@@ -6,6 +6,12 @@ var game = null // phaser game
 var phaserLifeCycleFunctions = {}
 var flashCardUI = {}
 var gameUI = {}
+var overallUI = {}
+
+// overallUI
+overallUI.millisecondsUntilSecondDecrement = null
+overallUI.gameTimeRemaining = null
+
 
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0
@@ -22,15 +28,8 @@ gameState.groups = {}
 gameState.count = 0
 gameState.userGuess = null
 gameState.currentQuestion = null
-gameState.currentDeck = new CardDeck({
-  deck:[
-    {q:"hello" ,a:"hola" },
-    {q: "bye",a:"adios"},
-    {q: "dog",a: "perro"},
-    {q: "cat",a: "gato"},
-    {q: "food",a: "comida"},
-  ]
-})
+
+
 
 // init all the globals
 function start(){

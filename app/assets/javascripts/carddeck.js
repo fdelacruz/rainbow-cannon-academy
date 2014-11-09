@@ -1,19 +1,30 @@
-function CardDeck(carddeck_object){
+function CardDeck(array_of_card_jsons){
 	this.solvedDeck = false
-	this.remainingCards = carddeck_object.deck
+	this.deck = array_of_card_jsons
 	this.previousCorrect = false
-	this.currentCard = this.remainingCards[0]
+	this.currentRound = []
+	this.currentIndex = 0
+	this.currentCard = null
+	this.cardsLeftInCurrentRound = function(){
+		return (this.currentRound.length - this.currentIndex)
+	}
 	this.advanceToNextCard = function(){
-		this.remainingCards = this.remainingCards.slice(1)
-		this.currentCard = this.remainingCards[0]
-		if (this.remainingCards.length === 0){
-			this.solvedDeck = true
-		}
+		this.currentIndex += 1
+		this.currentCard = this.currentRound[this.currentIndex]
+	}
+	this.populateCurrentRound = function(){
+		this.shuffleCards()
+		this.currentRound = this.deck.slice(0,10)
+		this.updateCurrentCard()
 	}
 	this.shuffleCards = function(){
-		this.remainingCards = shuffle(this.remainingCards)
-		this.currentCard = this.remainingCards[0]
+		this.deck = shuffle(this.deck)
+		this.updateCurrentCard()
 	}
+	this.updateCurrentCard = function(){
+		this.currentCard = this.currentRound[this.currentIndex]
+	}
+
 
 }
 
