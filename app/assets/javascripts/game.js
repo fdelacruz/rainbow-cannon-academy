@@ -1,5 +1,5 @@
 // entry point
-
+console.log("test")
 window.onload = start
 
 // global modules ---------------------------------------------------
@@ -36,6 +36,7 @@ gameState.userGuess = null
 gameState.currentQuestion = null
 gameState.currentDeck = null
 
+console.log("this should be first")
 
 // init all the globals
 function start(){
@@ -45,6 +46,7 @@ function start(){
     if (e.which === 8) e.preventDefault()
     if (e.which === 32) e.preventDefault()
   })
+  console.log("creating game")
   game = new Phaser.Game(
     1200, // width
     600, // height

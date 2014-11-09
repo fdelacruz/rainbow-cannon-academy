@@ -1,3 +1,20 @@
 <h1>Deck Show</h1>
 <span data-deck-id="<%= @deck.id %>"></span>
 <%= @deck.title %>
+
+<!-- <script type="text/javascript" src="/assets/game.js"></script> -->
+
+
+<%= javascript_include_tag "deck_ajax.js" %>
+<%= javascript_include_tag "phaser.js" %>
+<%= javascript_include_tag "carddeck.js" %>
+<%= javascript_include_tag "game.js" %>
+<%= javascript_include_tag "state_capital_deck.js" %>
+<%= javascript_include_tag "game_ui.js" %>
+<%= javascript_include_tag "flashcard_ui.js" %>
+<%= javascript_include_tag "lifecycle_preload.js" %>
+<%= javascript_include_tag "lifecycle_create.js" %>
+<%= javascript_include_tag "lifecycle_update.js" %>
+<%= javascript_include_tag "lifecycle_render.js" %>
+<%= javascript_include_tag "overall_ui.js" %>
+

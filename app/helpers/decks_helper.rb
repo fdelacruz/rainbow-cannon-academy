@@ -7,7 +7,7 @@ module DecksHelper
 
   def create_decks_for(user, array_of_deck_hashes)
     array_of_deck_hashes.each do |deck|
-      db_deck = Deck.create(title: deck['title'], quizlet_modified_date: deck['modified_date'], quizlet_deck_id: deck['id'], term_count: deck['term_count'], cards: deck['terms'])
+      db_deck = Deck.create(user: user, title: deck['title'], quizlet_modified_date: deck['modified_date'], quizlet_deck_id: deck['id'], term_count: deck['term_count'], cards: deck['terms'])
       user.decks.push(db_deck)
     end
   end
