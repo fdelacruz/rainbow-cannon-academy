@@ -11,6 +11,7 @@ var overallUI = {}
 // overallUI
 overallUI.millisecondsUntilSecondDecrement = null
 overallUI.gameTimeRemaining = null
+overallUI.flashCardRoundComplete = false
 
 // flashcardUI -----------------------------------------------------------
 flashCardUI.textInputLine
