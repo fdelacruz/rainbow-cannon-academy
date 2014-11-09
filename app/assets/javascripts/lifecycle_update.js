@@ -37,6 +37,6 @@ phaserLifeCycleFunctions.update = function () {
     gameUI.spawnAliens = false
   }
 
-  // overallUI.checkIfFlashcardsComplete()
+  overallUI.checkIfFlashcardsComplete()
 }
 
