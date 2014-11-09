@@ -1,5 +1,5 @@
 // entry point
-window.onload = start
+// window.onload = start
 
 // global modules ---------------------------------------------------
 var game = null // phaser game

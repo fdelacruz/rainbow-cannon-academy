@@ -1,3 +1,5 @@
+//= require jquery
+//= require jquery_ujs
 //= require phaser
 //= require carddeck
 //= require game
@@ -9,4 +11,5 @@
 //= require lifecycle_update
 //= require lifecycle_render
 //= require overall_ui
+//= require deck_ajax
 
