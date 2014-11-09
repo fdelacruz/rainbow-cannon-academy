@@ -1,7 +1,10 @@
 phaserLifeCycleFunctions.create = function(){
-  var sky = game.add.sprite(0, 0, 'sky') // set background
-  sky.scale.setTo(2,1)
+  game.stage.backgroundColor = '#542437'
   game.physics.startSystem(Phaser.Physics.ARCADE)
+
+  // populate deck
+  gameState.currentDeck.populateCurrentRound()
+
 
   // vector shapes
   gameUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
@@ -12,19 +15,18 @@ phaserLifeCycleFunctions.create = function(){
   timer.loop(1000, overallUI.decrementGameTimeRemaining, this)
   timer.start()
 
-
-
   // rain
-  var emitter = game.add.emitter(game.world.width, 475, 500)  //(x, y , max particles)
+  var emitter = game.add.emitter(game.world.width, 375, 500)  //(x, y , max particles)
   emitter.height = 400
-  emitter.makeParticles('rain')
+  emitter.angle = 2
+  // emitter.makeParticles('rain')
   emitter.minParticleScale = 1
   emitter.maxParticleScale = 1
   emitter.setXSpeed(-800, -1500)
   emitter.setYSpeed(0,0)
   emitter.minRotation = 1
   emitter.maxRotation = 1
-  emitter.start(false, 3000,  0.5) //(explode, lifespan, frequency, quantity, forceQuantity)
+  emitter.start(false, 3000,  15) //(explode, lifespan, frequency, quantity, forceQuantity)
   emitter.gravity.x = 1000
 
   // bullets
@@ -61,8 +63,16 @@ phaserLifeCycleFunctions.create = function(){
   gameState.cursors = game.input.keyboard.createCursorKeys()
   game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
+  // create text fields ------------------------------------------------
+
   // answer input
   gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#000'})
   // flascard question
   gameState.currentQuestion = game.add.text(200, 128, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#000'})
+  // current round remaining cards
+  gameState.currentCardsRemaining = game.add.text(
+    450, 50,
+    'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
+    {fontSize: '32px', fill: '#000'}
+  )
 }

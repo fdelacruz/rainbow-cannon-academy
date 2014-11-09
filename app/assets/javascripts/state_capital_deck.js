@@ -1,5 +1,4 @@
-gameState.currentDeck = new CardDeck({
-  deck: [
+gameState.currentDeck = new CardDeck([
   {
     "definition": "Augusta",
     "term": "Maine",
@@ -200,4 +199,4 @@ gameState.currentDeck = new CardDeck({
     "definition": "Honolulu",
     "term": "Hawaii"
   }]
-})
+)

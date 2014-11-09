@@ -32,6 +32,7 @@ flashCardUI.wordKeysHandler = function(evt){
   if (evt.which === 13 /* enter */) {
     flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)
     gameState.currentDeck.advanceToNextCard()
+    gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
     if (gameState.currentDeck.solvedDeck){
       console.log("you win")
       return
