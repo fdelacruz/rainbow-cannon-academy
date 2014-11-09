@@ -11,7 +11,11 @@ Flashforward::Application.routes.draw do
 
   resources :included_decks, only: :show
   post "included_decks/selection", to: 'included_decks#selection'
+  get "included_decks/json/:id", to: 'included_decks#json'
 
+  resources :decks, only: :show
+  post "decks/selection", to: 'decks#selection'
+  get "decks/json/:id", to: 'decks#json'
 
   get '/auth/:provider/callback', to: 'welcome#show'
   get '/auth/failure', to: redirect('/')
