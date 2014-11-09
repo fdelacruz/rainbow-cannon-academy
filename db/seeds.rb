@@ -118,7 +118,7 @@ states_and_capitals_json = [
     "term"=> "Louisiana",
   },
   {
-    "definition"=> "Jefferson definition",
+    "definition"=> "Jefferson City",
     "term"=> "Missouri",
   },
   {
@@ -142,7 +142,7 @@ states_and_capitals_json = [
     "term"=> "Nebraska",
   },
   {
-    "definition"=> "Oklahoma definition",
+    "definition"=> "Oklahoma City",
     "term"=> "Oklahoma",
   },
   {
@@ -170,7 +170,7 @@ states_and_capitals_json = [
     "term"=> "New Mexico",
   },
   {
-    "definition"=> "Salt Lake definition",
+    "definition"=> "Salt Lake City",
     "term"=> "Utah",
   },
   {
@@ -186,7 +186,7 @@ states_and_capitals_json = [
     "term"=> "Idaho",
   },
   {
-    "definition"=> "Carson definition",
+    "definition"=> "Carson City",
     "term"=> "Nevada",
   },
   {

@@ -8,12 +8,15 @@ phaserLifeCycleFunctions.update = function () {
 
   // player.body.velocity.x = 5
   if (cursors.left.isDown) {
+    // player UP
     player.body.velocity.y = -250;
     player.animations.play('up')
   } else if (cursors.right.isDown){
+    // player DOWN
     player.body.velocity.y = 250;
     player.animations.play('down')
   } else {
+    // player stand still
     player.animations.stop()
     player.frame = 4
     player.body.velocity.y = 0
@@ -27,6 +30,18 @@ phaserLifeCycleFunctions.update = function () {
     if (shootTheGun) {
       gameUI.fireBullet()
     }
+  }
+  // spawn aliens if new round is ready
+  if (gameUI.spawnAliens) {
+    gameUI.createAliens()
+    gameUI.spawnAliens = false
+  }
+
+  //
+  overallUI.checkIfFlashcardsComplete()
+  if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
+    console.log("round over")
+    overallUI.flashCardRoundComplete = false
   }
 }
 

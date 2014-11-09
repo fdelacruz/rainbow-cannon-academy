@@ -7,7 +7,7 @@ phaserLifeCycleFunctions.create = function(){
 
 
   // vector shapes
-  gameUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
+  flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
 
   // timer
   var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
@@ -22,21 +22,27 @@ phaserLifeCycleFunctions.create = function(){
   // emitter.makeParticles('rain')
   emitter.minParticleScale = 1
   emitter.maxParticleScale = 1
-  emitter.setXSpeed(-800, -1500)
+  emitter.setXSpeed(-500, -1200)
   emitter.setYSpeed(0,0)
   emitter.minRotation = 1
   emitter.maxRotation = 1
   emitter.start(false, 3000,  15) //(explode, lifespan, frequency, quantity, forceQuantity)
-  emitter.gravity.x = 1000
+  emitter.gravity.y = -1000
 
   // bullets
-  bullets = game.add.group()
+  bullets = gameState.groups.bullets = game.add.group()
   bullets.enableBody = true
   bullets.physicsBodyType = Phaser.Physics.ARCADE
-  //  All 40 of them
-  bullets.createMultiple(400, 'bullet')
+   // All 40 of them
+  bullets.createMultiple(100, 'bullet')
+  // for (var i = 0; i < 100; i++) {
+  //   var bullet = bullets.create('bullet')
+  //   bullet.damage = 10
+  // }
+
   bullets.setAll('anchor.x', 0.5)
   bullets.setAll('anchor.y', 0.5)
+  bullets.setAll('damage', 0.5)
 
   // create platforms (stuff the character can stand on)
   var platforms = gameState.groups.platforms = game.add.group()
@@ -53,28 +59,27 @@ phaserLifeCycleFunctions.create = function(){
   screenSplit.body.immovable = true
 
   // create player object
-
   var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
   game.physics.arcade.enable(player)
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
 
   // create bad guy
-
-    aliens = gameState.groups.aliens = game.add.group()
-    aliens.enableBody = true
-    aliens.physicsBodyType = Phaser.Physics.ARCADE
-    createAliens()
-
-
-
-
+  aliens = gameState.groups.aliens = game.add.group()
+  aliens.enableBody = true
+  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
   game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
   // create text fields ------------------------------------------------
+  overallUI.scoreObject = game.add.text(
+    32, 32, // x coord, y coord
+    'Score: ' + overallUI.score, // text field
+    {fontSize: '32px', fill: '#000'} // text styling
+    )
+
 
   // answer input
   gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#000'})
@@ -86,4 +91,6 @@ phaserLifeCycleFunctions.create = function(){
     'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
     {fontSize: '32px', fill: '#000'}
   )
+  // feedback shown to user (ex: 'Correct' or 'Omaha')
+  gameState.userFeedbackText = game.add.text(765, 165, '', {fontSize: '32px', fill: '#000'})
 }
