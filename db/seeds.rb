@@ -170,7 +170,7 @@ states_and_capitals_json = [
     "term"=> "New Mexico",
   },
   {
-    "definition"=> "Salt Lake definition",
+    "definition"=> "Salt Lake City",
     "term"=> "Utah",
   },
   {
