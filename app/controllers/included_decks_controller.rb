@@ -11,8 +11,7 @@ class IncludedDecksController < ApplicationController
   end
 
   def json
-    @included_deck = IncludedDeck.find(params[:id])
-    return @included_deck.cards.to_json
+    render :json => IncludedDeck.find(params[:id]).cards.to_json
   end
 
 end

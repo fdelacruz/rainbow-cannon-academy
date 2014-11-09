@@ -20,6 +20,11 @@ class DecksController < ApplicationController
   end
 
   def show
+    @deck = Deck.find(params[:id])
+  end
 
+  def json
+    @deck = Deck.find(params[:id])
+    return @deck.cards.to_json
   end
 end
