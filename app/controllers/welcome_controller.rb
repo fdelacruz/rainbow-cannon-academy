@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @defaults = IncludedDeck.all
+    # @defaults = IncludedDeck.all
   end
 
   def show
