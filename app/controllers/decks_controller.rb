@@ -30,7 +30,6 @@ class DecksController < ApplicationController
   end
 
   def json
-    @deck = Deck.find(params[:id])
-    return @deck.cards.to_json
+    render :json => Deck.find(params[:id]).cards.to_json
   end
 end
