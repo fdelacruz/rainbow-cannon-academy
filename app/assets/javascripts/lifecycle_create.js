@@ -22,21 +22,27 @@ phaserLifeCycleFunctions.create = function(){
   // emitter.makeParticles('rain')
   emitter.minParticleScale = 1
   emitter.maxParticleScale = 1
-  emitter.setXSpeed(-800, -1500)
+  emitter.setXSpeed(-500, -1200)
   emitter.setYSpeed(0,0)
   emitter.minRotation = 1
   emitter.maxRotation = 1
   emitter.start(false, 3000,  15) //(explode, lifespan, frequency, quantity, forceQuantity)
-  emitter.gravity.x = 1000
+  emitter.gravity.y = -1000
 
   // bullets
-  bullets = game.add.group()
+  bullets = gameState.groups.bullets = game.add.group()
   bullets.enableBody = true
   bullets.physicsBodyType = Phaser.Physics.ARCADE
-  //  All 40 of them
-  bullets.createMultiple(400, 'bullet')
+   // All 40 of them
+  bullets.createMultiple(100, 'bullet')
+  // for (var i = 0; i < 100; i++) {
+  //   var bullet = bullets.create('bullet')
+  //   bullet.damage = 10
+  // }
+
   bullets.setAll('anchor.x', 0.5)
   bullets.setAll('anchor.y', 0.5)
+  bullets.setAll('damage', 0.5)
 
   // create platforms (stuff the character can stand on)
   var platforms = gameState.groups.platforms = game.add.group()

@@ -13,14 +13,14 @@ gameUI.fireBullet = function() {
 gameUI.createAliens = function(){
   for (var y = 0; y < 4; y++) {
     for (var x = 0; x < 5; x++) {
-      var alien = gameState.alien =  aliens.create(x * 70, y * 70, 'invader') // space between aliens
+      var alien = gameState.alien = aliens.create(x * 70, y * 70, 'invader') // space between aliens
       alien.anchor.setTo(0.5, 0.5) // settting anchor to center of alien
-      // alien.animations.add('fly', [0, 3], 20, true)
       alien.play('fly')
-      // alien.body.moves = false
-      // alien.body.velocity.y = Math.random()// (max - min + 1)) + min;
+      alien.body.moves = false
+      alien.body.velocity.y = Math.floor(Math.random() * 100)
       alien.body.bounce.y = 0.4
       alien.body.collideWorldBounds = true
+      alien.health = 10
     }
   }
 
