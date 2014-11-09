@@ -9,6 +9,9 @@ Flashforward::Application.routes.draw do
   get "users/new"
   root 'welcome#index'
 
+  resources :included_decks, only: :show
+  post "included_decks/selection", to: 'included_decks#selection'
+
 
   get '/auth/:provider/callback', to: 'welcome#show'
   get '/auth/failure', to: redirect('/')
@@ -21,7 +24,7 @@ Flashforward::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    # resources :included_decks
 
   # Example resource route with options:
   #   resources :products do
