@@ -38,6 +38,7 @@ gameUI.createAliens = function(){
 gameUI.killAlien = function(bullet, alien){
   alien.kill()
   bullet.kill()
+  overallUI.updateScore()
 }
 
 gameUI.aliensDead = function(){

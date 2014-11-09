@@ -8,4 +8,9 @@ overallUI.checkIfFlashcardsComplete = function(){
   }
 }
 
+overallUI.updateScore = function(){
+  overallUI.score += 10
+  overallUI.scoreObject.text = "Score: " + overallUI.score
+}
+
 
