@@ -10,3 +10,8 @@ gameUI.fireBullet = function() {
     }
   }
 }
+
+gameUI.killAlien = function(bullet, alien){
+  alien.kill()
+  bullet.kill()
+}
