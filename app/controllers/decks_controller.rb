@@ -20,7 +20,14 @@ class DecksController < ApplicationController
   end
 
   def show
+    binding.pry
     @deck = Deck.find(params[:id])
+  end
+
+  def selection
+    choice = params[:choice]["quiz_selection"]
+    @deck = Deck.find(choice)
+    redirect_to @deck
   end
 
   def json

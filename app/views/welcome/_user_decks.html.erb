@@ -1,6 +1,6 @@
 <div>
-<%= form_for "choice", url: "included_decks/selection" do |f| %>
-  <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id) %>
-  <%= f.submit %>
-<% end %>
+  <%= form_for "choice", url: "decks/selection" do |f| %>
+    <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id) %>
+    <%= f.submit %>
+  <% end %>
 </div>
