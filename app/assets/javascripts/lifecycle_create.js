@@ -35,14 +35,10 @@ phaserLifeCycleFunctions.create = function(){
   bullets.physicsBodyType = Phaser.Physics.ARCADE
    // All 40 of them
   bullets.createMultiple(100, 'bullet')
-  // for (var i = 0; i < 100; i++) {
-  //   var bullet = bullets.create('bullet')
-  //   bullet.damage = 10
-  // }
 
   bullets.setAll('anchor.x', 0.5)
   bullets.setAll('anchor.y', 0.5)
-  bullets.setAll('damage', 0.5)
+  bullets.setAll('damage', 5)
 
   // create platforms (stuff the character can stand on)
   var platforms = gameState.groups.platforms = game.add.group()
