@@ -80,4 +80,6 @@ phaserLifeCycleFunctions.create = function(){
     'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
     {fontSize: '32px', fill: '#000'}
   )
+  // feedback shown to user (ex: 'Correct' or 'Omaha')
+  gameState.userFeedbackText = game.add.text(765, 165, '', {fontSize: '32px', fill: '#000'})
 }

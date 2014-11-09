@@ -6,9 +6,11 @@ flashCardUI.deleteLetterFromAnswer = function(){
   gameState.userGuess.text = gameState.userGuess.text.slice(0,-1)
 }
 
-flashCardUI.checkUserGuess = function(guess, currentQuestion){
-  if (guess === " " + currentQuestion){
-    console.log("Correct")
+flashCardUI.checkUserGuess = function(guess, currentAnswer){
+  if (guess === " " + currentAnswer){
+    gameState.userFeedbackText.text = 'Correct'
+  } else {
+    gameState.userFeedbackText.text = currentAnswer
   }
 }
 
