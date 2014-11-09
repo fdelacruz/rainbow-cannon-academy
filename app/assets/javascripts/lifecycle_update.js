@@ -1,4 +1,5 @@
 phaserLifeCycleFunctions.update = function () {
+  console.log('update')
   var player = gameState.player
   var cursors = gameState.cursors
   var shootTheGun = false
