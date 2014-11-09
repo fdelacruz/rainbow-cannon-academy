@@ -15,8 +15,8 @@ class DecksController < ApplicationController
   end
 
   def index
-    sql = 'SELECT * FROM decks WHERE user_id = 3 AND created_at IN(Select max(created_at) from decks GROUP BY quizlet_deck_id );'
-    @results = ActiveRecord::Base.connection.execute(sql)
+    sql = 'SELECT * FROM decks WHERE user_id = 1 AND created_at IN(Select max(created_at) from decks GROUP BY quizlet_deck_id );'
+    @results = ActiveRecord::Base.connection.execute(sql).map { |deck| Deck.new deck }
   end
 
   def show
