@@ -36,6 +36,7 @@ flashCardUI.wordKeysHandler = function(evt){
     flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
     if (deck.currentIndex === 9) {
       overallUI.flashCardRoundComplete = true
+      gameUI.spawnAliens = true
       return
     }
     deck.advanceToNextCard()
