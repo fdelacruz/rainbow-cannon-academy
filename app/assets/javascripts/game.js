@@ -19,11 +19,9 @@ flashCardUI.textInputLine
 
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0
-gameUI.shotDelayTime = 0
 gameUI.fireGunCounter = 0
 gameUI.fireGunRate = 20 // (60/rate) = shots per second
 
-gameUI.spawnAliens = false
 
 // gameState --------------------------------------------------------
 var gameState = {}
