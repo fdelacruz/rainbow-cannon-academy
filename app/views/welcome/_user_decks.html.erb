@@ -1,7 +1,6 @@
 <div>
-  <select>
-<%= User.find(signed_in_user_id).decks.each do |deck| %>
-    <option value=<%= deck.title %>><%= deck.title %></option>
-    <% end %>
-  </select>
+<%= form_for "choice", url: "included_decks/selection" do |f| %>
+  <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id) %>
+  <%= f.submit %>
+<% end %>
 </div>
