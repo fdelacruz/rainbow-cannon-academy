@@ -12,13 +12,14 @@ var overallUI = {}
 overallUI.millisecondsUntilSecondDecrement = null
 overallUI.gameTimeRemaining = null
 
+// flashcardUI -----------------------------------------------------------
+flashCardUI.textInputLine
 
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0
 gameUI.shotDelayTime = 0
 gameUI.fireGunCounter = 0
 gameUI.fireGunRate = 10 // (60/rate) = shots per second
-gameUI.textInputLine
 
 // gameState --------------------------------------------------------
 var gameState = {}

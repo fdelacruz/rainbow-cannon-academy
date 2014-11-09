@@ -7,7 +7,7 @@ phaserLifeCycleFunctions.create = function(){
 
 
   // vector shapes
-  gameUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
+  flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
 
   // timer
   var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
@@ -53,22 +53,16 @@ phaserLifeCycleFunctions.create = function(){
   screenSplit.body.immovable = true
 
   // create player object
-
   var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
   game.physics.arcade.enable(player)
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
 
   // create bad guy
-
-    aliens = gameState.groups.aliens = game.add.group()
-    aliens.enableBody = true
-    aliens.physicsBodyType = Phaser.Physics.ARCADE
-    createAliens()
-
-
-
-
+  aliens = gameState.groups.aliens = game.add.group()
+  aliens.enableBody = true
+  aliens.physicsBodyType = Phaser.Physics.ARCADE
+  createAliens()
 
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
