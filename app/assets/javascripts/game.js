@@ -1,4 +1,5 @@
 // entry point
+
 window.onload = start
 
 // global modules ---------------------------------------------------
@@ -33,11 +34,12 @@ gameState.groups = {}
 gameState.count = 0
 gameState.userGuess = null
 gameState.currentQuestion = null
-
+gameState.currentDeck = null
 
 
 // init all the globals
 function start(){
+  callAjaxToSetCurrentDeck()
   // prevent back on backspace
   document.addEventListener("keydown", function (e) {
     if (e.which === 8) e.preventDefault()

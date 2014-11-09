@@ -1,3 +1,4 @@
+//= require deck_ajax
 //= require jquery
 //= require jquery_ujs
 //= require phaser
@@ -11,5 +12,4 @@
 //= require lifecycle_update
 //= require lifecycle_render
 //= require overall_ui
-//= require deck_ajax
 
