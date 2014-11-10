@@ -27,13 +27,11 @@ gameUI.spawnAliens = function(){
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
     { x:0 },
-    5000,
+    30000,
     Phaser.Easing.Linear.None,
-    true,
-    0,
-    1000,
     true)
 }
+// game.add.tween(sprite).from( { y: -200 }, 2000, Phaser.Easing.Bounce.Out, true);
 
 gameUI.aliensExist = function(){
   return (gameState.groups.aliens.countLiving() > 0)
@@ -66,7 +64,7 @@ gameUI.spawnAlienBoss = function(){
   bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
   game.physics.arcade.enable(bossAlien)
   bossAlien.enableBody = true
-  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
+  game.physics.arcade.enable(bossAlien)
   bossAlien.scale.setTo(1,1)
   bossAlien.anchor.x = 0.5
   bossAlien.anchor.y = 0.5

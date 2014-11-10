@@ -7,6 +7,7 @@ phaserLifeCycleFunctions.update = function () {
   game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
   game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
   game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
+  game.physics.arcade.collide(gameState.groups.aliens, gameState.bossAlien)
 
   // Bullets cause damage to aliens and then disappear
   game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
