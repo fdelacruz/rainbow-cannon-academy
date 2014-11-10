@@ -79,7 +79,9 @@ gameUI.spawnAlienBoss = function(){
 }
 
 gameUI.scatterAliens = function(){
-  gameState.groups.aliens.setAll('body.velocity.y', Math.floor(Math.random()*100))
+  gameState.groups.aliens.forEach(function(alien){
+    alien.body.velocity.y = gameUI.getRandomInt(-100, 100)
+  })
   gameState.groups.aliens.setAll('body.collideWorldBounds', true)
   gameUI.alienScatterEnabled = false
 }
@@ -117,4 +119,8 @@ gameUI.respawnPlayer = function(){
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
   player.health = 100
+}
+
+gameUI.getRandomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
