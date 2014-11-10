@@ -33,7 +33,7 @@ phaserLifeCycleFunctions.create = function(){
   bullets = gameState.groups.bullets = game.add.group()
   bullets.enableBody = true
   bullets.physicsBodyType = Phaser.Physics.ARCADE
-   // All 40 of them
+   // All 100 of them
   bullets.createMultiple(100, 'bullet')
 
   bullets.setAll('anchor.x', 0.5)
@@ -60,10 +60,14 @@ phaserLifeCycleFunctions.create = function(){
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
 
-  // create bad guy
+  // create regular aliens
   aliens = gameState.groups.aliens = game.add.group()
   aliens.enableBody = true
   aliens.physicsBodyType = Phaser.Physics.ARCADE
+
+  // create boss alien
+  bossAlien = gameState.bossAlien = game.add.sprite(1600, 335, 'diamond')
+  bossAlien.scale.setTo(5,5)
 
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
