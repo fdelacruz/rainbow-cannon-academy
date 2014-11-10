@@ -1,14 +1,24 @@
-gameUI.fireBullet = function() {
+gameUI.firePlayerBullet = function() {
   if (game.time.now > gameUI.bulletTime) {
-    bullet = bullets.getFirstExists(false);
-    if (bullet) {
-      bullet.reset(gameState.player.body.x + 16, gameState.player.body.y + 16);
-      bullet.lifespan = 4000;
-      bullet.rotation = gameState.player.rotation;
-      game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity);
+    playerBullets = gameState.groups.playerBullets.getFirstExists(false)
+    if (playerBullets) {
+      playerBullets.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
+      playerBullets.lifespan = 4000
+      game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, playerBullets.body.velocity)
     }
   }
 }
+
+// gameUI.fireBossAlienBullet = function(){
+//   if (game.time.now > gameUI.bulletTime) {
+//     bullet = bullets.getFirstExists(false)
+//     if (bullet) {
+//       bullet.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
+//       bullet.lifespan = 4000
+//       game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity)
+//     }
+//   }
+// }
 
 gameUI.spawnAliens = function(){
   // position the block of aliens
@@ -27,7 +37,7 @@ gameUI.spawnAliens = function(){
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
     { x:0 },
-    30000,
+    5000,
     Phaser.Easing.Linear.None,
     true)
 }
@@ -81,6 +91,7 @@ gameUI.spawnAlienBoss = function(){
 gameUI.scatterAliens = function(){
   gameState.groups.aliens.forEach(function(alien){
     alien.body.velocity.y = gameUI.getRandomInt(-100, 100)
+    alien.body.velocity.x = gameUI.getRandomInt(-10, 10)
   })
   gameState.groups.aliens.setAll('body.collideWorldBounds', true)
   gameUI.alienScatterEnabled = false

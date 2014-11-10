@@ -10,10 +10,10 @@ phaserLifeCycleFunctions.update = function () {
   game.physics.arcade.collide(gameState.groups.aliens, gameState.bossAlien)
 
   // Bullets cause damage to aliens and then disappear
-  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
+  game.physics.arcade.overlap(playerBullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
 
   // Bullets cause the boss alien to shrink
-  game.physics.arcade.overlap(bullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
+  game.physics.arcade.overlap(playerBullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
 
   // Aliens damage the player when they touch
   game.physics.arcade.overlap(player, gameState.groups.aliens, gameUI.hitPlayer, null, this)
@@ -48,7 +48,7 @@ phaserLifeCycleFunctions.update = function () {
     gameUI.fireGunCounter = 0
   }
   if (shootTheGun) {
-    gameUI.fireBullet()
+    gameUI.firePlayerBullet()
   }
   // if (gameUI.fireGunCounter > 60) gameUI.fireGunCounter = 0
   overallUI.checkIfFlashcardsComplete()

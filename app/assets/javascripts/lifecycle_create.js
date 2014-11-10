@@ -36,17 +36,26 @@ phaserLifeCycleFunctions.create = function(){
   emitter.start(false, 3000,  15) //(explode, lifespan, frequency, quantity, forceQuantity)
   emitter.gravity.y = -1000
 
-  // bullets
-  bullets = gameState.groups.bullets = game.add.group()
-  bullets.enableBody = true
-  bullets.physicsBodyType = Phaser.Physics.ARCADE
+  // playerBullets
+  playerBullets = gameState.groups.playerBullets = game.add.group()
+  playerBullets.enableBody = true
+  playerBullets.physicsBodyType = Phaser.Physics.ARCADE
    // All 100 of them
-  bullets.createMultiple(250, 'bullet')
+  playerBullets.createMultiple(250, 'bullet')
 
-  bullets.setAll('anchor.x', 0.5)
-  bullets.setAll('anchor.y', 0.5)
-  bullets.setAll('damage', 5)
+  playerBullets.setAll('anchor.x', 0.5)
+  playerBullets.setAll('anchor.y', 0.5)
+  playerBullets.setAll('damage', 5)
 
+  // bullets = gameState.groups.bullets = game.add.group()
+  // bullets.enableBody = true
+  // bullets.physicsBodyType = Phaser.Physics.ARCADE
+  //  // All 100 of them
+  // bullets.createMultiple(250, 'bullet')
+
+  // bullets.setAll('anchor.x', 0.5)
+  // bullets.setAll('anchor.y', 0.5)
+  // bullets.setAll('damage', 5)
   // create platforms (stuff the character can stand on)
   // var platforms = gameState.groups.platforms = game.add.group()
   // platforms.enableBody = true
