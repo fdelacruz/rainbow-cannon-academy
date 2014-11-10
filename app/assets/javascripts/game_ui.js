@@ -13,7 +13,7 @@ gameUI.fireBossAlienBullet = function(){
   if (game.time.now > gameUI.bulletTime) {
     bossAlienBullets = gameState.groups.bossAlienBullets.getFirstExists(false)
     if (bossAlienBullets) {
-      bossAlienBullets.reset(gameState.bossAlien.body.x, gameState.bossAlien.body.y)
+      bossAlienBullets.reset(gameState.bossAlien.body.x, gameState.bossAlien.body.y + 200)
       bossAlienBullets.lifespan = 4000
       bossAlienBullets.body.velocity.x = -500
     }
@@ -28,6 +28,7 @@ gameUI.spawnAliens = function(){
     for (var x = 0; x < 5; x++) {
       var alien = aliens.create(x * 70, y * 70, 'invader') // space between aliens
       alien.health = 10
+      alien.damage = 50
       alien.body.bounce.y = 1
       game.physics.arcade.enable(alien)
     }
@@ -102,7 +103,7 @@ gameUI.upgradeGun= function(){
   gameUI.firePlayerGunRate = Math.floor(gameUI.firePlayerGunRate * .75)+1
 }
 
-gameUI.shrinkBoss = function(boss,bullet){
+gameUI.shrinkBoss = function(boss, bullet){
   bullet.kill()
   gameState.bossAlien.scale.x *= .8 // makes boss 80% of size when hit
   gameState.bossAlien.scale.y *= .8
@@ -114,14 +115,18 @@ gameUI.growBoss = function(){
   gameState.bossAlien.scale.y *= 1.25
 }
 
-gameUI.hitPlayer = function(player, alien){
-  alien.kill()
-  player.health -= 50
+gameUI.hitPlayer = function(player, objectThatHits){
+  objectThatHits.kill()
+  player.health -= objectThatHits.damage
   // if Player dies, kill him/her & reset the round & subtract 10% points
-  if (player.health <= 0) {
+  if (gameUI.playerDead(player)) {
     player.kill()
     overallUI.resetPreviousRound()
   }
+}
+
+gameUI.playerDead = function(player){
+  return player.health <= 0
 }
 
 gameUI.respawnPlayer = function(){

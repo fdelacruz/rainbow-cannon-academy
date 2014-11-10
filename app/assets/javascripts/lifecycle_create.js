@@ -55,7 +55,7 @@ phaserLifeCycleFunctions.create = function(){
 
   bossAlienBullets.setAll('anchor.x', 0.5)
   bossAlienBullets.setAll('anchor.y', 0.5)
-  bossAlienBullets.setAll('damage', 5)
+  bossAlienBullets.setAll('damage', 50)
 
 
   // create platforms (stuff the character can stand on)
