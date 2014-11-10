@@ -1,5 +1,7 @@
 phaserLifeCycleFunctions.render = function () {
-  game.debug.geom(flashCardUI.textInputLine,'#FFFFFF');
-  game.debug.text('Seconds Remaining: ' + overallUI.gameTimeRemaining, 450, 32);
+  game.debug.geom(flashCardUI.textInputLine,'#FFFFFF')
+  game.debug.geom(overallUI.gameAreaCeiling,'#FFFFFF')
+
+  game.debug.text('Seconds Remaining: ' + overallUI.gameTimeRemaining, 450, 32)
 }
 
