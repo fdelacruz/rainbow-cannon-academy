@@ -6,7 +6,7 @@
 #   cities = definition.create([{ name=> 'Chicago' },
 #   Mayor.create(name=> 'Emanuel', definition=> cities.first)
 
-
+require 'json'
 
 states_and_capitals_json = [
   {
@@ -419,3 +419,26 @@ one_hundred_common_SAT_words_json = [{"definition" => "abbreviate",
 
 IncludedDeck.create(title: "U.S. States and Capitals", term_count: 50, cards: states_and_capitals_json)
 IncludedDeck.create(title: "One hundred common SAT words", term_count: 100, cards: one_hundred_common_SAT_words_json)
+
+# Quizlet Set ID's to grab
+quizlet_deck_ids = [4173510,443018,5255659]
+
+quizlet_deck_ids.each do |deck_number|
+
+
+## ACCESS TOKEN FOR NEXT LINE IS NEEDED FOR SEEDING ##
+sets = JSON.parse(`curl -H "Authorization: Bearer 3TG7vrEYdYfzNE4yKCa3RM57fVrsgY3T2Qakkh2v" "https://api.quizlet.com/2.0/sets/#{deck_number}"`)
+cards =  sets["terms"].map { |hash| {"term" => hash["term"] , "definition"=> hash["definition"]} }
+IncludedDeck.create(title: sets["title"], term_count: sets["term_count"], cards: cards)
+
+end
+
+
+# puts sets["title"]
+
+# p "*"*50
+# p sets["terms"]
+# p "*"*50
+
+
+
