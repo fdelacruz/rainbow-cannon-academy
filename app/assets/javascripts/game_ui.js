@@ -16,16 +16,15 @@ gameUI.createAliens = function(){
       var alien = aliens.create(x * 70, y * 70, 'invader') // space between aliens
       alien.body.collideWorldBounds = true
       alien.body.moves = false
-      alien.body.moves.
       alien.health = 10
       alien.body.bounce.y = 1
+      alien.body.velocity.y = 100
     }
   }
 
   // position the block of aliens
   aliens.x = 1230
   aliens.y = 285
-  // aliens.setAll('body.velocity.y', Math.floor(Math.random() * 100))
 
   // tween animations
   var tween = game.add.tween(aliens).to(
@@ -63,3 +62,58 @@ gameUI.killAlien = function(alien){
 gameUI.aliensDead = function(){
   return (gameState.groups.aliens.countLiving() === 0)
 }
+
+
+
+gameUI.upgradeGun= function(){
+  gameUI.gunLevel++
+  gameUI.fireGunRate = Math.floor(gameUI.fireGunRate * .75)+1
+}
+
+
+
+gameUI.shrinkBoss = function(boss,bullet){
+
+  bullet.kill()
+  gameState.bossAlien.scale.x *= .8
+  gameState.bossAlien.scale.y *= .8
+  if (gameState.bossAlien.scale.x <= 2) boss.kill()
+  // boss.kill()
+  console.log("hit boss")
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,5 @@
 phaserLifeCycleFunctions.create = function(){
-  game.stage.backgroundColor = '#542437'
+  game.stage.backgroundColor = '#FFF6E7'
   game.physics.startSystem(Phaser.Physics.ARCADE)
 
   // populate deck
@@ -66,7 +66,10 @@ phaserLifeCycleFunctions.create = function(){
   aliens.physicsBodyType = Phaser.Physics.ARCADE
 
   // create boss alien
-  bossAlien = gameState.bossAlien = game.add.sprite(1600, 335, 'diamond')
+  bossAlien = gameState.bossAlien = game.add.sprite(900, 450, 'diamond')
+  game.physics.arcade.enable(bossAlien)
+  bossAlien.enableBody = true
+  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
   bossAlien.scale.setTo(5,5)
 
   // create keyboard listeners

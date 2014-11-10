@@ -4,7 +4,9 @@ phaserLifeCycleFunctions.update = function () {
   var shootTheGun = false
 
   game.physics.arcade.collide(player, gameState.groups.platforms)
-  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this);
+  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
+
+  game.physics.arcade.overlap(bullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
 
   // player.body.velocity.x = 5
   if (overallUI.flashCardRoundComplete) {
@@ -26,17 +28,18 @@ phaserLifeCycleFunctions.update = function () {
 
   // fire!
   gameUI.fireGunCounter += 1
-  if (gameUI.fireGunCounter == gameUI.fireGunRate){
+  if (gameUI.fireGunCounter >= gameUI.fireGunRate){
     shootTheGun = true
     gameUI.fireGunCounter = 0
   }
   if (shootTheGun) {
     gameUI.fireBullet()
   }
-
+  // if (gameUI.fireGunCounter > 60) gameUI.fireGunCounter = 0
   overallUI.checkIfFlashcardsComplete()
   if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
     console.log("round over")
+    player.body.velocity.y = 0
     overallUI.flashCardRoundComplete = false
   }
 }
