@@ -10,7 +10,11 @@ phaserLifeCycleFunctions.create = function(){
 
   // vector shapes
   flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
-  overallUI.gameAreaCeiling = new Phaser.Rectangle(0,200, 1200, 1)
+  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
+  overallUI.gameAreaCeiling = game.add.sprite(0,200,null)
+  game.physics.enable(overallUI.gameAreaCeiling, Phaser.Physics.ARCADE)
+  overallUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
+  overallUI.gameAreaCeiling.body.immovable = true
 
   // timer
   var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
