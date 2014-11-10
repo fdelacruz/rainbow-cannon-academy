@@ -7,36 +7,33 @@ phaserLifeCycleFunctions.update = function () {
   game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this);
 
   // player.body.velocity.x = 5
-  if (cursors.left.isDown) {
-    // player UP
-    player.body.velocity.y = -250;
-    player.animations.play('up')
-  } else if (cursors.right.isDown){
-    // player DOWN
-    player.body.velocity.y = 250;
-    player.animations.play('down')
-  } else {
-    // player stand still
-    player.animations.stop()
-    player.frame = 4
-    player.body.velocity.y = 0
-
-    // fire!
-    gameUI.fireGunCounter += 1
-    if (gameUI.fireGunCounter == gameUI.fireGunRate){
-      shootTheGun = true
-      gameUI.fireGunCounter = 0
-    }
-    if (shootTheGun) {
-      gameUI.fireBullet()
+  if (overallUI.flashCardRoundComplete) {
+    if (cursors.left.isDown) {
+      // player UP
+      player.body.velocity.y = -250;
+      // player.animations.play('up')
+    } else if (cursors.right.isDown){
+      // player DOWN
+      player.body.velocity.y = 250;
+      // player.animations.play('down')
+    } else {
+      // player stand still
+      player.animations.stop()
+      player.frame = 4
+      player.body.velocity.y = 0
     }
   }
-  // spawn aliens if new round is ready
-  // if (gameUI.spawnAliens) {
-  //   gameUI.createAliens()
-  // }
 
-  //
+  // fire!
+  gameUI.fireGunCounter += 1
+  if (gameUI.fireGunCounter == gameUI.fireGunRate){
+    shootTheGun = true
+    gameUI.fireGunCounter = 0
+  }
+  if (shootTheGun) {
+    gameUI.fireBullet()
+  }
+
   overallUI.checkIfFlashcardsComplete()
   if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
     console.log("round over")

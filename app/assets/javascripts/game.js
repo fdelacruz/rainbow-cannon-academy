@@ -26,6 +26,7 @@ gameUI.fireGunRate = 20 // (60/rate) = shots per second
 // gameState --------------------------------------------------------
 var gameState = {}
 gameState.player = null
+gameState.bossAlien = null
 gameState.cursors = null
 gameState.groups = {}
 gameState.count = 0
