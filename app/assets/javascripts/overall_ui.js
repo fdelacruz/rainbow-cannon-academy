@@ -13,4 +13,26 @@ overallUI.updateScore = function(){
   overallUI.scoreObject.text = "Score: " + overallUI.score
 }
 
+overallUI.resetNextRound = function(){
+  gameState.currentDeck.populateCurrentRound()
+	gameState.currentDeck.currentIndex = 0
+	flashCardUI.showNextCard()
+  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
+  gameUI.spawnAlienBoss()
+  flashCardUI.textInputLine.height = 1
+}
+
+overallUI.resetPreviousRound = function(){
+  gameState.currentDeck.shuffleCards()
+  overallUI.flashCardRoundComplete = false
+  gameState.currentDeck.currentIndex = 0
+  flashCardUI.showNextCard()
+  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
+  flashCardUI.textInputLine.height = 1
+  overallUI.score = overallUI.score * 0.9
+  gameUI.killAllAliens()
+  gameUI.spawnAlienBoss()
+  gameUI.respawnPlayer()
+}
+
 

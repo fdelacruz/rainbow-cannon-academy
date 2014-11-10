@@ -9,7 +9,11 @@ flashCardUI.deleteLetterFromAnswer = function(){
 flashCardUI.checkUserGuess = function(guess, currentAnswer){
   if (guess === " " + currentAnswer){
     gameState.userFeedbackText.text = 'Correct'
+    gameUI.upgradeGun()
+    // if correct upgrade gun
   } else {
+    // if incorrect upgrade boss
+    gameUI.growBoss()
     gameState.userFeedbackText.text = currentAnswer
   }
 }
@@ -21,29 +25,33 @@ flashCardUI.showNextCard = function(){
 
 flashCardUI.wordKeysHandler = function(evt){
   deck = gameState.currentDeck
-  // handle backspace
-  if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
-  // handle letter (a-z) or space
-  if (flashCardUI.isLetterKeyOrSpaceOrNumber(evt.which)) {
-    // handle letters
-    var letter = String.fromCharCode( evt.which )
-    if( !evt.shiftKey ) letter = letter.toLowerCase()
-    flashCardUI.appendLetterToAnswer(letter)
-    return
-  }
-  // handle enter
-  if (evt.which === 13 /* enter */) {
-    flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
-    if (deck.currentIndex === 9) {
-      if (overallUI.flashCardRoundComplete === false){
-        gameUI.createAliens()
-      }
-      overallUI.flashCardRoundComplete = true
+  // Listen for user input only during flashcard round
+  if(overallUI.flashCardRoundComplete === false){
+    // handle backspace
+    if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
+    // handle letter (a-z) or space
+    if (flashCardUI.isLetterKeyOrSpaceOrNumber(evt.which)) {
+      // handle letters
+      var letter = String.fromCharCode( evt.which )
+      if( !evt.shiftKey ) letter = letter.toLowerCase()
+      flashCardUI.appendLetterToAnswer(letter)
       return
     }
-    deck.advanceToNextCard()
-    gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
-    flashCardUI.showNextCard()
+    // handle enter
+    if (evt.which === 13 /* enter */) {
+      flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
+      if (deck.currentIndex === 9) {
+        if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
+          gameUI.spawnAliens()
+          gameUI.sendAliens()
+        }
+        overallUI.flashCardRoundComplete = true
+        return
+      }
+      deck.advanceToNextCard()
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
+      flashCardUI.showNextCard()
+    }
   }
 }
 

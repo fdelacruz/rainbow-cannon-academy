@@ -3,8 +3,22 @@ phaserLifeCycleFunctions.update = function () {
   var cursors = gameState.cursors
   var shootTheGun = false
 
+  // Player cannot pass through the game boundaries
   game.physics.arcade.collide(player, gameState.groups.platforms)
-  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this);
+
+  // Bullets cause damage to aliens and then disappear
+  game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
+
+  // Bullets cause the boss alien to shrink
+  game.physics.arcade.overlap(bullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
+
+  // Aliens damage the player when they touch
+  game.physics.arcade.overlap(player, gameState.groups.aliens, gameUI.hitPlayer, null, this)
+
+  //tile position
+  starfield.tilePosition.x -= 1
+
+  // ---
 
   // player.body.velocity.x = 5
   if (overallUI.flashCardRoundComplete) {
@@ -26,18 +40,32 @@ phaserLifeCycleFunctions.update = function () {
 
   // fire!
   gameUI.fireGunCounter += 1
-  if (gameUI.fireGunCounter == gameUI.fireGunRate){
+  if (gameUI.fireGunCounter >= gameUI.fireGunRate){
     shootTheGun = true
     gameUI.fireGunCounter = 0
   }
   if (shootTheGun) {
     gameUI.fireBullet()
   }
-
+  // if (gameUI.fireGunCounter > 60) gameUI.fireGunCounter = 0
   overallUI.checkIfFlashcardsComplete()
   if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
-    console.log("round over")
+    player.body.velocity.y = 0
     overallUI.flashCardRoundComplete = false
+    overallUI.resetNextRound()
   }
+  if (overallUI.flashCardRoundComplete && gameState.groups.aliens.getFirstAlive().body.x < 950){
+    gameState.groups.aliens.setAll('body.velocity.y', -200)
+  }
+
+
+
+
+
+
+
+
+
+
 }
 
