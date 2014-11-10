@@ -75,13 +75,23 @@ gameUI.upgradeGun= function(){
 gameUI.shrinkBoss = function(boss,bullet){
 
   bullet.kill()
-  gameState.bossAlien.scale.x *= .8
+  gameState.bossAlien.scale.x *= .8 // makes boss 80% of size when hit
   gameState.bossAlien.scale.y *= .8
-  if (gameState.bossAlien.scale.x <= 2) boss.kill()
+  if (gameState.bossAlien.scale.x <= 1) boss.kill() // boss dies at scale 1
   // boss.kill()
   console.log("hit boss")
 
 }
+
+gameUI.growBoss = function(){
+
+  gameState.bossAlien.scale.x *= 1.25 // makes boss 125% of size
+  gameState.bossAlien.scale.y *= 1.25
+
+}
+
+
+
 
 
 

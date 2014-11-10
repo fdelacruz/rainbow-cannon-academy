@@ -10,8 +10,10 @@ flashCardUI.checkUserGuess = function(guess, currentAnswer){
   if (guess === " " + currentAnswer){
     gameState.userFeedbackText.text = 'Correct'
     gameUI.upgradeGun()
-    // upgrade gun
+    // if correct upgrade gun
   } else {
+    // if incorrect upgrade boss
+    gameUI.growBoss()
     gameState.userFeedbackText.text = currentAnswer
   }
 }
