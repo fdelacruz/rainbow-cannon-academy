@@ -33,6 +33,6 @@ git push origin <branch-name>
 
 Other member review code, create pull request from <branch-name>, merge
 
-URL: https://flashforward.herokuapp.com/
+URL: http://flashforward.herokuapp.com/
 
 
