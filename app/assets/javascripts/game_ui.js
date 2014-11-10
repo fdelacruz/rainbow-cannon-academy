@@ -99,7 +99,7 @@ gameUI.scatterAliens = function(){
 
 gameUI.upgradeGun= function(){
   gameUI.gunLevel++
-  gameUI.fireGunRate = Math.floor(gameUI.fireGunRate * .75)+1
+  gameUI.firePlayerGunRate = Math.floor(gameUI.firePlayerGunRate * .75)+1
 }
 
 gameUI.shrinkBoss = function(boss,bullet){

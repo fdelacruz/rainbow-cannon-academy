@@ -43,7 +43,7 @@ phaserLifeCycleFunctions.update = function () {
 
   // fire!
   gameUI.firePlayerGunCounter += 1
-  if (gameUI.firePlayerGunCounter >= gameUI.fireGunRate){
+  if (gameUI.firePlayerGunCounter >= gameUI.firePlayerGunRate){
     shootThePlayerGun = true
     gameUI.firePlayerGunCounter = 0
   }
