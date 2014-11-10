@@ -9,16 +9,16 @@ gameUI.firePlayerBullet = function() {
   }
 }
 
-// gameUI.fireBossAlienBullet = function(){
-//   if (game.time.now > gameUI.bulletTime) {
-//     bullet = bullets.getFirstExists(false)
-//     if (bullet) {
-//       bullet.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
-//       bullet.lifespan = 4000
-//       game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity)
-//     }
-//   }
-// }
+gameUI.fireBossAlienBullet = function(){
+  if (game.time.now > gameUI.bulletTime) {
+    bossAlienBullets = gameState.groups.bossAlienBullets.getFirstExists(false)
+    if (bossAlienBullets) {
+      bossAlienBullets.reset(gameState.bossAlien.body.x, gameState.bossAlien.body.y)
+      bossAlienBullets.lifespan = 4000
+      bossAlienBullets.body.velocity.x = -500
+    }
+  }
+}
 
 gameUI.spawnAliens = function(){
   // position the block of aliens

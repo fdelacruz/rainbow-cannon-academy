@@ -47,15 +47,17 @@ phaserLifeCycleFunctions.create = function(){
   playerBullets.setAll('anchor.y', 0.5)
   playerBullets.setAll('damage', 5)
 
-  // bullets = gameState.groups.bullets = game.add.group()
-  // bullets.enableBody = true
-  // bullets.physicsBodyType = Phaser.Physics.ARCADE
-  //  // All 100 of them
-  // bullets.createMultiple(250, 'bullet')
+  bossAlienBullets = gameState.groups.bossAlienBullets = game.add.group()
+  bossAlienBullets.enableBody = true
+  bossAlienBullets.physicsBodyType = Phaser.Physics.ARCADE
+   // All 100 of them
+  bossAlienBullets.createMultiple(250, 'bullet')
 
-  // bullets.setAll('anchor.x', 0.5)
-  // bullets.setAll('anchor.y', 0.5)
-  // bullets.setAll('damage', 5)
+  bossAlienBullets.setAll('anchor.x', 0.5)
+  bossAlienBullets.setAll('anchor.y', 0.5)
+  bossAlienBullets.setAll('damage', 5)
+
+
   // create platforms (stuff the character can stand on)
   // var platforms = gameState.groups.platforms = game.add.group()
   // platforms.enableBody = true
