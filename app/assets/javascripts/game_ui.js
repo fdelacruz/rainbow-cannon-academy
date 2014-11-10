@@ -17,8 +17,9 @@ gameUI.spawnAliens = function(){
   for (var y = 0; y < 4; y++) {
     for (var x = 0; x < 5; x++) {
       var alien = aliens.create(x * 70, y * 70, 'invader') // space between aliens
-      alien.health = 10000
+      alien.health = 10
       alien.body.bounce.y = 1
+      game.physics.arcade.enable(alien)
     }
   }
 }
@@ -78,6 +79,12 @@ gameUI.spawnAlienBoss = function(){
   0,
   1000,
   true)
+}
+
+gameUI.scatterAliens = function(){
+  gameState.groups.aliens.setAll('body.velocity.y', Math.floor(Math.random()*100))
+  gameState.groups.aliens.setAll('body.collideWorldBounds', true)
+  gameUI.alienScatterEnabled = false
 }
 
 gameUI.upgradeGun= function(){

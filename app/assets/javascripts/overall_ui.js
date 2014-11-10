@@ -33,6 +33,7 @@ overallUI.resetPreviousRound = function(){
   gameUI.killAllAliens()
   gameUI.spawnAlienBoss()
   gameUI.respawnPlayer()
+  gameUI.alienScatterEnabled = true
 }
 
 

@@ -5,6 +5,7 @@ phaserLifeCycleFunctions.update = function () {
 
   // Player cannot pass through the game boundaries
   game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
+  game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
 
   // Bullets cause damage to aliens and then disappear
   game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
@@ -54,8 +55,8 @@ phaserLifeCycleFunctions.update = function () {
     overallUI.flashCardRoundComplete = false
     overallUI.resetNextRound()
   }
-  if (overallUI.flashCardRoundComplete && gameState.groups.aliens.getFirstAlive().body.x < 950){
-    gameState.groups.aliens.setAll('body.velocity.y', -200)
+  if (overallUI.flashCardRoundComplete && (gameState.groups.aliens.x < 950)){
+    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
   }
 
 
