@@ -6,6 +6,7 @@ phaserLifeCycleFunctions.update = function () {
   // Player cannot pass through the game boundaries
   game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
   game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
+  game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
 
   // Bullets cause damage to aliens and then disappear
   game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
