@@ -42,15 +42,15 @@ phaserLifeCycleFunctions.update = function () {
   }
 
   // fire!
-  gameUI.fireGunCounter += 1
-  if (gameUI.fireGunCounter >= gameUI.fireGunRate){
+  gameUI.firePlayerGunCounter += 1
+  if (gameUI.firePlayerGunCounter >= gameUI.fireGunRate){
     shootTheGun = true
-    gameUI.fireGunCounter = 0
+    gameUI.firePlayerGunCounter = 0
   }
   if (shootTheGun) {
     gameUI.firePlayerBullet()
   }
-  // if (gameUI.fireGunCounter > 60) gameUI.fireGunCounter = 0
+  
   overallUI.checkIfFlashcardsComplete()
   if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
     player.body.velocity.y = 0
