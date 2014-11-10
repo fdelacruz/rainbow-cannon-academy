@@ -10,6 +10,7 @@ phaserLifeCycleFunctions.create = function(){
 
   // vector shapes
   flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
+  overallUI.gameAreaCeiling = new Phaser.Rectangle(0,200, 1200, 1)
 
   // timer
   var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
@@ -43,18 +44,18 @@ phaserLifeCycleFunctions.create = function(){
   bullets.setAll('damage', 5)
 
   // create platforms (stuff the character can stand on)
-  var platforms = gameState.groups.platforms = game.add.group()
-  platforms.enableBody = true
+  // var platforms = gameState.groups.platforms = game.add.group()
+  // platforms.enableBody = true
 
-  var ground = platforms.create(0, game.world.height -30, 'ground')
-  ground.scale.setTo(4,1)
-  ground.body.immovable = true
+  // var ground = platforms.create(0, game.world.height -30, 'ground')
+  // ground.scale.setTo(4,1)
+  // ground.body.immovable = true
 
   // var rightLedge = platforms.create(400, 400, 'ground')
   // rightLedge.body.immovable = true
-  var screenSplit = platforms.create(0, 200, 'ground')
-  screenSplit.scale.setTo(4,1)
-  screenSplit.body.immovable = true
+  // var screenSplit = platforms.create(0, 200, 'ground')
+  // screenSplit.scale.setTo(4,1)
+  // screenSplit.body.immovable = true
 
   // create player object
   var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')

@@ -17,11 +17,8 @@ gameUI.spawnAliens = function(){
   for (var y = 0; y < 4; y++) {
     for (var x = 0; x < 5; x++) {
       var alien = aliens.create(x * 70, y * 70, 'invader') // space between aliens
-      alien.body.collideWorldBounds = true
-      // alien.body.moves = false
       alien.health = 10000
-      // alien.body.bounce.y = 1
-      // alien.body.velocity.y = 100
+      alien.body.bounce.y = 1
     }
   }
 }
