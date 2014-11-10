@@ -1,14 +1,24 @@
-gameUI.fireBullet = function() {
+gameUI.firePlayerBullet = function() {
   if (game.time.now > gameUI.bulletTime) {
-    bullet = bullets.getFirstExists(false);
-    if (bullet) {
-      bullet.reset(gameState.player.body.x + 16, gameState.player.body.y + 16);
-      bullet.lifespan = 4000;
-      bullet.rotation = gameState.player.rotation;
-      game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity);
+    playerBullets = gameState.groups.playerBullets.getFirstExists(false)
+    if (playerBullets) {
+      playerBullets.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
+      playerBullets.lifespan = 4000
+      playerBullets.body.velocity.x = 1000
     }
   }
 }
+
+// gameUI.fireBossAlienBullet = function(){
+//   if (game.time.now > gameUI.bulletTime) {
+//     bullet = bullets.getFirstExists(false)
+//     if (bullet) {
+//       bullet.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
+//       bullet.lifespan = 4000
+//       game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, bullet.body.velocity)
+//     }
+//   }
+// }
 
 gameUI.spawnAliens = function(){
   // position the block of aliens
@@ -17,8 +27,9 @@ gameUI.spawnAliens = function(){
   for (var y = 0; y < 4; y++) {
     for (var x = 0; x < 5; x++) {
       var alien = aliens.create(x * 70, y * 70, 'invader') // space between aliens
-      alien.health = 10000
+      alien.health = 10
       alien.body.bounce.y = 1
+      game.physics.arcade.enable(alien)
     }
   }
 }
@@ -28,9 +39,6 @@ gameUI.sendAliens = function(){
     { x:0 },
     5000,
     Phaser.Easing.Linear.None,
-    true,
-    0,
-    1000,
     true)
 }
 
@@ -65,7 +73,7 @@ gameUI.spawnAlienBoss = function(){
   bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
   game.physics.arcade.enable(bossAlien)
   bossAlien.enableBody = true
-  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
+  game.physics.arcade.enable(bossAlien)
   bossAlien.scale.setTo(1,1)
   bossAlien.anchor.x = 0.5
   bossAlien.anchor.y = 0.5
@@ -80,9 +88,18 @@ gameUI.spawnAlienBoss = function(){
   true)
 }
 
+gameUI.scatterAliens = function(){
+  gameState.groups.aliens.forEach(function(alien){
+    alien.body.velocity.y = gameUI.getRandomInt(-100, 100)
+    alien.body.velocity.x = gameUI.getRandomInt(-10, 10)
+  })
+  gameState.groups.aliens.setAll('body.collideWorldBounds', true)
+  gameUI.alienScatterEnabled = false
+}
+
 gameUI.upgradeGun= function(){
   gameUI.gunLevel++
-  gameUI.fireGunRate = Math.floor(gameUI.fireGunRate * .75)+1
+  gameUI.firePlayerGunRate = Math.floor(gameUI.firePlayerGunRate * .75)+1
 }
 
 gameUI.shrinkBoss = function(boss,bullet){
@@ -113,4 +130,8 @@ gameUI.respawnPlayer = function(){
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
   player.health = 100
+}
+
+gameUI.getRandomInt = function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

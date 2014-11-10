@@ -7,7 +7,6 @@ function callAjaxToSetCurrentDeck(){
       $.ajax({
         url: url_string
       }).success(function(response) {
-        console.log("in response")
         gameState.currentDeck = new CardDeck(response)
       });
 }
