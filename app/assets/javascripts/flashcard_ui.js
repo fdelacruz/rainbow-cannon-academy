@@ -41,8 +41,10 @@ flashCardUI.wordKeysHandler = function(evt){
     if (evt.which === 13 /* enter */) {
       flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
       if (deck.currentIndex === 9) {
-        console.log("last card")
-        if (overallUI.flashCardRoundComplete === false) gameUI.createAliens()
+        if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
+          gameUI.spawnAliens()
+          gameUI.sendAliens()
+        }
         overallUI.flashCardRoundComplete = true
         return
       }

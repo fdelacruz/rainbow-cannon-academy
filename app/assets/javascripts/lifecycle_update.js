@@ -54,5 +54,18 @@ phaserLifeCycleFunctions.update = function () {
     overallUI.flashCardRoundComplete = false
     overallUI.resetNextRound()
   }
+  if (overallUI.flashCardRoundComplete && gameState.groups.aliens.getFirstAlive().body.x < 950){
+    gameState.groups.aliens.setAll('body.velocity.y', -200)
+  }
+
+
+
+
+
+
+
+
+
+
 }
 
