@@ -1,5 +1,7 @@
 phaserLifeCycleFunctions.create = function(){
-  game.stage.backgroundColor = '#FFF6E7'
+  // game.stage.backgroundColor = '#FFF6E7'
+  starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
+
   game.physics.startSystem(Phaser.Physics.ARCADE)
 
   // populate deck
@@ -82,20 +84,20 @@ phaserLifeCycleFunctions.create = function(){
   overallUI.scoreObject = game.add.text(
     32, 32, // x coord, y coord
     'Score: ' + overallUI.score, // text field
-    {fontSize: '32px', fill: '#000'} // text styling
+    {fontSize: '32px', fill: '#ffffff'} // text styling
     )
 
 
   // answer input
-  gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#000'})
+  gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#ffffff'})
   // flascard question
-  gameState.currentQuestion = game.add.text(200, 128, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#000'})
+  gameState.currentQuestion = game.add.text(200, 128, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#ffffff'})
   // current round remaining cards
   gameState.currentCardsRemaining = game.add.text(
     450, 50,
     'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
-    {fontSize: '32px', fill: '#000'}
+    {fontSize: '32px', fill: '#ffffff'}
   )
   // feedback shown to user (ex: 'Correct' or 'Omaha')
-  gameState.userFeedbackText = game.add.text(765, 165, '', {fontSize: '32px', fill: '#000'})
+  gameState.userFeedbackText = game.add.text(765, 165, '', {fontSize: '32px', fill: '#ffffff'})
 }

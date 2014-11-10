@@ -8,6 +8,13 @@ phaserLifeCycleFunctions.update = function () {
 
   game.physics.arcade.overlap(bullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
 
+  //tile position
+
+
+  starfield.tilePosition.x -= 0.5
+
+  // ---
+
   // player.body.velocity.x = 5
   if (overallUI.flashCardRoundComplete) {
     if (cursors.left.isDown) {
