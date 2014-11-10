@@ -29,7 +29,7 @@ gameUI.createAliens = function(){
   // tween animations
   var tween = game.add.tween(aliens).to(
     { x:0 },
-    15000,
+    5000,
     Phaser.Easing.Linear.None,
     true,
     0,
@@ -78,59 +78,24 @@ gameUI.upgradeGun= function(){
   gameUI.fireGunRate = Math.floor(gameUI.fireGunRate * .75)+1
 }
 
-
-
 gameUI.shrinkBoss = function(boss,bullet){
-
   bullet.kill()
   gameState.bossAlien.scale.x *= .8 // makes boss 80% of size when hit
   gameState.bossAlien.scale.y *= .8
   if (gameState.bossAlien.scale.x <= 1) boss.kill() // boss dies at scale 1
-  // boss.kill()
-
 }
 
 gameUI.growBoss = function(){
-
   gameState.bossAlien.scale.x *= 1.25 // makes boss 125% of size
   gameState.bossAlien.scale.y *= 1.25
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+gameUI.hitPlayer = function(player, alien){
+  alien.kill()
+  player.health -= 50
+  // play animation
+  if (player.health <= 0) {
+    player.kill()
+    overallUI.resetPreviousRound()
+  }
+}

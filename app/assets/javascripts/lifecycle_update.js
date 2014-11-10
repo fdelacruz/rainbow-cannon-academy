@@ -3,15 +3,20 @@ phaserLifeCycleFunctions.update = function () {
   var cursors = gameState.cursors
   var shootTheGun = false
 
+  // Player cannot pass through the game boundaries
   game.physics.arcade.collide(player, gameState.groups.platforms)
+
+  // Bullets cause damage to aliens and then disappear
   game.physics.arcade.overlap(bullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
 
+  // Bullets cause the boss alien to shrink
   game.physics.arcade.overlap(bullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
 
+  // Aliens damage the player when they touch
+  game.physics.arcade.overlap(player, gameState.groups.aliens, gameUI.hitPlayer, null, this)
+
   //tile position
-
-
-  starfield.tilePosition.x -= 0.5
+  starfield.tilePosition.x -= 1
 
   // ---
 
