@@ -7,9 +7,7 @@ class DecksController < ApplicationController
 
   def update
     user = User.find(session[:user_id])
-    array_of_deck_hashes_from_quizlet = get_users_decks_from_quizlet(session['uid'], session['access_token'])
-    array_of_deck_objects_from_db = user.decks
-    update_decks_in_db(array_of_deck_hashes_from_quizlet, array_of_deck_objects_from_db, user)
+    check_for_updated_decks(get_decks_from_quizlet(session['uid'], session['access_token']), user.decks, user)
     redirect_to root_path
   end
 

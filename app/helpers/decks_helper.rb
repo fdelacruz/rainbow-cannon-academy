@@ -33,7 +33,7 @@ module DecksHelper
     user.decks.map {|deck| {"id" => deck.quizlet_deck_id, "modified_date" => deck.quizlet_modified_date} }
   end
 
-  def update_decks_in_db(quizlet_deck_hash, db_deck_hash, user)
+  def check_for_updated_decks(quizlet_deck_hash, db_deck_hash, user)
     unless quizlet_deck_comparison_array(quizlet_deck_hash) == db_deck_comparison_array(user)
       create_decks_for(user, quizlet_deck_hash)
     end
