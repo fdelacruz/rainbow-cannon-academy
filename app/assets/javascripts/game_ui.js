@@ -29,7 +29,7 @@ gameUI.createAliens = function(){
   // tween animations
   var tween = game.add.tween(aliens).to(
     { x:0 },
-    5000,
+    15000,
     Phaser.Easing.Linear.None,
     true,
     0,
@@ -38,7 +38,7 @@ gameUI.createAliens = function(){
 
   var bossTween = game.add.tween(bossAlien).to(
     { x:400 },
-    5000,
+    15000,
     Phaser.Easing.Linear.None,
     true,
     0,
@@ -60,10 +60,18 @@ gameUI.killAlien = function(alien){
 }
 
 gameUI.aliensDead = function(){
-  return (gameState.groups.aliens.countLiving() === 0)
+  return (gameState.groups.aliens.countLiving() === 0 && !gameState.bossAlien.alive)
 }
 
-
+gameUI.spawnAlienBoss = function(){
+  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+  game.physics.arcade.enable(bossAlien)
+  bossAlien.enableBody = true
+  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
+  bossAlien.scale.setTo(1,1)
+  bossAlien.anchor.x = 0.5
+  bossAlien.anchor.y = 0.5
+}
 
 gameUI.upgradeGun= function(){
   gameUI.gunLevel++
@@ -79,7 +87,6 @@ gameUI.shrinkBoss = function(boss,bullet){
   gameState.bossAlien.scale.y *= .8
   if (gameState.bossAlien.scale.x <= 1) boss.kill() // boss dies at scale 1
   // boss.kill()
-  console.log("hit boss")
 
 }
 

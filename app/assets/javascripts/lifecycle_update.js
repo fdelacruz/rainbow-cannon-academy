@@ -38,9 +38,9 @@ phaserLifeCycleFunctions.update = function () {
   // if (gameUI.fireGunCounter > 60) gameUI.fireGunCounter = 0
   overallUI.checkIfFlashcardsComplete()
   if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
-    console.log("round over")
     player.body.velocity.y = 0
     overallUI.flashCardRoundComplete = false
+    overallUI.resetNextRound()
   }
 }
 

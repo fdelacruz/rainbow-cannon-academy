@@ -34,7 +34,7 @@ phaserLifeCycleFunctions.create = function(){
   bullets.enableBody = true
   bullets.physicsBodyType = Phaser.Physics.ARCADE
    // All 100 of them
-  bullets.createMultiple(100, 'bullet')
+  bullets.createMultiple(250, 'bullet')
 
   bullets.setAll('anchor.x', 0.5)
   bullets.setAll('anchor.y', 0.5)

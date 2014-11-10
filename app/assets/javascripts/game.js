@@ -21,7 +21,7 @@ flashCardUI.textInputLine
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0
 gameUI.fireGunCounter = 0
-gameUI.fireGunRate = 60 // (60/rate) = shots per second
+gameUI.fireGunRate = 30 // (60/rate) = shots per second
 gameUI.gunLevel = 0
 
 // gameState --------------------------------------------------------
@@ -35,7 +35,6 @@ gameState.userGuess = null
 gameState.currentQuestion = null
 gameState.currentDeck = null
 
-console.log("this should be first")
 
 // init all the globals
 function start(){
@@ -45,7 +44,6 @@ function start(){
     if (e.which === 8) e.preventDefault()
     if (e.which === 32) e.preventDefault()
   })
-  console.log("creating game")
   game = new Phaser.Game(
     1200, // width
     600, // height
