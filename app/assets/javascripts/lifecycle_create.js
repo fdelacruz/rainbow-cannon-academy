@@ -66,11 +66,13 @@ phaserLifeCycleFunctions.create = function(){
   aliens.physicsBodyType = Phaser.Physics.ARCADE
 
   // create boss alien
-  bossAlien = gameState.bossAlien = game.add.sprite(900, 450, 'diamond')
+  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
   game.physics.arcade.enable(bossAlien)
   bossAlien.enableBody = true
   bossAlien.physicsBodyType = Phaser.Physics.ARCADE
-  bossAlien.scale.setTo(5,5)
+  bossAlien.scale.setTo(1,1)
+  bossAlien.anchor.x = 0.5
+  bossAlien.anchor.y = 0.5
 
   // create keyboard listeners
   gameState.cursors = game.input.keyboard.createCursorKeys()
