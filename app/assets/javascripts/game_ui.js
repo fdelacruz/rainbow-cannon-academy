@@ -60,7 +60,7 @@ gameUI.killAlien = function(alien){
 }
 
 gameUI.killAllAliens = function(){
-  gameState.groups.aliens.destroy()
+  game.world.remove(aliens)
   gameState.bossAlien.kill()
 }
 
@@ -103,4 +103,12 @@ gameUI.hitPlayer = function(player, alien){
     player.kill()
     overallUI.resetPreviousRound()
   }
+}
+
+gameUI.respawnPlayer = function(){
+  var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
+  game.physics.arcade.enable(player)
+  player.body.bounce.y = 0.2
+  player.body.collideWorldBounds = true
+  player.health = 100
 }

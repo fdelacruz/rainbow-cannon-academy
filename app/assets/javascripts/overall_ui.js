@@ -23,6 +23,7 @@ overallUI.resetNextRound = function(){
 }
 
 overallUI.resetPreviousRound = function(){
+  gameState.currentDeck.shuffleCards()
   overallUI.flashCardRoundComplete = false
   gameState.currentDeck.currentIndex = 0
   flashCardUI.showNextCard()

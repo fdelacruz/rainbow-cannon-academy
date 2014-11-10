@@ -1,7 +1,5 @@
 function CardDeck(array_of_card_jsons){
-	this.solvedDeck = false
 	this.deck = array_of_card_jsons
-	this.previousCorrect = false
 	this.currentRound = []
 	this.currentIndex = 0
 	this.currentCard = null

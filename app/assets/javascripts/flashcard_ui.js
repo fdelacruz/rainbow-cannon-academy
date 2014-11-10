@@ -25,6 +25,7 @@ flashCardUI.showNextCard = function(){
 
 flashCardUI.wordKeysHandler = function(evt){
   deck = gameState.currentDeck
+  // Listen for user input only during flashcard round
   if(overallUI.flashCardRoundComplete === false){
     // handle backspace
     if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
@@ -40,6 +41,7 @@ flashCardUI.wordKeysHandler = function(evt){
     if (evt.which === 13 /* enter */) {
       flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
       if (deck.currentIndex === 9) {
+        console.log("last card")
         if (overallUI.flashCardRoundComplete === false) gameUI.createAliens()
         overallUI.flashCardRoundComplete = true
         return
