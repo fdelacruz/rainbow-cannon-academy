@@ -77,7 +77,7 @@ phaserLifeCycleFunctions.create = function(){
   game.physics.arcade.enable(player)
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
-  player.health = 100
+  player.health = 1000
 
   // create regular aliens
   aliens = gameState.groups.aliens = game.add.group()

@@ -30,6 +30,7 @@ gameUI.spawnAliens = function(){
       alien.health = 10
       alien.damage = 50
       alien.body.bounce.y = 1
+      alien.body.bounce.x = 1
       game.physics.arcade.enable(alien)
     }
   }
@@ -37,10 +38,11 @@ gameUI.spawnAliens = function(){
 
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
-    { x:0 },
-    5000,
+    { x: 60 },
+    45000,
     Phaser.Easing.Linear.None,
     true)
+  // gameState.groups.aliens.setAll('body.velocity.x', -200)
 }
 
 gameUI.aliensExist = function(){
@@ -92,7 +94,7 @@ gameUI.spawnAlienBoss = function(){
 gameUI.scatterAliens = function(){
   gameState.groups.aliens.forEach(function(alien){
     alien.body.velocity.y = gameUI.getRandomInt(-100, 100)
-    alien.body.velocity.x = gameUI.getRandomInt(-10, 10)
+    alien.body.velocity.x = gameUI.getRandomInt(-50, 50)
   })
   gameState.groups.aliens.setAll('body.collideWorldBounds', true)
   gameUI.alienScatterEnabled = false

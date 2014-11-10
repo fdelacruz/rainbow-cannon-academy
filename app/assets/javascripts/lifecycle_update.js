@@ -22,7 +22,7 @@ phaserLifeCycleFunctions.update = function () {
   // Boss alien bullets damage player
   game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
 
-  //tile position
+  // set scroll speed of background
   starfield.tilePosition.x -= 1
 
   // ---
