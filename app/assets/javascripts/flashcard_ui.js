@@ -9,6 +9,8 @@ flashCardUI.deleteLetterFromAnswer = function(){
 flashCardUI.checkUserGuess = function(guess, currentAnswer){
   if (guess === " " + currentAnswer){
     gameState.userFeedbackText.text = 'Correct'
+    gameUI.upgradeGun()
+    // upgrade gun
   } else {
     gameState.userFeedbackText.text = currentAnswer
   }
