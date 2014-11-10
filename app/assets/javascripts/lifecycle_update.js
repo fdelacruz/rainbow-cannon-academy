@@ -1,7 +1,7 @@
 phaserLifeCycleFunctions.update = function () {
   var player = gameState.player
   var cursors = gameState.cursors
-  var shootTheGun = false
+  var shootThePlayerGun = false
 
   // Player cannot pass through the game boundaries
   game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
@@ -44,13 +44,13 @@ phaserLifeCycleFunctions.update = function () {
   // fire!
   gameUI.firePlayerGunCounter += 1
   if (gameUI.firePlayerGunCounter >= gameUI.fireGunRate){
-    shootTheGun = true
+    shootThePlayerGun = true
     gameUI.firePlayerGunCounter = 0
   }
-  if (shootTheGun) {
+  if (shootThePlayerGun) {
     gameUI.firePlayerBullet()
   }
-  
+
   overallUI.checkIfFlashcardsComplete()
   if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
     player.body.velocity.y = 0
