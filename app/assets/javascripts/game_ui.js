@@ -59,6 +59,11 @@ gameUI.killAlien = function(alien){
   overallUI.updateScore()
 }
 
+gameUI.killAllAliens = function(){
+  gameState.groups.aliens.destroy()
+  gameState.bossAlien.kill()
+}
+
 gameUI.aliensDead = function(){
   return (gameState.groups.aliens.countLiving() === 0 && !gameState.bossAlien.alive)
 }
@@ -93,7 +98,7 @@ gameUI.growBoss = function(){
 gameUI.hitPlayer = function(player, alien){
   alien.kill()
   player.health -= 50
-  // play animation
+  // if Player dies, kill him/her & reset the round & subtract 10% points
   if (player.health <= 0) {
     player.kill()
     overallUI.resetPreviousRound()
