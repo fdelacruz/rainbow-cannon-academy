@@ -21,7 +21,7 @@ flashCardUI.textInputLine
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0
 gameUI.fireGunCounter = 0
-gameUI.fireGunRate = 30 // (60/rate) = shots per second
+gameUI.fireGunRate = 60 // (60/rate) = shots per second
 gameUI.gunLevel = 0
 
 // gameState --------------------------------------------------------
