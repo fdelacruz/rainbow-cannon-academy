@@ -5,7 +5,6 @@ class WelcomeController < ApplicationController
 
   def show
     response = request.env["omniauth.auth"]
-    binding.pry
     session['uid'] = response['uid']
     session['access_token'] = response['extra'].access_token
     redirect_to users_create_path

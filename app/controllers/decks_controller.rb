@@ -1,8 +1,7 @@
 class DecksController < ApplicationController
   include DecksHelper
   def create
-    array_of_deck_hashes = get_users_decks_from_quizlet(session['uid'], session['access_token'])
-    create_decks_for(User.find(session[:user_id]), array_of_deck_hashes)
+    create_decks_for(User.find(session[:user_id]), get_decks_from_quizlet(session['uid'], session['access_token']))
     redirect_to root_path
   end
 

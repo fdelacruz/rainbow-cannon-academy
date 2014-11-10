@@ -4,10 +4,19 @@ module DecksHelper
     JSON.parse(`curl -H "Authorization: Bearer #{access_token}" "https://api.quizlet.com/2.0/users/#{uid}/sets"`)
   end
 
-  def get_decks_from_users_classes_from_quizlet(uid, access_token)
-
+  def get_class_ids_from_quizlet(uid, access_token)
+    array_of_class_hashes = JSON.parse(`curl -H "Authorization: Bearer #{access_token}" "https://api.quizlet.com/2.0/users/#{uid}/classes"`)
+    array_of_class_hashes.map {|quizlet_class| quizlet_class['id']}
   end
 
+  def get_decks_from_users_classes_from_quizlet(array_of_class_ids, access_token)
+    array_of_class_ids.map { |quizlet_class_id| JSON.parse(`curl -H "Authorization: Bearer #{access_token}" "https://api.quizlet.com/2.0/classes/#{quizlet_class_id}/sets"`)}.flatten
+  end
+
+  def get_decks_from_quizlet(uid, access_token)
+    array_of_class_ids = get_class_ids_from_quizlet(uid, access_token)
+    get_users_decks_from_quizlet(uid, access_token) + get_decks_from_users_classes_from_quizlet(array_of_class_ids, access_token)
+  end
 
   def create_decks_for(user, array_of_deck_hashes)
     array_of_deck_hashes.each do |deck|
