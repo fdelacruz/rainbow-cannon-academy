@@ -4,7 +4,7 @@ gameUI.firePlayerBullet = function() {
     if (playerBullets) {
       playerBullets.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
       playerBullets.lifespan = 4000
-      game.physics.arcade.velocityFromRotation(gameState.player.rotation, 400, playerBullets.body.velocity)
+      playerBullets.body.velocity.x = 1000
     }
   }
 }
