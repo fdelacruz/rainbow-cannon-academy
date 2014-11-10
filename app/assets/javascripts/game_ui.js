@@ -31,7 +31,6 @@ gameUI.sendAliens = function(){
     Phaser.Easing.Linear.None,
     true)
 }
-// game.add.tween(sprite).from( { y: -200 }, 2000, Phaser.Easing.Bounce.Out, true);
 
 gameUI.aliensExist = function(){
   return (gameState.groups.aliens.countLiving() > 0)

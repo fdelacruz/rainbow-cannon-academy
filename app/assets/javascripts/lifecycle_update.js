@@ -57,7 +57,7 @@ phaserLifeCycleFunctions.update = function () {
     overallUI.flashCardRoundComplete = false
     overallUI.resetNextRound()
   }
-  if (overallUI.flashCardRoundComplete && (gameState.groups.aliens.x < 950)){
+  if (overallUI.flashCardRoundComplete && (gameState.groups.aliens.x < 880)){
     if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
   }
 
