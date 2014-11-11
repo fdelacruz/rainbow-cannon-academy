@@ -22,9 +22,9 @@ flashCardUI.checkUserGuess = function(guess, currentAnswer){
   // }
 }
 
-flashCardUI.showNextCard = function(){
-  gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
-}
+// flashCardUI.showNextCard = function(){
+//   gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
+// }
 
 flashCardUI.wordKeysHandler = function(evt){
   // var deck = gameState.currentDeck
@@ -88,7 +88,8 @@ flashCardUI.wordKeysHandler = function(evt){
       // update cards remaining in the view
       gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
 
-
+      // update the current Question in the view
+      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
     }
   // }
 }
