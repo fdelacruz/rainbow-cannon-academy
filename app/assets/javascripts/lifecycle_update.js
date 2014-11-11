@@ -23,7 +23,8 @@ phaserLifeCycleFunctions.update = function () {
   game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
 
   // set scroll speed of background
-  starfield.tilePosition.x -= 1
+  // starfield.tilePosition.x -= 1
+  starfieldBackground.update()
 
   // ---
 
@@ -73,15 +74,6 @@ phaserLifeCycleFunctions.update = function () {
   if (overallUI.flashCardRoundComplete && (gameState.groups.aliens.x < 880)){
     if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
   }
-
-
-
-
-
-
-
-
-
 
 }
 

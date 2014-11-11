@@ -1,4 +1,5 @@
-phaserLifeCycleFunctions.preload = function(){
+
+phaserLifeCycleFunctions.preload = function(game){
   game.load.image('sky', '../assets/sky.png')
   game.load.image('ground', '../assets/platform.png')
   game.load.image('star', '../assets/star.png')
@@ -9,8 +10,3 @@ phaserLifeCycleFunctions.preload = function(){
   game.load.image('bullet', '../assets/bullets.png')
   game.load.image('starfield', '../assets/starfield.png');
 }
-
-
-
-
-

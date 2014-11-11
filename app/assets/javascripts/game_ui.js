@@ -39,7 +39,7 @@ gameUI.spawnAliens = function(){
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
     { x: 60 },
-    45000,
+    5000,
     Phaser.Easing.Linear.None,
     true)
   // gameState.groups.aliens.setAll('body.velocity.x', -200)
@@ -118,7 +118,7 @@ gameUI.growBoss = function(){
 }
 
 gameUI.hitPlayer = function(player, objectThatHits){
-  objectThatHits.kill()
+  objectThatHits.kill() // object that collides with player
   player.health -= objectThatHits.damage
   // if Player dies, kill him/her & reset the round & subtract 10% points
   if (gameUI.playerDead(player)) {

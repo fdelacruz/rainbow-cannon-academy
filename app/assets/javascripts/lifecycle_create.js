@@ -1,8 +1,10 @@
-phaserLifeCycleFunctions.create = function(){
+phaserLifeCycleFunctions.create = function(game) {
   // game.stage.backgroundColor = '#FFF6E7'
-  starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
+  // starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
 
   game.physics.startSystem(Phaser.Physics.ARCADE)
+  
+  starfieldBackground.create(game)
 
   // populate deck
   gameState.currentDeck.populateCurrentRound()
@@ -77,7 +79,7 @@ phaserLifeCycleFunctions.create = function(){
   game.physics.arcade.enable(player)
   player.body.bounce.y = 0.2
   player.body.collideWorldBounds = true
-  player.health = 1000
+  player.health = 100
 
   // create regular aliens
   aliens = gameState.groups.aliens = game.add.group()
