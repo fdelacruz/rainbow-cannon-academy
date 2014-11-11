@@ -71,12 +71,12 @@ fight.prototype = {
 		    gameUI.fireBossAlienBullet()
 		  }
 
-		  overallUI.checkIfFlashcardsComplete()
-		  if (gameUI.aliensDead() && overallUI.flashCardRoundComplete) {
+		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
 		    game.state.start('level_intro')
 		  }
-		  if (overallUI.flashCardRoundComplete && (gameState.groups.aliens.x < 880)){
+
+		  if (gameState.groups.aliens.x < 880){
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
 

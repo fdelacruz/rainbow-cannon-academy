@@ -57,7 +57,7 @@ flashCard.prototype = {
   },
 
   update: function() {
-   	var player = gameState.player
+   	// var player = gameState.player
 
 	  // set scroll speed of background
 	  starfieldBackground.update()
