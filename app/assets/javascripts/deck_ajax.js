@@ -8,5 +8,5 @@ function callAjaxToSetCurrentDeck(){
         url: url_string
       }).success(function(response) {
         gameState.currentDeck = new CardDeck(response)
-      });
+      })
 }

@@ -7,7 +7,7 @@ phaserLifeCycleFunctions.create = function(game) {
   starfieldBackground.create(game)
 
   // populate deck
-  gameState.currentDeck.populateCurrentRound()
+  // gameState.currentDeck.populateCurrentRound()
 
 
   // vector shapes
