@@ -7,8 +7,8 @@ function CardDeck(array_of_card_jsons){
 		return (this.currentRound.length - this.currentIndex)
 	}
 	this.advanceToNextCard = function(){
-		// this.currentIndex += 1
-		this.currentCard = this.currentRound[this.currentIndex]
+		this.currentIndex += 1
+		this.updateCurrentCard()
 	}
 	this.populateCurrentRound = function(){
 		this.shuffleCards()
