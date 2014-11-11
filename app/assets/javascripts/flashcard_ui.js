@@ -8,28 +8,10 @@ flashCardUI.deleteLetterFromAnswer = function(){
 
 flashCardUI.checkUserGuess = function(guess, currentAnswer){
   return (guess === " " + currentAnswer)
-
-  //WIP
-
-  // if (guess === " " + currentAnswer){
-  //   gameState.userFeedbackText.text = 'Correct'
-  //   gameUI.upgradeGun()
-  //   // if correct upgrade gun
-  // } else {
-  //   // if incorrect upgrade boss
-  //   gameUI.growBoss()
-  //   gameState.userFeedbackText.text = currentAnswer
-  // }
 }
 
-// flashCardUI.showNextCard = function(){
-//   gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
-// }
-
 flashCardUI.wordKeysHandler = function(evt){
-  // var deck = gameState.currentDeck
-  // Listen for user input only during flashcard round
-  // if(overallUI.flashCardRoundComplete === false){
+
     // handle backspace
     if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
     // handle letter (a-z) or space
@@ -40,34 +22,6 @@ flashCardUI.wordKeysHandler = function(evt){
       flashCardUI.appendLetterToAnswer(letter)
       return
     }
-    // handle enter
-    // if (evt.which === 13 /* enter */) {
-    //   gameState.currentDeck.currentIndex++
-    //   gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-    //   if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
-    //     gameState.userFeedbackText.text = 'Correct'
-    //    } else {
-    //     gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
-    //    }
-
-    //   // if (deck.currentIndex === 9 ) 
-    //   //   if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
-    //   //     // game.state.start('fight')
-    //   //     gameUI.spawnAliens()
-    //   //     gameUI.sendAliens()
-    //   //     deck.advanceToNextCard()
-    //   //   }
-    //   //   overallUI.flashCardRoundComplete = true
-    //   //   return
-    //   // }
-    //   if (gameState.currentDeck.cardsLeftInCurrentRound === 0){
-    //     // game.state.start('fight')
-    //     console.log("going to fight mode")
-    //   } else {
-    //     flashCardUI.showNextCard()
-    //     gameState.currentDeck.advanceToNextCard()
-    //   }
-    // }
 
     if (evt.which === 13 /* enter */) {
       // break out of flashcard state if the user just pressed enter on the last card in the level
@@ -81,16 +35,12 @@ flashCardUI.wordKeysHandler = function(evt){
       } else {
         gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
       }
-
       // clear user input
       gameState.userGuess.text = ""
-
       // update current card to the next card in the current round 
       gameState.currentDeck.advanceToNextCard()
-
       // update cards remaining in the view
       gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-
       // update the current Question in the view
       gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
     }
