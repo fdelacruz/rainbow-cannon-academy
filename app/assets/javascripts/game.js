@@ -3,6 +3,7 @@
 //=require carddeck
 //=require starfield_background
 //=require timer
+//=require rain
 
 // entry point
 

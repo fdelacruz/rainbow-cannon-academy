@@ -12,6 +12,7 @@ phaserLifeCycleFunctions.create = function(game) {
 
   // vector shapes
   flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
+
   overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
   overallUI.gameAreaCeiling = game.add.sprite(0,200,null)
   game.physics.enable(overallUI.gameAreaCeiling, Phaser.Physics.ARCADE)
@@ -21,18 +22,7 @@ phaserLifeCycleFunctions.create = function(game) {
   timer.create(game)
 
   // rain
-  var emitter = game.add.emitter(game.world.width, 375, 500)  //(x, y , max particles)
-  emitter.height = 400
-  emitter.angle = 2
-  // emitter.makeParticles('rain')
-  emitter.minParticleScale = 1
-  emitter.maxParticleScale = 1
-  emitter.setXSpeed(-500, -1200)
-  emitter.setYSpeed(0,0)
-  emitter.minRotation = 1
-  emitter.maxRotation = 1
-  emitter.start(false, 3000,  15) //(explode, lifespan, frequency, quantity, forceQuantity)
-  emitter.gravity.y = -1000
+  rain.create(game)
 
   // playerBullets
   playerBullets = gameState.groups.playerBullets = game.add.group()

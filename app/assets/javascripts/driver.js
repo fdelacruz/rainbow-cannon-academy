@@ -1,6 +1,7 @@
 //=require phaser
 //=require starfield_background
 //=require timer
+//=require rain
 
 window.onload = start
 
@@ -31,6 +32,6 @@ function start(){
     600, // height
     Phaser.AUTO, // render backend
     'gamediv', // DOM id where game is injected
-    lc
+    rain
   )
 }
