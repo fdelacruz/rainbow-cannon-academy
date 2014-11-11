@@ -8,6 +8,7 @@ phaserLifeCycleFunctions.preload = function(game){
   game.load.spritesheet('invader', '../assets/baddie.png', 32, 32)
   // game.load.spritesheet('rain', '../assets/rain.png', 17, 17)
   rain.preload(game)
+  starFieldBackground.preload
   game.load.image('bullet', '../assets/bullets.png')
-  game.load.image('starfield', '../assets/starfield.png');
+  // game.load.image('starfield', '../assets/starfield.png');
 }

@@ -4,6 +4,10 @@
 //=require starfield_background
 //=require timer
 //=require rain
+//=require preload
+//=require flashcard
+//=require level_intro
+//=require welcome
 
 // entry point
 
@@ -15,6 +19,8 @@ var phaserLifeCycleFunctions = {}
 var flashCardUI = {}
 var gameUI = {}
 var overallUI = {}
+var states = {}
+states.preload =
 
 // overallUI
 overallUI.gameTimeRemaining = null
@@ -56,9 +62,13 @@ function start(){
     1200, // width
     600, // height
     Phaser.AUTO, // render backend
-    'gamediv', // DOM id where game is injected
-    phaserLifeCycleFunctions
+    'gamediv' // DOM id where game is injected
   )
+  game.state.add('preload', preLoad)
+  game.state.add('welcome', welcome)
+  game.state.add('level_intro', levelIntro)
+  game.state.add('flashcard', flashCard)
+  game.state.start('preload')
 }
 
 

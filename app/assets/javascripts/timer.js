@@ -2,15 +2,14 @@ var timer = (function(){
 
 	var exports = {}
 
-	exports.create = function(phaserGame) { 
+	exports.create = function(phaserGame) {
 		this._secondsRemaining = 300
 		var t = game.time.create(/* turn off "autodestroy" */ false)
-		console.log(game.time.create)
 		t.loop(/* seconds: */ 1 * /* milliseconds: */ 1000, this._decrementSecond, this)
 		t.start()
 	}
-	
-	exports.update = function(phaserGame) { 
+
+	exports.update = function(phaserGame) {
 	}
 
 	exports.render = function(phaserGame){
