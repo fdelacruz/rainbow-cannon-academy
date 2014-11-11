@@ -3,12 +3,17 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
+  	//resetting
   	gameState.currentDeck.currentIndex = 0
+  	gameState.currentDeck.updateCurrentCard()
+  	//-- 
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
 	  // populate deck
-	  gameState.currentDeck.populateCurrentRound()
+	  
+	  // If game first starting, deck must be shuffled:
+	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
 
 
 	  // vector shapes
@@ -19,7 +24,7 @@ flashCard.prototype = {
 	  timer.create(game)
 
 	  // rain
-	  rain.create(game)
+	  // rain.create(game)
 
 	  // create flashcardPlayer object - only visable to show upgrades
 	  var flashcardPlayer = game.add.sprite(32, game.world.height - 150, 'dude')
@@ -60,7 +65,7 @@ flashCard.prototype = {
    	// var player = gameState.player
 
 	  // set scroll speed of background
-	  starfieldBackground.update()
+	  // starfieldBackground.update()
 
   },
   render: function() {

@@ -52,6 +52,7 @@ gameState.currentQuestion = null
 gameState.currentDeck = null
 gameState.currentLevel = 1
 gameState.questionsCorrect = 0
+gameState.firstTimeOnLevel = true
 
 // init all the globals
 function start(){

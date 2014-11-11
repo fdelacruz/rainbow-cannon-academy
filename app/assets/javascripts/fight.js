@@ -74,10 +74,12 @@ fight.prototype = {
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
+		    gameState.firstTimeOnLevel = true
 		    game.state.start('level_intro')
 		  }
 
 		  if (gameUI.playerDead(gameState.player)){
+		  	gameState.firstTimeOnLevel = false
 		    game.state.start('level_intro')
 		  }
 

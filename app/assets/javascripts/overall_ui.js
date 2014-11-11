@@ -12,10 +12,10 @@
 //   }
 // }
 
-overallUI.updateScore = function(){
-  overallUI.score += 10
-  overallUI.scoreObject.text = "Score: " + overallUI.score
-}
+// overallUI.updateScore = function(){
+//   overallUI.score += 10
+//   overallUI.scoreObject.text = "Score: " + overallUI.score
+// }
 
 // overallUI.resetNextRound = function(){
 //   gameState.currentDeck.populateCurrentRound()
@@ -26,17 +26,4 @@ overallUI.updateScore = function(){
 //   flashCardUI.textInputLine.height = 1
 // }
 
-overallUI.resetPreviousRound = function(){
-  gameState.currentDeck.shuffleCards()
-  overallUI.flashCardRoundComplete = false
-  gameState.currentDeck.currentIndex = 0
-  flashCardUI.showNextCard()
-  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-  flashCardUI.textInputLine.height = 1
-  overallUI.score = overallUI.score * 0.9
-  gameUI.killAllAliens()
-  gameUI.killAllAliens()
-  gameUI.spawnAlienBoss()
-  gameUI.respawnPlayer()
-  gameUI.alienScatterEnabled = true
-}
+
