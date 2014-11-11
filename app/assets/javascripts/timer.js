@@ -10,12 +10,14 @@ var timer = (function(){
 		t.start()
 	}
 	
-	exports.update = function() { 
+	exports.update = function(phaserGame) { 
 	}
 
 	exports.render = function(phaserGame){
 		phaserGame.debug.text('Seconds Remaining: ' + this._secondsRemaining, /* x: */ 450, /* y: */ 32)
 	}
+
+	// ---
 
 	exports._decrementSecond = function(){
 		this._secondsRemaining -= 1
