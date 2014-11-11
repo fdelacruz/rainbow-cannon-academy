@@ -80,10 +80,13 @@ fight.prototype = {
 		  var shootThePlayerGun = false
 		  var shootTheBossAlienGun = false
 
+
 		  // Player cannot pass through the game boundaries
 		  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
 		  // aliens cannot pass through game boundaries
 		  game.physics.arcade.collide(gameState.groups.aliens, gameUI.gameAreaCeiling)
+		  // boss alien cannot pass through game boundaries
+		  game.physics.arcade.collide(gameState.bossAlien, gameUI.gameAreaCeiling)
 		  // aliens bounce off of each other
 		  game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
 		  // aliens bounce off of boss alien

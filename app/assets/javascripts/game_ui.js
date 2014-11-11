@@ -45,7 +45,7 @@ gameUI.updateScore = function(){
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
     { x: 60 },
-    5000,
+    45000,
     Phaser.Easing.Linear.None,
     true)
   // gameState.groups.aliens.setAll('body.velocity.x', -200)
