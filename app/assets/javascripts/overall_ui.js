@@ -6,11 +6,11 @@
 //=require lifecycle_update
 //=require lifecycle_render
 
-overallUI.checkIfFlashcardsComplete = function(){
-  if (overallUI.flashCardRoundComplete) {
-    flashCardUI.clearFlashCardText()
-  }
-}
+// overallUI.checkIfFlashcardsComplete = function(){
+//   if (overallUI.flashCardRoundComplete) {
+//     flashCardUI.clearFlashCardText()
+//   }
+// }
 
 overallUI.updateScore = function(){
   overallUI.score += 10

@@ -7,15 +7,19 @@ flashCardUI.deleteLetterFromAnswer = function(){
 }
 
 flashCardUI.checkUserGuess = function(guess, currentAnswer){
-  if (guess === " " + currentAnswer){
-    gameState.userFeedbackText.text = 'Correct'
-    gameUI.upgradeGun()
-    // if correct upgrade gun
-  } else {
-    // if incorrect upgrade boss
-    gameUI.growBoss()
-    gameState.userFeedbackText.text = currentAnswer
-  }
+  return (guess === " " + currentAnswer)
+
+  //WIP
+
+  // if (guess === " " + currentAnswer){
+  //   gameState.userFeedbackText.text = 'Correct'
+  //   gameUI.upgradeGun()
+  //   // if correct upgrade gun
+  // } else {
+  //   // if incorrect upgrade boss
+  //   gameUI.growBoss()
+  //   gameState.userFeedbackText.text = currentAnswer
+  // }
 }
 
 flashCardUI.showNextCard = function(){
@@ -39,19 +43,30 @@ flashCardUI.wordKeysHandler = function(evt){
     }
     // handle enter
     if (evt.which === 13 /* enter */) {
-      flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
-      if (deck.currentIndex === 9) {
-        if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
-          game.state.start('fight')
-          gameUI.spawnAliens()
-          gameUI.sendAliens()
-        }
-        overallUI.flashCardRoundComplete = true
-        return
-      }
-      deck.advanceToNextCard()
+      if (flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)){
+        gameState.userFeedbackText.text = 'Correct'
+       } else {
+        gameState.userFeedbackText.text = deck.currentCard.definition
+       }
+
+      // if (deck.currentIndex === 9 ) 
+      //   if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
+      //     // game.state.start('fight')
+      //     gameUI.spawnAliens()
+      //     gameUI.sendAliens()
+      //     deck.advanceToNextCard()
+      //   }
+      //   overallUI.flashCardRoundComplete = true
+      //   return
+      // }
       gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
-      flashCardUI.showNextCard()
+      if (gameState.currentDeck.cardsLeftInCurrentRound === 0){
+        // game.state.start('fight')
+        console.log("going to fight mode")
+      } else {
+        flashCardUI.showNextCard()
+        deck.advanceToNextCard()
+      }
     }
   }
 }
