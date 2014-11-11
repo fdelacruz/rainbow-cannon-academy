@@ -49,6 +49,7 @@ gameState.groups = {}
 gameState.userGuess = null
 gameState.currentQuestion = null
 gameState.currentDeck = null
+gameState.currentLevel = 1
 
 // init all the globals
 function start(){

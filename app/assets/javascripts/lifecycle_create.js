@@ -1,5 +1,5 @@
 phaserLifeCycleFunctions.create = function(game) {
-  // game.stage.backgroundColor = '#FFF6E7'
+  overallUI.flashCardRoundComplete = false  // game.stage.backgroundColor = '#FFF6E7'
   // starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
 
   game.physics.startSystem(Phaser.Physics.ARCADE)
