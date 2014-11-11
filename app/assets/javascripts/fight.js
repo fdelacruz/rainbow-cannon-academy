@@ -139,7 +139,7 @@ fight.prototype = {
 		    shootTheBossAlienGun = true
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
-		  
+
 		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
