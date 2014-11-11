@@ -70,7 +70,7 @@ function start(){
   game.state.add('welcome', welcome)
   game.state.add('level_intro', levelIntro)
   game.state.add('flashcard', flashCard)
-  // game.state.add('fight', fight)
+  game.state.add('fight', fight)
   game.state.start('preload')
 }
 

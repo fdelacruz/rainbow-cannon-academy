@@ -6,7 +6,7 @@ fight.prototype = {
     phaserLifeCycleFunctions.create(game)
   },
   update: function() {
-  	 var player = gameState.player
+  	 	var player = gameState.player
 		  var cursors = gameState.cursors
 		  var shootThePlayerGun = false
 		  var shootTheBossAlienGun = false
@@ -36,7 +36,7 @@ fight.prototype = {
 		  // ---
 
 		  // player.body.velocity.x = 5
-		  if (overallUI.flashCardRoundComplete) {
+		  
 		    if (cursors.left.isDown) {
 		      // player UP
 		      player.body.velocity.y = -250;
@@ -51,7 +51,6 @@ fight.prototype = {
 		      player.frame = 4
 		      player.body.velocity.y = 0
 		    }
-		  }
 
 		  // fire!
 		  gameUI.firePlayerGunCounter += 1
