@@ -3,8 +3,77 @@ function fight() {}
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
-    phaserLifeCycleFunctions.create(game)
+    
+	  game.physics.startSystem(Phaser.Physics.ARCADE)
+
+	  starfieldBackground.create(game)
+
+	  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
+	  overallUI.gameAreaCeiling = game.add.sprite(0,200,null)
+	  game.physics.enable(overallUI.gameAreaCeiling, Phaser.Physics.ARCADE)
+	  overallUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
+	  overallUI.gameAreaCeiling.body.immovable = true
+
+	  timer.create(game)
+
+	  // rain
+	  rain.create(game)
+
+	  // playerBullets
+	  playerBullets = gameState.groups.playerBullets = game.add.group()
+	  playerBullets.enableBody = true
+	  playerBullets.physicsBodyType = Phaser.Physics.ARCADE
+	   // All 100 of them
+	  playerBullets.createMultiple(250, 'bullet')
+
+	  playerBullets.setAll('anchor.x', 0.5)
+	  playerBullets.setAll('anchor.y', 0.5)
+	  playerBullets.setAll('damage', 5)
+
+	  bossAlienBullets = gameState.groups.bossAlienBullets = game.add.group()
+	  bossAlienBullets.enableBody = true
+	  bossAlienBullets.physicsBodyType = Phaser.Physics.ARCADE
+	   // All 100 of them
+	  bossAlienBullets.createMultiple(250, 'bullet')
+
+	  bossAlienBullets.setAll('anchor.x', 0.5)
+	  bossAlienBullets.setAll('anchor.y', 0.5)
+	  bossAlienBullets.setAll('damage', 50)
+
+	  // create player object
+	  var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
+	  game.physics.arcade.enable(player)
+	  player.body.bounce.y = 0.2
+	  player.body.collideWorldBounds = true
+	  player.health = 100
+
+	  // create regular aliens
+	  aliens = gameState.groups.aliens = game.add.group()
+	  aliens.enableBody = true
+	  aliens.physicsBodyType = Phaser.Physics.ARCADE
+
+	  // create boss alien
+	  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+	  game.physics.arcade.enable(bossAlien)
+	  bossAlien.enableBody = true
+	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
+	  bossAlien.scale.setTo(1,1)
+	  bossAlien.anchor.x = 0.5
+	  bossAlien.anchor.y = 0.5
+
+	  // create keyboard listeners
+	  gameState.cursors = game.input.keyboard.createCursorKeys()
+	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
+
+	  // create text fields ------------------------------------------------
+	  overallUI.scoreObject = game.add.text(
+	    32, 32, // x coord, y coord
+	    'Score: ' + overallUI.score, // text field
+	    {fontSize: '32px', fill: '#ffffff'} // text styling
+	    )
+
     gameState.player.health = 100
+
   },
   update: function() {
   	 	var player = gameState.player
@@ -90,7 +159,8 @@ fight.prototype = {
   	
   },
   render: function() {
-    phaserLifeCycleFunctions.render(game)
+    game.debug.geom(overallUI.gameAreaCeilingLine,'#FFFFFF')
+  	timer.render(game)
   },
 
 }
