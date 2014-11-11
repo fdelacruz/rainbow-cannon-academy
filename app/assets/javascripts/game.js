@@ -4,6 +4,7 @@
 //=require starfield_background
 //=require timer
 //=require rain
+//=require game_area_ceiling
 
 // entry point
 

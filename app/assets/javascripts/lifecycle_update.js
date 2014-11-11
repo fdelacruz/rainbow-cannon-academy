@@ -4,10 +4,13 @@ phaserLifeCycleFunctions.update = function () {
   var shootThePlayerGun = false
   var shootTheBossAlienGun = false
 
-  // Player cannot pass through the game boundaries
-  game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
-  // aliens cannot pass through game boundaries
-  game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
+  // // Player cannot pass through the game boundaries
+  // game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
+  // // aliens cannot pass through game boundaries
+  // game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
+
+  gameAreaCeiling.update(game, player, gameState.groups.aliens)
+
   // aliens bounce off of each other
   game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
   // aliens bounce off of boss alien
