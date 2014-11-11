@@ -71,7 +71,10 @@ flashCardUI.wordKeysHandler = function(evt){
 
     if (evt.which === 13 /* enter */) {
       // break out of flashcard state if the user just pressed enter on the last card in the level
-      if (gameState.currentDeck.currentIndex === 9 ) game.state.start('fight')
+      if (gameState.currentDeck.currentIndex === 9 ) {
+        setTimeout(function(){game.state.start('fight')}, 1000)
+        return
+      }
       // update user feedback text
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Correct'

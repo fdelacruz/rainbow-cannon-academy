@@ -17,12 +17,12 @@ flashCard.prototype = {
 	  // ---
 
 	  // overallUI.checkIfFlashcardsComplete()
-	  if (gameState.currentDeck.cardsLeftInCurrentRound() < 1 ) {
-	  	flashCardUI.clearFlashCardText()
-	    gameState.currentLevel++
-	    console.log("go to fight mode")
-	    // game.state.start('fight')
-	  }
+	  // if (gameState.currentDeck.cardsLeftInCurrentRound() < 1 ) {
+	  // 	flashCardUI.clearFlashCardText()
+	  //   gameState.currentLevel++
+	  //   // console.log("go to fight mode")
+	  //   // game.state.start('fight')
+	  // }
 
   },
   render: function() {
