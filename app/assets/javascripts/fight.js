@@ -72,14 +72,12 @@ fight.prototype = {
 	    )
 
 	  gameUI.spawnAliens()
-
   },
   update: function() {
   	 	var player = gameState.player
 		  var cursors = gameState.cursors
 		  var shootThePlayerGun = false
 		  var shootTheBossAlienGun = false
-
 
 		  // Player cannot pass through the game boundaries
 		  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
@@ -104,10 +102,6 @@ fight.prototype = {
 		  // set scroll speed of background
 		  // starfield.tilePosition.x -= 1
 		  starfieldBackground.update()
-
-		  // ---
-
-		  // player.body.velocity.x = 5
 		  
 		    if (cursors.left.isDown) {
 		      // player UP
