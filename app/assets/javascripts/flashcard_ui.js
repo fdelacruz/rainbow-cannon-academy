@@ -7,26 +7,11 @@ flashCardUI.deleteLetterFromAnswer = function(){
 }
 
 flashCardUI.checkUserGuess = function(guess, currentAnswer){
-  if (guess === " " + currentAnswer){
-    gameState.userFeedbackText.text = 'Correct'
-    gameUI.upgradeGun()
-    // if correct upgrade gun
-  } else {
-    // if incorrect upgrade boss
-    gameUI.growBoss()
-    gameState.userFeedbackText.text = currentAnswer
-  }
-}
-
-flashCardUI.showNextCard = function(){
-  gameState.userGuess.text = ""
-  gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
+  return (guess === " " + currentAnswer)
 }
 
 flashCardUI.wordKeysHandler = function(evt){
-  var deck = gameState.currentDeck
-  // Listen for user input only during flashcard round
-  if(overallUI.flashCardRoundComplete === false){
+
     // handle backspace
     if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
     // handle letter (a-z) or space
@@ -37,22 +22,33 @@ flashCardUI.wordKeysHandler = function(evt){
       flashCardUI.appendLetterToAnswer(letter)
       return
     }
-    // handle enter
+
     if (evt.which === 13 /* enter */) {
-      flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
-      if (deck.currentIndex === 9) {
-        if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
-          gameUI.spawnAliens()
-          gameUI.sendAliens()
-        }
-        overallUI.flashCardRoundComplete = true
+      // update user feedback text
+      if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
+        gameState.userFeedbackText.text = 'Correct'
+        gameState.questionsCorrect++
+
+      } else {
+        gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
+      }
+
+      // break out of flashcard state if the user just pressed enter on the last card in the level
+      if (gameState.currentDeck.currentIndex === 9 ) {
+        setTimeout(function(){game.state.start('fight')}, 1000)
         return
       }
-      deck.advanceToNextCard()
-      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
-      flashCardUI.showNextCard()
+      
+      // clear user input
+      gameState.userGuess.text = ""
+      // update current card to the next card in the current round 
+      gameState.currentDeck.advanceToNextCard()
+      // update cards remaining in the view
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+      // update the current Question in the view
+      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
     }
-  }
+  // }
 }
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {

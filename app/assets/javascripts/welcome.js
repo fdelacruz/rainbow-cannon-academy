@@ -5,6 +5,7 @@ welcome.prototype = {
   },
 
   create: function() {
+    console.log(game.state.current)
     var sprite = game.add.sprite(40, 40, 'invader')
     this.tweenFadeState(sprite)
   },
@@ -18,7 +19,7 @@ welcome.prototype = {
   tweenFadeState: function(sprite_object) {
 
     var tween = game.add.tween(sprite_object)
-    tween.to({ x: 600 }, 2000)
+    tween.to({ x: 600 }, 200)
     tween.start()
     tween.onComplete.add(function() {
         this.game.state.start('level_intro');
