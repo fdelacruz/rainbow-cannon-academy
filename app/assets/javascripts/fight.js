@@ -71,8 +71,6 @@ fight.prototype = {
 	    {fontSize: '32px', fill: '#ffffff'} // text styling
 	    )
 
-    gameState.player.health = 100
-
   },
   update: function() {
   	 	var player = gameState.player
