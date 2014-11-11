@@ -121,7 +121,7 @@ gameUI.hitPlayer = function(player, objectThatHits){
   objectThatHits.kill() // object that collides with player
   player.health -= objectThatHits.damage
   // if Player dies, kill him/her & reset the round & subtract 10% points
-  if (gameUI.playerDead(player)) {
+  if (player.health <= 0) {
     player.kill()
   }
 }

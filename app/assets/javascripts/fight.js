@@ -4,6 +4,7 @@ fight.prototype = {
   create: function() {
   	console.log(game.state.current)
     phaserLifeCycleFunctions.create(game)
+    gameState.player.health = 100
   },
   update: function() {
   	 	var player = gameState.player
@@ -73,6 +74,10 @@ fight.prototype = {
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
+		    game.state.start('level_intro')
+		  }
+
+		  if (gameUI.playerDead(gameState.player)){
 		    game.state.start('level_intro')
 		  }
 

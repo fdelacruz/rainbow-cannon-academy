@@ -22,7 +22,7 @@ phaserLifeCycleFunctions.create = function(game) {
   timer.create(game)
 
   // rain
-  rain.create(game)
+  // rain.create(game)
 
   // playerBullets
   playerBullets = gameState.groups.playerBullets = game.add.group()
