@@ -37,19 +37,28 @@ gameUI.spawnAliens = function(){
   gameUI.sendAliens()
 }
 
-gameUI.updateScore = function(){
-   gameUI.score += 10
-   gameUI.scoreObject.text = "Score: " + gameUI.score
- }
+gameUI.scatterAliens = function(){
+  gameState.groups.aliens.forEach(function(alien){
+    alien.body.velocity.y = gameUI.getRandomInt(-20, 20)
+    alien.body.velocity.x = gameUI.getRandomInt(-20, 0)
+  })
+  gameState.groups.aliens.setAll('body.collideWorldBounds', true)
+  gameUI.alienScatterEnabled = false
+}
 
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
     { x: 60 },
-    45000,
+    20000,
     Phaser.Easing.Linear.None,
     true)
   // gameState.groups.aliens.setAll('body.velocity.x', -200)
 }
+
+gameUI.updateScore = function(){
+   gameUI.score += 10
+   gameUI.scoreObject.text = "Score: " + gameUI.score
+ }
 
 gameUI.aliensExist = function(){
   return (gameState.groups.aliens.countLiving() > 0)
@@ -95,15 +104,6 @@ gameUI.spawnAlienBoss = function(){
   0,
   1000,
   true)
-}
-
-gameUI.scatterAliens = function(){
-  gameState.groups.aliens.forEach(function(alien){
-    alien.body.velocity.y = gameUI.getRandomInt(-100, 100)
-    alien.body.velocity.x = gameUI.getRandomInt(-50, 50)
-  })
-  gameState.groups.aliens.setAll('body.collideWorldBounds', true)
-  gameUI.alienScatterEnabled = false
 }
 
 gameUI.upgradeGun= function(){
