@@ -28,7 +28,7 @@ flashCardUI.showNextCard = function(){
 }
 
 flashCardUI.wordKeysHandler = function(evt){
-  var deck = gameState.currentDeck
+  // var deck = gameState.currentDeck
   // Listen for user input only during flashcard round
   if(overallUI.flashCardRoundComplete === false){
     // handle backspace
@@ -43,10 +43,10 @@ flashCardUI.wordKeysHandler = function(evt){
     }
     // handle enter
     if (evt.which === 13 /* enter */) {
-      if (flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)){
+      if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Correct'
        } else {
-        gameState.userFeedbackText.text = deck.currentCard.definition
+        gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
        }
 
       // if (deck.currentIndex === 9 ) 
@@ -59,13 +59,13 @@ flashCardUI.wordKeysHandler = function(evt){
       //   overallUI.flashCardRoundComplete = true
       //   return
       // }
-      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
       if (gameState.currentDeck.cardsLeftInCurrentRound === 0){
         // game.state.start('fight')
         console.log("going to fight mode")
       } else {
         flashCardUI.showNextCard()
-        deck.advanceToNextCard()
+        gameState.currentDeck.advanceToNextCard()
       }
     }
   }
