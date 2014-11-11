@@ -63,7 +63,6 @@ fight.prototype = {
 
 	  // create keyboard listeners
 	  gameState.cursors = game.input.keyboard.createCursorKeys()
-	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
 	  // create text fields ------------------------------------------------
 	  overallUI.scoreObject = game.add.text(
