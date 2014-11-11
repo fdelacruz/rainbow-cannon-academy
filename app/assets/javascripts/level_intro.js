@@ -22,7 +22,7 @@ levelIntro.prototype = {
   tweenFadeState: function(sprite_object) {
 
     var tween = game.add.tween(sprite_object)
-    tween.to({ x: 600 }, 2000)
+    tween.to({ x: 600 }, 200)
     tween.start()
     tween.onComplete.add(function() {
         this.game.state.start('flashcard')

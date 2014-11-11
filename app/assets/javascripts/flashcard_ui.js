@@ -70,6 +70,8 @@ flashCardUI.wordKeysHandler = function(evt){
     // }
 
     if (evt.which === 13 /* enter */) {
+      // break out of flashcard state if the user just pressed enter on the last card in the level
+      if (gameState.currentDeck.currentIndex === 9 ) game.state.start('fight')
       // update user feedback text
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Correct'
@@ -82,6 +84,11 @@ flashCardUI.wordKeysHandler = function(evt){
 
       // update current card to the next card in the current round 
       gameState.currentDeck.advanceToNextCard()
+
+      // update cards remaining in the view
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+
+
     }
   // }
 }
