@@ -3,7 +3,7 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
-
+  	gameState.currentDeck.currentIndex = 0
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
