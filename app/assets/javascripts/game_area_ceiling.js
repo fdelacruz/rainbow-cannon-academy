@@ -7,6 +7,7 @@ var gameAreaCeiling = (function(){
   }
 
   exports.create = function(phaserGame) {
+    this.ceilingLine = new Phaser.Rectangle(0,200, 1200, 1)
     this.ceiling = phaserGame.add.sprite(0,200,null)
     phaserGame.physics.enable(this.ceiling, Phaser.Physics.ARCADE)
     this.ceiling.body.setSize(1200, 1, 0, 0)
@@ -21,6 +22,7 @@ var gameAreaCeiling = (function(){
   }
 
   exports.render = function(phaserGame) {
+    phaserGame.debug.geom(this.ceilingLine,'#FFFFFF')
   }
 
   return exports
