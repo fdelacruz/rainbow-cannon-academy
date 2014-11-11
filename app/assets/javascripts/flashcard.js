@@ -3,7 +3,7 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
-  	
+
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
@@ -22,7 +22,7 @@ flashCard.prototype = {
 	  rain.create(game)
 
 	  // create flashcardPlayer object - only visable to show upgrades
-	  var flashcardPlayer = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
+	  var flashcardPlayer = game.add.sprite(32, game.world.height - 150, 'dude')
 	  game.physics.arcade.enable(flashcardPlayer)
 
 	  // create boss alien - only visable to show upgrades
