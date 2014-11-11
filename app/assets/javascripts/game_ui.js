@@ -34,7 +34,13 @@ gameUI.spawnAliens = function(){
       game.physics.arcade.enable(alien)
     }
   }
+  gameUI.sendAliens()
 }
+
+gameUI.updateScore = function(){
+   gameUI.score += 10
+   gameUI.scoreObject.text = "Score: " + gameUI.score
+ }
 
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens).to(
@@ -57,7 +63,7 @@ gameUI.hitAlien = function(bullet, alien){
 
 gameUI.killAlien = function(alien){
   alien.kill()
-  overallUI.updateScore()
+  gameUI.updateScore()
 }
 gameUI.wipeAlien = function(alien){
   alien.kill()

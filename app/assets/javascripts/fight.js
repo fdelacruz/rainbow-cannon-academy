@@ -8,16 +8,16 @@ fight.prototype = {
 
 	  starfieldBackground.create(game)
 
-	  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
-	  overallUI.gameAreaCeiling = game.add.sprite(0,200,null)
-	  game.physics.enable(overallUI.gameAreaCeiling, Phaser.Physics.ARCADE)
-	  overallUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
-	  overallUI.gameAreaCeiling.body.immovable = true
+	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
+	  gameUI.gameAreaCeiling = game.add.sprite(0,200,null)
+	  game.physics.enable(gameUI.gameAreaCeiling, Phaser.Physics.ARCADE)
+	  gameUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
+	  gameUI.gameAreaCeiling.body.immovable = true
 
 	  timer.create(game)
 
 	  // rain
-	  rain.create(game)
+	  // rain.create(game)
 
 	  // playerBullets
 	  playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -65,11 +65,13 @@ fight.prototype = {
 	  gameState.cursors = game.input.keyboard.createCursorKeys()
 
 	  // create text fields ------------------------------------------------
-	  overallUI.scoreObject = game.add.text(
+	  gameUI.scoreObject = game.add.text(
 	    32, 32, // x coord, y coord
-	    'Score: ' + overallUI.score, // text field
+	    'Score: ' + gameUI.score, // text field
 	    {fontSize: '32px', fill: '#ffffff'} // text styling
 	    )
+
+	  gameUI.spawnAliens()
 
   },
   update: function() {
@@ -79,9 +81,9 @@ fight.prototype = {
 		  var shootTheBossAlienGun = false
 
 		  // Player cannot pass through the game boundaries
-		  game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
+		  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
 		  // aliens cannot pass through game boundaries
-		  game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
+		  game.physics.arcade.collide(gameState.groups.aliens, gameUI.gameAreaCeiling)
 		  // aliens bounce off of each other
 		  game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
 		  // aliens bounce off of boss alien
@@ -152,11 +154,9 @@ fight.prototype = {
 		  if (gameState.groups.aliens.x < 880){
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
-
-  	
   },
   render: function() {
-    game.debug.geom(overallUI.gameAreaCeilingLine,'#FFFFFF')
+    game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
   	timer.render(game)
   },
 
