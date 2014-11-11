@@ -5,6 +5,7 @@ welcome.prototype = {
   },
 
   create: function() {
+    console.log(game.state.current)
     var sprite = game.add.sprite(40, 40, 'invader')
     this.tweenFadeState(sprite)
   },

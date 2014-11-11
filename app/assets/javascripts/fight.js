@@ -1,14 +1,12 @@
-function flashCard() {}
+function fight() {}
 
-flashCard.prototype = {
+fight.prototype = {
   create: function() {
   	console.log(game.state.current)
     phaserLifeCycleFunctions.create(game)
   },
-
   update: function() {
-
-     	var player = gameState.player
+  	 var player = gameState.player
 		  var cursors = gameState.cursors
 		  var shootThePlayerGun = false
 		  var shootTheBossAlienGun = false
@@ -83,6 +81,7 @@ flashCard.prototype = {
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
 
+  	
   },
   render: function() {
     phaserLifeCycleFunctions.render(game)

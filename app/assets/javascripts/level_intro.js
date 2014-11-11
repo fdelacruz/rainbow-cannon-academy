@@ -5,9 +5,10 @@ levelIntro.prototype = {
   },
 
   create: function() {
+    console.log(game.state.current)
 
     var currentLevel = game.add.text(600, 122, gameState.currentLevel.toString(), {fontSize: '32px', fill: '#ffffff'})
-    
+
     var sprite = game.add.sprite(40, 40, 'diamond')
     this.tweenFadeState(sprite)
   },

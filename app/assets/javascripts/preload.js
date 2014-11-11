@@ -12,6 +12,7 @@ preLoad.prototype = {
   },
 
   create: function() {
+    console.log(game.state.current)
     game.state.start('welcome')
   },
 

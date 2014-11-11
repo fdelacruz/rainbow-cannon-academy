@@ -6,6 +6,7 @@
 //=require rain
 //=require preload
 //=require flashcard
+//=require fight
 //=require level_intro
 //=require welcome
 
@@ -69,6 +70,7 @@ function start(){
   game.state.add('welcome', welcome)
   game.state.add('level_intro', levelIntro)
   game.state.add('flashcard', flashCard)
+  // game.state.add('fight', fight)
   game.state.start('preload')
 }
 

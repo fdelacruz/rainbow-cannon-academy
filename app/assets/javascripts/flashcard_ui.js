@@ -42,6 +42,7 @@ flashCardUI.wordKeysHandler = function(evt){
       flashCardUI.checkUserGuess(gameState.userGuess.text, deck.currentCard.definition)
       if (deck.currentIndex === 9) {
         if (overallUI.flashCardRoundComplete === false && !gameUI.aliensExist()) {
+          game.state.start('fight')
           gameUI.spawnAliens()
           gameUI.sendAliens()
         }
