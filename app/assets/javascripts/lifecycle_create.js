@@ -3,7 +3,7 @@ phaserLifeCycleFunctions.create = function(game) {
   // starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
 
   game.physics.startSystem(Phaser.Physics.ARCADE)
-  
+
   starfieldBackground.create(game)
 
   // populate deck
@@ -18,11 +18,7 @@ phaserLifeCycleFunctions.create = function(game) {
   overallUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
   overallUI.gameAreaCeiling.body.immovable = true
 
-  // timer
-  var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
-  overallUI.gameTimeRemaining = 300
-  timer.loop(1000, overallUI.decrementGameTimeRemaining, this)
-  timer.start()
+  timer.create(game)
 
   // rain
   var emitter = game.add.emitter(game.world.width, 375, 500)  //(x, y , max particles)

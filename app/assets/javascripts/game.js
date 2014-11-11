@@ -2,6 +2,7 @@
 //=require phaser
 //=require carddeck
 //=require starfield_background
+//=require timer
 
 // entry point
 
@@ -15,7 +16,6 @@ var gameUI = {}
 var overallUI = {}
 
 // overallUI
-overallUI.millisecondsUntilSecondDecrement = null
 overallUI.gameTimeRemaining = null
 overallUI.flashCardRoundComplete = false
 overallUI.score = 0
