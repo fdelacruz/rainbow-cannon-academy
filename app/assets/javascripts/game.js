@@ -51,6 +51,7 @@ gameState.userGuess = null
 gameState.currentQuestion = null
 gameState.currentDeck = null
 gameState.currentLevel = 1
+gameState.questionsCorrect = 0
 
 // init all the globals
 function start(){
