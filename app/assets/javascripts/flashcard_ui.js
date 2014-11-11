@@ -30,7 +30,7 @@ flashCardUI.showNextCard = function(){
 flashCardUI.wordKeysHandler = function(evt){
   // var deck = gameState.currentDeck
   // Listen for user input only during flashcard round
-  if(overallUI.flashCardRoundComplete === false){
+  // if(overallUI.flashCardRoundComplete === false){
     // handle backspace
     if (evt.which === 8 /* backspace */) { flashCardUI.deleteLetterFromAnswer(); return}
     // handle letter (a-z) or space
@@ -43,6 +43,8 @@ flashCardUI.wordKeysHandler = function(evt){
     }
     // handle enter
     if (evt.which === 13 /* enter */) {
+      gameState.currentDeck.currentIndex++
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Correct'
        } else {
@@ -59,7 +61,6 @@ flashCardUI.wordKeysHandler = function(evt){
       //   overallUI.flashCardRoundComplete = true
       //   return
       // }
-      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
       if (gameState.currentDeck.cardsLeftInCurrentRound === 0){
         // game.state.start('fight')
         console.log("going to fight mode")
@@ -68,7 +69,7 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.currentDeck.advanceToNextCard()
       }
     }
-  }
+  // }
 }
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
