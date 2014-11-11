@@ -13,8 +13,6 @@ phaserLifeCycleFunctions.create = function(game) {
   // vector shapes
   flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
 
-  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
-
   gameAreaCeiling.create(game)
   timer.create(game)
   rain.create(game)
