@@ -21,7 +21,7 @@ overallUI.resetNextRound = function(){
   gameState.currentDeck.populateCurrentRound()
 	gameState.currentDeck.currentIndex = 0
 	flashCardUI.showNextCard()
-  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
+  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
   gameUI.spawnAlienBoss()
   flashCardUI.textInputLine.height = 1
 }
@@ -31,7 +31,7 @@ overallUI.resetPreviousRound = function(){
   overallUI.flashCardRoundComplete = false
   gameState.currentDeck.currentIndex = 0
   flashCardUI.showNextCard()
-  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + deck.cardsLeftInCurrentRound()
+  gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
   flashCardUI.textInputLine.height = 1
   overallUI.score = overallUI.score * 0.9
   gameUI.killAllAliens()

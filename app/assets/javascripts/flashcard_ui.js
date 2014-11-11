@@ -24,7 +24,7 @@ flashCardUI.showNextCard = function(){
 }
 
 flashCardUI.wordKeysHandler = function(evt){
-  deck = gameState.currentDeck
+  var deck = gameState.currentDeck
   // Listen for user input only during flashcard round
   if(overallUI.flashCardRoundComplete === false){
     // handle backspace
