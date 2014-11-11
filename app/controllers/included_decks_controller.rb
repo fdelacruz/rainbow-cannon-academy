@@ -10,6 +10,10 @@ class IncludedDecksController < ApplicationController
     @included_deck = IncludedDeck.find(params[:id])
   end
 
+  def driver # this could be in any controller
+    render :driver
+  end
+
   def json
     render :json => IncludedDeck.find(params[:id]).cards.to_json
   end

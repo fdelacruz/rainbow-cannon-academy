@@ -1,8 +1,10 @@
-phaserLifeCycleFunctions.create = function(){
+phaserLifeCycleFunctions.create = function(game) {
   // game.stage.backgroundColor = '#FFF6E7'
-  starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
+  // starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
 
   game.physics.startSystem(Phaser.Physics.ARCADE)
+
+  starfieldBackground.create(game)
 
   // populate deck
   gameState.currentDeck.populateCurrentRound()
@@ -10,31 +12,17 @@ phaserLifeCycleFunctions.create = function(){
 
   // vector shapes
   flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
+
   overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
   overallUI.gameAreaCeiling = game.add.sprite(0,200,null)
   game.physics.enable(overallUI.gameAreaCeiling, Phaser.Physics.ARCADE)
   overallUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
   overallUI.gameAreaCeiling.body.immovable = true
 
-  // timer
-  var timer = overallUI.millisecondsUntilSecondDecrement = game.time.create(false)
-  overallUI.gameTimeRemaining = 300
-  timer.loop(1000, overallUI.decrementGameTimeRemaining, this)
-  timer.start()
+  timer.create(game)
 
   // rain
-  var emitter = game.add.emitter(game.world.width, 375, 500)  //(x, y , max particles)
-  emitter.height = 400
-  emitter.angle = 2
-  // emitter.makeParticles('rain')
-  emitter.minParticleScale = 1
-  emitter.maxParticleScale = 1
-  emitter.setXSpeed(-500, -1200)
-  emitter.setYSpeed(0,0)
-  emitter.minRotation = 1
-  emitter.maxRotation = 1
-  emitter.start(false, 3000,  15) //(explode, lifespan, frequency, quantity, forceQuantity)
-  emitter.gravity.y = -1000
+  rain.create(game)
 
   // playerBullets
   playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -47,15 +35,17 @@ phaserLifeCycleFunctions.create = function(){
   playerBullets.setAll('anchor.y', 0.5)
   playerBullets.setAll('damage', 5)
 
-  // bullets = gameState.groups.bullets = game.add.group()
-  // bullets.enableBody = true
-  // bullets.physicsBodyType = Phaser.Physics.ARCADE
-  //  // All 100 of them
-  // bullets.createMultiple(250, 'bullet')
+  bossAlienBullets = gameState.groups.bossAlienBullets = game.add.group()
+  bossAlienBullets.enableBody = true
+  bossAlienBullets.physicsBodyType = Phaser.Physics.ARCADE
+   // All 100 of them
+  bossAlienBullets.createMultiple(250, 'bullet')
 
-  // bullets.setAll('anchor.x', 0.5)
-  // bullets.setAll('anchor.y', 0.5)
-  // bullets.setAll('damage', 5)
+  bossAlienBullets.setAll('anchor.x', 0.5)
+  bossAlienBullets.setAll('anchor.y', 0.5)
+  bossAlienBullets.setAll('damage', 50)
+
+
   // create platforms (stuff the character can stand on)
   // var platforms = gameState.groups.platforms = game.add.group()
   // platforms.enableBody = true

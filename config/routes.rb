@@ -9,6 +9,8 @@ Flashforward::Application.routes.draw do
   get "users/new"
   root 'welcome#index'
 
+  get "/driver", to: 'included_decks#driver'
+
   resources :included_decks, only: :show
   post "included_decks/selection", to: 'included_decks#selection'
   get "included_decks/json/:id", to: 'included_decks#json'

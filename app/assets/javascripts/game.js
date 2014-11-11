@@ -1,3 +1,10 @@
+//=require deck_ajax
+//=require phaser
+//=require carddeck
+//=require starfield_background
+//=require timer
+//=require rain
+
 // entry point
 
 window.onload = start
@@ -10,7 +17,6 @@ var gameUI = {}
 var overallUI = {}
 
 // overallUI
-overallUI.millisecondsUntilSecondDecrement = null
 overallUI.gameTimeRemaining = null
 overallUI.flashCardRoundComplete = false
 overallUI.score = 0
@@ -20,30 +26,31 @@ flashCardUI.textInputLine
 
 // gameUI -----------------------------------------------------------
 gameUI.bulletTime = 0
-gameUI.firePlayerGunCounter = 0
-gameUI.firePlayerGunRate = 60 // (60/rate) = shots per second
 gameUI.gunLevel = 0
 gameUI.alienScatterEnabled = true
+gameUI.firePlayerGunCounter = 0
+gameUI.fireBossAlienGunCounter = 0
+
+gameUI.firePlayerGunRate = 60 // (60/rate) = shots per second
+gameUI.fireBossAlienGunRate = 60 // (60/rate) = shots per second
 
 // gameState --------------------------------------------------------
 var gameState = {}
-gameState.player = null
-gameState.bossAlien = null
+gameState.player = null // phaser sprite object
+gameState.bossAlien = null // phaser sprite object
 gameState.cursors = null
 gameState.groups = {}
-gameState.count = 0
 gameState.userGuess = null
 gameState.currentQuestion = null
 gameState.currentDeck = null
-
 
 // init all the globals
 function start(){
   callAjaxToSetCurrentDeck()
   // prevent back on backspace
   document.addEventListener("keydown", function (e) {
-    if (e.which === 8) e.preventDefault()
-    if (e.which === 32) e.preventDefault()
+    if (e.which === 8) e.preventDefault() // backspace
+    if (e.which === 32) e.preventDefault() // space
   })
   game = new Phaser.Game(
     1200, // width
