@@ -52,7 +52,7 @@ gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens)
   .to(
     { x: 90 },
-    2000,
+    20000,
     Phaser.Easing.Linear.None,
     true)
 }

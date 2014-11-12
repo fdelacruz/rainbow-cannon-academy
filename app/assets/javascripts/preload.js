@@ -3,7 +3,8 @@ function preLoad (){}
 preLoad.prototype = {
   preload: function() {
     rain.preload(game)
-    game.load.image('starfield', '../assets/starfield.png');
+    game.load.image('starfield', '../assets/starfield.png')
+    game.load.image('phaser', '../assets/phaser.png')
     game.load.image('star', '../assets/star.png')
     game.load.image('bullet', '../assets/bullets.png')
     game.load.image('dude', '../assets/ship.png')
