@@ -195,33 +195,32 @@ fight.prototype = {
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
 
+		// Kamikazee Behavior
+
+
+
 		  gameState.groups.aliens.forEach(function(alien){
+		  	if (alien.body.x  < 150.5 & alien.body.x  > 149.5  ) {
+		  		alien.body.velocity.x = 0}
 		  	if (alien.body.x === 0) {
 		  		alien.body.velocity.x = 50}
 		  })
 
 		  gameState.groups.aliens.forEach(function(alien){
-		  	if (alien.body.x  < 100.5 & alien.body.x  > 99.5  ) {
-		  		alien.body.velocity.x = 0}
-		  })
-
-		  gameState.groups.aliens.forEach(function(alien){
-		  	if (alien.body.x <101 && alien.body.x >99 ) gameUI.kamikazeCounter++
-		  	// if (alien.body.x <= 10  &&  alien.body.velocity.x > 0) alien.velocity.x = 200
+		  	if (alien.body.x <151 && alien.body.x >149 ) gameUI.kamikazeCounter++
 		  })
 
 		  if (gameUI.kamikazeCounter > 1) {
 		  	gameState.groups.aliens.forEach(function(alien){
-		  		if (alien.body.x <101 && alien.body.x >99)  {
+		  		if (alien.body.x <151 && alien.body.x >149)  {
 		  			alien.body.velocity.x = -300
 		  			gameUI.kamikazeCounter = 0
 		  		}
 		  	})
-
-
-		  	console.log("kamikaze")
 		  }
 		  gameUI.kamikazeCounter = 0
+
+		  //
 
   },
   render: function() {
