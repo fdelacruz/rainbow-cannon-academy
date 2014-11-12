@@ -48,6 +48,10 @@ flashCardUI.wordKeysHandler = function(evt){
       // incorrect answer case:
       } else {
         gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
+
+        // show incorrect text animation
+        var wrongTextSprite = game.add.text(540, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: 'red'})
+        flashCardUI.tweenWrongAnswer(wrongTextSprite)
       }
       // break out of flashcard state if the user just pressed enter on the last card in the level
       if (gameState.currentDeck.currentIndex === 9 ) {
@@ -97,6 +101,12 @@ flashCardUI.tweenPlayerUpgrade = function(text_sprite){
 }
 
 flashCardUI.tweenRightAnswer = function(text){
+  var tween = game.add.tween(text)
+  tween.to({y: 0, alpha: 0}, 1000)
+  tween.start()
+}
+
+flashCardUI.tweenWrongAnswer = function(text){
   var tween = game.add.tween(text)
   tween.to({y: 0, alpha: 0}, 1000)
   tween.start()
