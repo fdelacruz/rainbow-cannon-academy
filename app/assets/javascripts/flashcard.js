@@ -10,8 +10,11 @@ flashCard.prototype = {
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
+	  // populate deck
+
 	  // input timer
     flashCardUI.textInputTimer = new Phaser.Rectangle(0, 200, 1200, 1)
+
 
 	  // If game first starting, deck must be shuffled:
 	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
@@ -34,15 +37,10 @@ flashCard.prototype = {
     flashcardPlayerBullets.physicsBodyType = Phaser.Physics.ARCADE
     flashcardPlayerBullets.createMultiple(250, 'bullet')
     flashcardPlayer.anchor.set(0.5)
-
     this.tweenPlayerFlyIn(flashcardPlayer)
 
-
-
-
-
 	  // create boss alien - only visable to show upgrades
-	  flashcardBossAlien = game.add.sprite(900, 250, 'diamond')
+	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  flashcardBossAlien.scale.setTo(1,1)
@@ -78,13 +76,18 @@ flashCard.prototype = {
   },
 
   update: function() {
-	  Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
+    var questionsCorrect = gameState.currentDeck.cardsLeftInCurrentRound() + gameState.questionsCorrect
+    var s = gameUI.alienBossScale(questionsCorrect)
+    gameState.bossAlien.scale.setTo(s,s)
 
-	  if (flashCardUI.textInputTimer.width <1) {
-	    flashCardUI.textInputTimer.x = 0
-	    flashCardUI.textInputTimer.width = 1200
+      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
 
-	    // prevents glitch on hitting multiple enter hits
+  if (flashCardUI.textInputTimer.width <1) {
+
+    flashCardUI.textInputTimer.x = 0
+    flashCardUI.textInputTimer.width = 1200
+
+    // prevents glitch on hitting multiple enter hits
       if (gameState.currentDeck.currentIndex === 9 ) {
         if (gameState.finishingLevel) return
         // leave a second to view last incorrect answer
@@ -95,11 +98,12 @@ flashCard.prototype = {
         gameState.finishingLevel = true
         return
       }
-	      // ---
+      // ---
       gameState.userFeedbackText.text = "Last: " + gameState.currentDeck.currentCard.definition
-      gameUI.performCycleCardProcedure()
-	  }
+      flashCardUI.performCycleCardProcedure()
+   }
   },
+
   render: function() {
     phaserLifeCycleFunctions.render(game)
   },
@@ -108,6 +112,6 @@ flashCard.prototype = {
   	var tween = game.add.tween(player)
     tween.from({x: -100, alpha: 0}, 2500)
     tween.start()
-  }
+  },
 
 }

@@ -54,6 +54,13 @@ fight.prototype = {
 	  bossAlienBullets.setAll('anchor.y', 0.5)
 	  bossAlienBullets.setAll('damage', 50)
 
+	  // create player object
+	  var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
+	  game.physics.arcade.enable(player)
+	  player.body.bounce.y = 0.2
+	  player.body.collideWorldBounds = true
+	  player.health = 100
+	  gameUI.upgradeGun(gameState.questionsCorrect)
 
 	  // create explosions
 	  var explosions = gameState.groups.explosions = game.add.group()
@@ -74,7 +81,8 @@ fight.prototype = {
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
-	  bossAlien.scale.setTo(1,1)
+	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
+	  bossAlien.scale.setTo(scale,scale)
 	  bossAlien.anchor.x = 0.5
 	  bossAlien.anchor.y = 0.5
 

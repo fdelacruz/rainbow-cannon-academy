@@ -20,8 +20,6 @@ var phaserLifeCycleFunctions = {}
 var flashCardUI = {}
 var gameUI = {}
 var overallUI = {}
-var states = {}
-states.preload =
 
 // overallUI
 // overallUI.gameTimeRemaining = null

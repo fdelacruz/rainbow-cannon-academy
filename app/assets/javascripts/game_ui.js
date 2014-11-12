@@ -42,7 +42,7 @@ gameUI.spawnAliens = function(){
 gameUI.scatterAliens = function(){
   gameState.groups.aliens.forEach(function(alien){
     alien.body.velocity.y = gameUI.getRandomInt(-20, 20)
-    alien.body.velocity.x = gameUI.getRandomInt(-20, 0)
+    alien.body.velocity.x = gameUI.getRandomInt(0, 20)
   })
   gameState.groups.aliens.setAll('body.collideWorldBounds', true)
   gameUI.alienScatterEnabled = false
@@ -51,7 +51,7 @@ gameUI.scatterAliens = function(){
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens)
   .to(
-    { x: 90 },
+    { x: 300 },
     20000,
     Phaser.Easing.Linear.None,
     true)
@@ -111,9 +111,12 @@ gameUI.spawnAlienBoss = function(){
   true)
 }
 
-gameUI.upgradeGun= function(){
-  gameUI.gunLevel++
-  gameUI.firePlayerGunRate = Math.floor(gameUI.firePlayerGunRate * .75)+1
+gameUI.upgradeGun = function(questionsCorrect){
+  if (questionsCorrect === 10){
+    gameUI.firePlayerGunRate = 1
+  } else{
+    gameUI.firePlayerGunRate = Math.ceil((11 - questionsCorrect) * 6)
+  }
 }
 
 gameUI.shrinkBoss = function(boss, bullet){
@@ -126,6 +129,11 @@ gameUI.shrinkBoss = function(boss, bullet){
 gameUI.growBoss = function(){
   gameState.bossAlien.scale.x *= 1.25 // makes boss 125% of size
   gameState.bossAlien.scale.y *= 1.25
+}
+
+gameUI.alienBossScale = function(questionsCorrect){
+  if (questionsCorrect === 10) return 1
+  return (1.25 * gameUI.alienBossScale(questionsCorrect+1))
 }
 
 gameUI.hitPlayer = function(player, objectThatHits){
@@ -153,14 +161,6 @@ gameUI.getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-gameUI.performCycleCardProcedure = function(){
-      gameState.userGuess.text = ""
-      // update current card to the next card in the current round
-      gameState.currentDeck.advanceToNextCard()
-      // update cards remaining in the view
-      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-      // update the current Question in the view
-      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
-}
+
 
 

@@ -24,6 +24,7 @@ flashCardUI.wordKeysHandler = function(evt){
     }
 
     if (evt.which === 13 /* enter */) {
+      console.log(gameState.currentDeck.currentCard)
       // update timer
         flashCardUI.textInputTimer.x = 0
         flashCardUI.textInputTimer.width = 1200
@@ -54,7 +55,9 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.finishingLevel = true
         return
       }
-      gameUI.performCycleCardProcedure()
+
+      flashCardUI.performCycleCardProcedure()
+
     }
   // }
 }
@@ -62,7 +65,7 @@ flashCardUI.wordKeysHandler = function(evt){
 flashCardUI.upgradePlayer = function(playerLevel) {
   // Current level = playerLevel (for setting specific upgrades)
   bullet = gameState.groups.flashcardPlayerBullets.getFirstExists(false)
-  bullet.reset(gameState.flashcardPlayer.body.x, gameState.flashcardPlayer.body.y)
+  bullet.reset(gameState.flashcardPlayer.x, gameState.flashcardPlayer.y)
   gameState.groups.flashcardPlayerBullets.getFirstExists(false).body.velocity.x=1000
   bullet.lifespan = 4000
   bullet.body.velocity.x = 1000
@@ -86,4 +89,15 @@ flashCardUI.tweenPlayerUpgrade = function(text_sprite){
   var tween = game.add.tween(text_sprite)
   tween.to({y: game.world.height - 300, alpha: 0}, 2500)
   tween.start()
+}
+
+flashCardUI.performCycleCardProcedure = function(){
+  console.log(gameState.currentDeck.currentCard)
+      gameState.userGuess.text = ""
+      // update current card to the next card in the current round
+      gameState.currentDeck.advanceToNextCard()
+      // update cards remaining in the view
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+      // update the current Question in the view
+      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
 }
