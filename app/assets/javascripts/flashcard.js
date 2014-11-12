@@ -37,13 +37,14 @@ flashCard.prototype = {
     flashcardPlayerBullets.enableBody = true
     flashcardPlayerBullets.physicsBodyType = Phaser.Physics.ARCADE
     flashcardPlayerBullets.createMultiple(250, 'bullet')
+    flashcardPlayer.anchor.set(0.5)
+    this.tweenPlayerFlyIn(flashcardPlayer)
 
 	  // create boss alien - only visable to show upgrades
 	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  flashcardBossAlien.scale.setTo(1,1)
-
 
 	  // create keyboard listeners
 	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
@@ -76,7 +77,6 @@ flashCard.prototype = {
   },
 
   update: function() {
-
     var questionsCorrect = gameState.currentDeck.cardsLeftInCurrentRound() + gameState.questionsCorrect
     var s = gameUI.alienBossScale(questionsCorrect)
     gameState.bossAlien.scale.setTo(s,s)
@@ -103,10 +103,16 @@ flashCard.prototype = {
       gameState.userFeedbackText.text = "Last: " + gameState.currentDeck.currentCard.definition
       flashCardUI.performCycleCardProcedure()
    }
-
   },
+
   render: function() {
     phaserLifeCycleFunctions.render(game)
+  },
+
+  tweenPlayerFlyIn: function(player){
+  	var tween = game.add.tween(player)
+    tween.from({x: -100, alpha: 0}, 2500)
+    tween.start()
   },
 
 }
