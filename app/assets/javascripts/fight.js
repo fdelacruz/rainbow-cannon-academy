@@ -3,7 +3,7 @@ function fight() {}
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
-    
+
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  starfieldBackground.create(game)
@@ -46,6 +46,7 @@ fight.prototype = {
 	  player.body.bounce.y = 0.2
 	  player.body.collideWorldBounds = true
 	  player.health = 100
+	  gameUI.upgradeGun(gameState.questionsCorrect)
 
 	  // create explosions
 	  var explosions = gameState.groups.explosions = game.add.group()
@@ -111,7 +112,7 @@ fight.prototype = {
 		  // set scroll speed of background
 		  // starfield.tilePosition.x -= 1
 		  starfieldBackground.update()
-		  
+
 		    if (cursors.left.isDown) {
 		      // player UP
 		      player.body.velocity.y = -250;
