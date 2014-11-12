@@ -179,8 +179,16 @@ fight.prototype = {
 		  }
 
 		  if (gameUI.playerDead(gameState.player)){
-		  	gameState.firstTimeOnLevel = false
-		    game.state.start('level_intro')
+		  	gameState.lifes -= 1
+		  	if (gameState.lifes <= 0){
+		  		console.log('game over')
+		  		// gameState.firstTimeOnLevel = false
+		  		// game.state.start('game_over')
+		  	} else {
+		  		gameState.firstTimeOnLevel = false
+		    	game.state.start('level_intro')
+		  	}
+
 		  }
 
 		  if (gameState.groups.aliens.x < 850){
@@ -214,7 +222,6 @@ fight.prototype = {
 		  	console.log("kamikaze")
 		  }
 		  gameUI.kamikazeCounter = 0
-
 
   },
   render: function() {
