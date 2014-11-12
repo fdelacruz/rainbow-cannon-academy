@@ -35,6 +35,7 @@ gameUI.alienScatterEnabled = true
 gameUI.firePlayerGunCounter = 0
 gameUI.fireBossAlienGunCounter = 0
 gameUI.score = 0
+gameUI.bossInGameArea = false
 
 gameUI.firePlayerGunRate = 60 // (60/rate) = shots per second
 gameUI.fireBossAlienGunRate = 60 // (60/rate) = shots per second

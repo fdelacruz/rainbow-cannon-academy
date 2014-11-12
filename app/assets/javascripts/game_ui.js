@@ -43,7 +43,7 @@ gameUI.spawnAliens = function(){
 }
 
 gameUI.sendBossAlien = function(){
-  gameState.bossAlien.body.velocity.x = -30
+  gameState.bossAlien.body.velocity.x = -50
 }
 
 gameUI.scatterAliens = function(){
