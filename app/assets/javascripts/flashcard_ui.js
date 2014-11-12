@@ -37,7 +37,7 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.questionsCorrect++
         // show upgrade text
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
-        var upgradeTextSprite = game.add.text(32, game.world.height - 150, '+1 Gun Level', {font: '12px Josefin Slab', fill: 'white'})
+        var upgradeTextSprite = game.add.text(0, game.world.height - 150, '+1 Gun Level', {font: '12px Josefin Slab', fill: 'green'})
         flashCardUI.tweenPlayerUpgrade(upgradeTextSprite)
 
       // incorrect answer case:

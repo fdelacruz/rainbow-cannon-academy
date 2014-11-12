@@ -3,6 +3,11 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
+  	// game.stage.backgroundColor = '#D95B43'
+
+  	// create planet
+    // var planet = gameState.planetBg = game.add.tileSprite(0, 0, 1200, 600, 'space_bg')
+
   	//resetting
   	gameState.currentDeck.currentIndex = 0
   	gameState.currentDeck.updateCurrentCard()
@@ -73,6 +78,7 @@ flashCard.prototype = {
 	  // feedback shown to user (ex: 'Correct' or 'Omaha')
 	  gameState.userFeedbackText = game.add.text(900, 32, '', {font: '24px Josefin Slab', fill: '#ffffff'})
     gameState.userFeedbackText.anchor.set(0.5)
+
   },
 
   update: function() {
