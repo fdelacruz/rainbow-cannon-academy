@@ -165,14 +165,9 @@ fight.prototype = {
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
 
-
-
-
 		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
-
-
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++

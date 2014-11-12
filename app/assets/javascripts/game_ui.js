@@ -18,6 +18,7 @@ gameUI.fireBossAlienBullet = function(){
       bossAlienBullets.reset(gameState.bossAlien.body.x, gameState.bossAlien.body.y + (gameState.bossAlien.height / 2))
       bossAlienBullets.lifespan = 4000
       bossAlienBullets.body.velocity.x = -500
+      bossAlienBullets.body.velocity.y = bossAlienBullets.body.velocity.x * (Math.tan(gameState.bossAlien.rotation + Math.PI))
     }
   }
 }
