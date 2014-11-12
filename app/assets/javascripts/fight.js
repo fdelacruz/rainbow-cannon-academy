@@ -159,20 +159,18 @@ fight.prototype = {
 		    gameUI.firePlayerBullet()
 		  }
 
+		  gameState.bossAlien.rotation = game.physics.arcade.angleBetween(gameState.bossAlien, player)
+		  console.log("rotation" + gameState.bossAlien.rotation)
+		  console.log("angle" + gameState.bossAlien.angle)
 		  gameUI.fireBossAlienGunCounter += 1
 		  if (gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate){
 		    shootTheBossAlienGun = true
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
 
-
-
-
 		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
-
-
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
