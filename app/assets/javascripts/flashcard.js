@@ -119,7 +119,7 @@ flashCard.prototype = {
 
   tweenPlayerFlyIn: function(player){
   	var tween = game.add.tween(player)
-    tween.from({x: -100, alpha: 0}, 2500)
+    tween.from({x: -100, alpha: 0}, 1500)
     tween.start()
   },
 
