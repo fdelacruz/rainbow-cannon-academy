@@ -39,6 +39,7 @@ gameUI.bossInGameArea = false
 
 gameUI.firePlayerGunRate = 60 // (60/rate) = shots per second
 gameUI.fireBossAlienGunRate = 60 // (60/rate) = shots per second
+gameUI.kamikazeCounter = 0
 
 // gameState --------------------------------------------------------
 var gameState = {}

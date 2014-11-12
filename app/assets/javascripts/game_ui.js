@@ -1,6 +1,5 @@
 var gameUI = {}
 
-
 gameUI.firePlayerBullet = function() {
   if (game.time.now > gameUI.bulletTime) {
     playerBullets = gameState.groups.playerBullets.getFirstExists(false)
@@ -167,6 +166,7 @@ gameUI.respawnPlayer = function(){
 gameUI.getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 
 
 

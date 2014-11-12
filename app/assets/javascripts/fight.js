@@ -4,6 +4,19 @@ fight.prototype = {
   create: function() {
   	console.log(game.state.current)
 
+
+  	// Enemy Bullets
+    enemyBullets = game.add.group();
+    enemyBullets.enableBody = true;
+    enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
+    enemyBullets.createMultiple(30, 'enemyBullet');
+    enemyBullets.setAll('anchor.x', 0.5);
+    enemyBullets.setAll('anchor.y', 1);
+    enemyBullets.setAll('outOfBoundsKill', true);
+    enemyBullets.setAll('checkWorldBounds', true);
+
+
+
   	// Logic to only scatter aliens once, called in fight - update loop
   	gameUI.alienScatterEnabled = true
 
@@ -152,9 +165,14 @@ fight.prototype = {
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
 
+
+
+
 		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
+
+
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
@@ -181,6 +199,7 @@ fight.prototype = {
 		    }
 		  }
 
+
 		  if (gameState.bossAlien.x < 800 ){
 		  	gameUI.bossInGameArea = true
 		  	gameState.bossAlien.body.collideWorldBounds = true
@@ -189,9 +208,33 @@ fight.prototype = {
 		  }
 
 		  gameState.groups.aliens.forEach(function(alien){
-		  	if (alien.body.x < 100) {
+		  	if (alien.body.x === 0) {
+		  		alien.body.velocity.x = 50}
+		  })
+
+		  gameState.groups.aliens.forEach(function(alien){
+		  	if (alien.body.x  < 100.5 & alien.body.x  > 99.5  ) {
 		  		alien.body.velocity.x = 0}
 		  })
+
+		  gameState.groups.aliens.forEach(function(alien){
+		  	if (alien.body.x <101 && alien.body.x >99 ) gameUI.kamikazeCounter++
+		  	// if (alien.body.x <= 10  &&  alien.body.velocity.x > 0) alien.velocity.x = 200
+		  })
+
+		  if (gameUI.kamikazeCounter > 1) {
+		  	gameState.groups.aliens.forEach(function(alien){
+		  		if (alien.body.x <101 && alien.body.x >99)  {
+		  			alien.body.velocity.x = -300
+		  			gameUI.kamikazeCounter = 0
+		  		}
+		  	})
+
+
+		  	console.log("kamikaze")
+		  }
+		  gameUI.kamikazeCounter = 0
+
   },
   render: function() {
     game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
