@@ -26,7 +26,7 @@ states.preload =
 // overallUI
 overallUI.gameTimeRemaining = null
 overallUI.flashCardRoundComplete = false
-overallUI.score = 0
+
 
 // flashcardUI -----------------------------------------------------------
 flashCardUI.textInputLine
@@ -37,6 +37,7 @@ gameUI.gunLevel = 0
 gameUI.alienScatterEnabled = true
 gameUI.firePlayerGunCounter = 0
 gameUI.fireBossAlienGunCounter = 0
+gameUI.score = 0
 
 gameUI.firePlayerGunRate = 60 // (60/rate) = shots per second
 gameUI.fireBossAlienGunRate = 60 // (60/rate) = shots per second
