@@ -6,7 +6,7 @@ fight.prototype = {
 
   	// Logic to only scatter aliens once, called in fight - update loop
   	gameUI.alienScatterEnabled = true
-   	
+
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  // scrolling tile sprite
@@ -21,14 +21,6 @@ fight.prototype = {
 
 	  // Global timer
 	  timer.create(game)
-
-	  // create player object
-	  var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
-	  game.physics.arcade.enable(player)
-	  player.body.bounce.y = 0.2
-	  player.body.collideWorldBounds = true
-	  player.health = 100
-
 
 	  // rain
 	  rain.create(game)
@@ -127,7 +119,7 @@ fight.prototype = {
 	  // set scroll speed of background
 	  // starfield.tilePosition.x -= 1
 	  starfieldBackground.update()
-	  
+
 	    if (cursors.left.isDown) {
 	      // player UP
 	      player.body.velocity.y = -250;
