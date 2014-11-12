@@ -1,14 +1,19 @@
+
+//=require game_ui
 //=require deck_ajax
+//=require flashcard_ui
 //=require phaser
 //=require carddeck
 //=require starfield_background
-//=require timer
 //=require rain
 //=require preload
 //=require flashcard
 //=require fight
 //=require level_intro
 //=require welcome
+
+
+
 
 // entry point
 
@@ -17,13 +22,7 @@ window.onload = start
 // global modules ---------------------------------------------------
 var game = null // phaser game
 var phaserLifeCycleFunctions = {}
-var flashCardUI = {}
-var gameUI = {}
-var overallUI = {}
 
-// overallUI
-// overallUI.gameTimeRemaining = null
-overallUI.flashCardRoundComplete = false
 
 
 // flashcardUI -----------------------------------------------------------
@@ -76,5 +75,8 @@ function start(){
   game.state.add('fight', fight)
   game.state.start('preload')
 }
+
+
+
 
 
