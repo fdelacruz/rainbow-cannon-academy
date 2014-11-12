@@ -6,7 +6,7 @@ fight.prototype = {
 
   	// Logic to only scatter aliens once, called in fight - update loop
   	gameUI.alienScatterEnabled = true
-   	
+
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  // scrolling tile sprite
@@ -127,7 +127,7 @@ fight.prototype = {
 	  // set scroll speed of background
 	  // starfield.tilePosition.x -= 1
 	  starfieldBackground.update()
-	  
+
 	    if (cursors.left.isDown) {
 	      // player UP
 	      player.body.velocity.y = -250;
@@ -168,8 +168,9 @@ fight.prototype = {
 	    gameState.firstTimeOnLevel = true
 	    game.state.start('level_intro')
 	  }
-
+	  console.log(gameState.lifes)
 	  if (gameUI.playerDead(gameState.player)){
+	  	gameState.lifes -= 1
 	  	gameState.firstTimeOnLevel = false
 	    game.state.start('level_intro')
 	  }

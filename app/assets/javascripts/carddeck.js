@@ -7,7 +7,7 @@ function CardDeck(array_of_card_jsons){
 	this.cardsLeftInCurrentRound = function(){
 		if (this.roundComplete){
 				return 0
-			} else{
+			} else {
 				return (this.currentRound.length - this.currentIndex)
 			}
 	}
