@@ -1,4 +1,4 @@
-function fight() {}
+	function fight() {}
 
 fight.prototype = {
   create: function() {
@@ -163,6 +163,22 @@ fight.prototype = {
 		  if (gameState.groups.aliens.x < 850){
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
+
+		  // if (gameState.groups.aliens.x < 250){
+		  //   gameState.groups.aliens.forEach(function(alien){
+    // 			alien.body.velocity.x = 20
+		  //   alien.body.velocity.y = gameUI.getRandomInt(-20, 20)
+  		// 	})
+		  // }
+
+
+		  gameState.groups.aliens.forEach(function(alien){
+		  	if (alien.body.x < 100) {
+		  		alien.body.velocity.x = 0}
+		    // alien.body.velocity.x = gameUI.getRandomInt(-20, 0)
+		  })
+
+
   },
   render: function() {
     game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
