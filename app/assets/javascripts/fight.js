@@ -3,18 +3,32 @@ function fight() {}
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
+
+  	// Logic to only scatter aliens once, called in fight - update loop
   	gameUI.alienScatterEnabled = true
+   	
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
+	  // scrolling tile sprite
 	  starfieldBackground.create(game)
 
+	  // Ceiling visible line and collision detector
 	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
 	  gameUI.gameAreaCeiling = game.add.sprite(0,200,null)
 	  game.physics.enable(gameUI.gameAreaCeiling, Phaser.Physics.ARCADE)
 	  gameUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
 	  gameUI.gameAreaCeiling.body.immovable = true
 
+	  // Global timer
 	  timer.create(game)
+
+	  // create player object
+	  var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
+	  game.physics.arcade.enable(player)
+	  player.body.bounce.y = 0.2
+	  player.body.collideWorldBounds = true
+	  player.health = 100
+
 
 	  // rain
 	  rain.create(game)
@@ -85,88 +99,87 @@ fight.prototype = {
 	  gameUI.spawnAliens()
   },
   update: function() {
-  	 	var player = gameState.player
-		  var cursors = gameState.cursors
-		  var shootThePlayerGun = false
-		  var shootTheBossAlienGun = false
+	 	var player = gameState.player
+	  var cursors = gameState.cursors
+	  var shootThePlayerGun = false
+	  var shootTheBossAlienGun = false
 
-		  // Player cannot pass through the game boundaries
-		  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
-		  // aliens cannot pass through game boundaries
-		  game.physics.arcade.collide(gameState.groups.aliens, gameUI.gameAreaCeiling)
-		  // boss alien cannot pass through game boundaries
-		  game.physics.arcade.collide(gameState.bossAlien, gameUI.gameAreaCeiling)
-		  // aliens bounce off of each other
-		  game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
-		  // aliens bounce off of boss alien
-		  game.physics.arcade.collide(gameState.groups.aliens, gameState.bossAlien)
+	  // Player cannot pass through the game boundaries
+	  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
+	  // aliens cannot pass through game boundaries
+	  game.physics.arcade.collide(gameState.groups.aliens, gameUI.gameAreaCeiling)
+	  // boss alien cannot pass through game boundaries
+	  game.physics.arcade.collide(gameState.bossAlien, gameUI.gameAreaCeiling)
+	  // aliens bounce off of each other
+	  game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
+	  // aliens bounce off of boss alien
+	  game.physics.arcade.collide(gameState.groups.aliens, gameState.bossAlien)
 
-		  // Bullets cause damage to aliens and then disappear
-		  game.physics.arcade.overlap(gameState.groups.playerBullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
-		  // Bullets cause the boss alien to shrink
-		  game.physics.arcade.overlap(gameState.groups.playerBullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
-		  // Aliens damage the player when they touch
-		  game.physics.arcade.overlap(player, gameState.groups.aliens, gameUI.hitPlayer, null, this)
-		  // Boss alien bullets damage player
-		  game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
+	  // Bullets cause damage to aliens and then disappear
+	  game.physics.arcade.overlap(gameState.groups.playerBullets, gameState.groups.aliens, gameUI.hitAlien , null, this)
+	  // Bullets cause the boss alien to shrink
+	  game.physics.arcade.overlap(gameState.groups.playerBullets, gameState.bossAlien, gameUI.shrinkBoss , null, this)
+	  // Aliens damage the player when they touch
+	  game.physics.arcade.overlap(player, gameState.groups.aliens, gameUI.hitPlayer, null, this)
+	  // Boss alien bullets damage player
+	  game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
 
-		  // set scroll speed of background
-		  // starfield.tilePosition.x -= 1
-		  starfieldBackground.update()
+	  // set scroll speed of background
+	  // starfield.tilePosition.x -= 1
+	  starfieldBackground.update()
+	  
+	    if (cursors.left.isDown) {
+	      // player UP
+	      player.body.velocity.y = -250;
+	      // player.animations.play('up')
+	    } else if (cursors.right.isDown){
+	      // player DOWN
+	      player.body.velocity.y = 250;
+	      // player.animations.play('down')
+	    } else {
+	      // player stand still
+	      player.animations.stop()
+	      player.frame = 4
+	      player.body.velocity.y = 0
+	    }
 
-		    if (cursors.left.isDown) {
-		      // player UP
-		      player.body.velocity.y = -250;
-		      // player.animations.play('up')
-		    } else if (cursors.right.isDown){
-		      // player DOWN
-		      player.body.velocity.y = 250;
-		      // player.animations.play('down')
-		    } else {
-		      // player stand still
-		      player.animations.stop()
-		      player.frame = 4
-		      player.body.velocity.y = 0
-		    }
+	  // fire!
+	  gameUI.firePlayerGunCounter += 1
+	  if (gameUI.firePlayerGunCounter >= gameUI.firePlayerGunRate){
+	    shootThePlayerGun = true
+	    gameUI.firePlayerGunCounter = 0
+	  }
+	  if (shootThePlayerGun) {
+	    gameUI.firePlayerBullet()
+	  }
 
-		  // fire!
-		  gameUI.firePlayerGunCounter += 1
-		  if (gameUI.firePlayerGunCounter >= gameUI.firePlayerGunRate){
-		    shootThePlayerGun = true
-		    gameUI.firePlayerGunCounter = 0
-		  }
-		  if (shootThePlayerGun) {
-		    gameUI.firePlayerBullet()
-		  }
+	  gameUI.fireBossAlienGunCounter += 1
+	  if (gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate){
+	    shootTheBossAlienGun = true
+	    gameUI.fireBossAlienGunCounter = 0
+	  }
 
-		  gameUI.fireBossAlienGunCounter += 1
-		  if (gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate){
-		    shootTheBossAlienGun = true
-		    gameUI.fireBossAlienGunCounter = 0
-		  }
+	  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
+	    gameUI.fireBossAlienBullet()
+	  }
 
-		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
-		    gameUI.fireBossAlienBullet()
-		  }
+	  if (gameUI.aliensDead()) {
+	    gameState.currentLevel++
+	    gameState.firstTimeOnLevel = true
+	    game.state.start('level_intro')
+	  }
 
-		  if (gameUI.aliensDead()) {
-		    gameState.currentLevel++
-		    gameState.firstTimeOnLevel = true
-		    game.state.start('level_intro')
-		  }
+	  if (gameUI.playerDead(gameState.player)){
+	  	gameState.firstTimeOnLevel = false
+	    game.state.start('level_intro')
+	  }
 
-		  if (gameUI.playerDead(gameState.player)){
-		  	gameState.firstTimeOnLevel = false
-		    game.state.start('level_intro')
-		  }
-
-		  if (gameState.groups.aliens.x < 850){
-		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
-		  }
+	  if (gameState.groups.aliens.x < 850){
+	    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
+	  }
   },
   render: function() {
     game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
   	timer.render(game)
   },
-
 }
