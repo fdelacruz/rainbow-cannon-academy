@@ -42,7 +42,8 @@ flashCardUI.wordKeysHandler = function(evt){
         var upgradeTextSprite = game.add.text(0, game.world.height - 150, '+1 Gun Level', {font: '12px Josefin Slab', fill: 'green'})
         flashCardUI.tweenPlayerUpgrade(upgradeTextSprite)
         // show correct text animation
-        var correctTextSprite = game.add.text(540, 150, gameState.userGuess.text, {font: '24px Josefin Slab', fill: 'green'})
+        var correctTextSprite = game.add.text(600, 150, gameState.userGuess.text, {font: '24px Josefin Slab', fill: 'green'})
+        correctTextSprite.anchor.set(0.5)
         flashCardUI.tweenRightAnswer(correctTextSprite)
 
       // incorrect answer case:
@@ -50,7 +51,8 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
 
         // show incorrect text animation
-        var wrongTextSprite = game.add.text(540, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: 'red'})
+        var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: 'red'})
+        wrongTextSprite.anchor.set(0.5)
         flashCardUI.tweenWrongAnswer(wrongTextSprite)
       }
       // break out of flashcard state if the user just pressed enter on the last card in the level
@@ -102,13 +104,13 @@ flashCardUI.tweenPlayerUpgrade = function(text_sprite){
 
 flashCardUI.tweenRightAnswer = function(text){
   var tween = game.add.tween(text)
-  tween.to({y: 0, alpha: 0}, 1000)
+  tween.to({x: 800, alpha: 0}, 1000)
   tween.start()
 }
 
 flashCardUI.tweenWrongAnswer = function(text){
   var tween = game.add.tween(text)
-  tween.to({y: 0, alpha: 0}, 1000)
+  tween.to({x: 800, alpha: 0}, 1400)
   tween.start()
 }
 

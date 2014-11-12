@@ -4,10 +4,15 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
-  	game.stage.backgroundColor = '#D95B43'
+  	game.stage.backgroundColor = '#231825'
 
   	// create planet
     var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
+
+    // create HUD Display
+    var hud = game.add.sprite(0, 0, 'hud')
+    hud.width = 1200
+    hud.height = 200
 
 
   	//resetting
