@@ -11,7 +11,7 @@ flashCard.prototype = {
 	  starfieldBackground.create(game)
 
 	  // input timer
-    flashCardUI.textInputTimer = new Phaser.Rectangle(600, 180, 400, 1)
+    flashCardUI.textInputTimer = new Phaser.Rectangle(600, 150, 400, 1)
 
 
 	  // If game first starting, deck must be shuffled:
@@ -75,8 +75,13 @@ flashCard.prototype = {
       Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
 
   if (flashCardUI.textInputTimer.width <1) {
+
+
+
+    gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
     flashCardUI.textInputTimer.x = 600
     flashCardUI.textInputTimer.width = 400
+    gameUI.performCycleCardProcedure()
    }
 
 

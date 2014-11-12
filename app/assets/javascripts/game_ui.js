@@ -147,3 +147,15 @@ gameUI.respawnPlayer = function(){
 gameUI.getRandomInt = function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+gameUI.performCycleCardProcedure = function(){
+      gameState.userGuess.text = ""
+      // update current card to the next card in the current round
+      gameState.currentDeck.advanceToNextCard()
+      // update cards remaining in the view
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+      // update the current Question in the view
+      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
+}
+
+
