@@ -104,7 +104,7 @@ flashCard.prototype = {
       }
       // ---
       gameState.userFeedbackText.text = "Last: " + gameState.currentDeck.currentCard.definition
-      gameUI.performCycleCardProcedure()
+      flashCardUI.performCycleCardProcedure()
    }
 
   },

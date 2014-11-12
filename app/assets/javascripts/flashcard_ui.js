@@ -24,6 +24,7 @@ flashCardUI.wordKeysHandler = function(evt){
     }
 
     if (evt.which === 13 /* enter */) {
+      console.log(gameState.currentDeck.currentCard)
       // update timer
         flashCardUI.textInputTimer.x = 0
         flashCardUI.textInputTimer.width = 1200
@@ -52,16 +53,7 @@ flashCardUI.wordKeysHandler = function(evt){
         return
       }
 
-      // clear user input
-      gameState.userGuess.text = ""
-      // update current card to the next card in the current round
-      gameState.currentDeck.advanceToNextCard()
-      // update cards remaining in the view
-      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-      // update the current Question in the view
-      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
-
-      gameUI.performCycleCardProcedure()
+      flashCardUI.performCycleCardProcedure()
 
     }
   // }
@@ -91,4 +83,14 @@ flashCardUI.clearFlashCardText = function(){
   flashCardUI.textInputLine.height = 0
 }
 
+flashCardUI.performCycleCardProcedure = function(){
+  console.log(gameState.currentDeck.currentCard)
+      gameState.userGuess.text = ""
+      // update current card to the next card in the current round
+      gameState.currentDeck.advanceToNextCard()
+      // update cards remaining in the view
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+      // update the current Question in the view
+      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
+}
 
