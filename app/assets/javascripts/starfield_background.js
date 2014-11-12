@@ -3,7 +3,7 @@ var starfieldBackground = (function(){
 	var exports = {}
 
 	exports.preload = function(phaserGame){
-	  phaserGame.load.image('starfield', '../assets/starfield.png')
+	  phaserGame.load.image('starfield', '../assets/planet.png')
 	}
 
 	exports.create = function(phaserGame) { 

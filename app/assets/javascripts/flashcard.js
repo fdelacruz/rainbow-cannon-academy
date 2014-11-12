@@ -4,13 +4,23 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
+  	game.stage.backgroundColor = '#231825'
+
+  	// create planet
+    var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
+
+    // create HUD Display
+    var hud = game.add.sprite(0, 0, 'hud')
+    hud.width = 1200
+    hud.height = 200
+
+
   	//resetting
     gameState.currentDeck.roundComplete = false
   	gameState.currentDeck.currentIndex = 0
   	gameState.currentDeck.updateCurrentCard()
   	//--
   	gameState.questionsCorrect = 0
-	  starfieldBackground.create(game)
 
 	  // populate deck
 
@@ -74,6 +84,7 @@ flashCard.prototype = {
 	  // feedback shown to user (ex: 'Correct' or 'Omaha')
 	  gameState.userFeedbackText = game.add.text(900, 32, '', {font: '24px Josefin Slab', fill: '#ffffff'})
     gameState.userFeedbackText.anchor.set(0.5)
+
   },
 
   update: function() {
@@ -113,7 +124,7 @@ flashCard.prototype = {
 
   tweenPlayerFlyIn: function(player){
   	var tween = game.add.tween(player)
-    tween.from({x: -100, alpha: 0}, 2500)
+    tween.from({x: -100, alpha: 0}, 1500)
     tween.start()
   },
 
