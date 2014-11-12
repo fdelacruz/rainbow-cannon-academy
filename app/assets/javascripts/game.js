@@ -42,6 +42,7 @@ gameUI.fireBossAlienGunRate = 60 // (60/rate) = shots per second
 // gameState --------------------------------------------------------
 var gameState = {}
 gameState.player = null // phaser sprite object
+gameState.lifes = 3
 gameState.bossAlien = null // phaser sprite object
 gameState.cursors = null
 gameState.groups = {}
