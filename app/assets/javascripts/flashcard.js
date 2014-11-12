@@ -99,7 +99,7 @@ flashCard.prototype = {
   	var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: 'red'})
     wrongTextSprite.anchor.set(0.5)
     flashCardUI.tweenWrongAnswer(wrongTextSprite)
-    
+
     flashCardUI.textInputTimer.x = 0
     flashCardUI.textInputTimer.width = 1200
 
@@ -123,7 +123,7 @@ flashCard.prototype = {
   render: function() {
     game.debug.geom(flashCardUI.textInputLine,'#FFFFFF')
     game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
-    game.debug.geom(flashCardUI.textInputTimer,'green')
+    game.debug.geom(flashCardUI.textInputTimer,'#C02942')
   },
 
   tweenPlayerFlyIn: function(player){
