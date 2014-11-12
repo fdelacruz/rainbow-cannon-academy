@@ -3,10 +3,9 @@ function preLoad (){}
 preLoad.prototype = {
   preload: function() {
     rain.preload(game)
-    game.load.image('starfield', '../assets/starfield.png')
-    game.load.image('planet_bg', '../assets/space_bg.png')
-    game.load.image('phaser', '../assets/phaser.png')
-    game.load.image('star', '../assets/star.png')
+    game.load.image('planet_bg', '../assets/space_bg.png') /* Planet BG for scrolling */
+    game.load.image('hud', '../assets/hud.png') /* Player HUD screen */
+    game.load.image('phaser', '../assets/phaser.png') /* placeholder for logo */
     game.load.image('bullet', '../assets/bullets.png')
     game.load.image('dude', '../assets/ship.png')
     game.load.image('diamond', '../assets/diamond.png')
