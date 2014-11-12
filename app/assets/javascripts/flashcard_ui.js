@@ -24,6 +24,10 @@ flashCardUI.wordKeysHandler = function(evt){
     }
 
     if (evt.which === 13 /* enter */) {
+      // update timer
+        flashCardUI.textInputTimer.x = 600
+        flashCardUI.textInputTimer.width = 400
+      //
       // update user feedback text
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Correct'

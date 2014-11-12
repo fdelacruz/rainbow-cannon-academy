@@ -10,7 +10,9 @@ flashCard.prototype = {
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
-	  // populate deck
+	  // input timer
+    flashCardUI.textInputTimer = new Phaser.Rectangle(600, 180, 400, 1)
+
 
 	  // If game first starting, deck must be shuffled:
 	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
@@ -70,20 +72,13 @@ flashCard.prototype = {
   },
 
   update: function() {
-      // bullet = gameState.groups.pb.getFirstExists(false)
-      // bullet.reset(gameState.p.body.x, gameState.p.body.y)
-      // gameState.groups.pb.getFirstExists(false).body.velocity.x=1000
-      // bullet.body.velocity.x = 200
-      // gameState.groups.pb.reset(gameState.p.body.x + 16, gameState.p.body.y + 16)
-      // bullet.reset(gameState.p.body.x, gameState.p.body.y)
-      // gameState.groups.pb.lifespan = 4000
-      // gameState.groups.pb.body.velocity.x = 1000
-    // flashCardUI.testt.lifespan = 4000
-    // flashCardUI.testt.body.velocity.x = 1000
-   	// var player = gameState.player
+      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
 
-	  // set scroll speed of background
-	  // starfieldBackground.update()
+  if (flashCardUI.textInputTimer.width <1) {
+    flashCardUI.textInputTimer.x = 600
+    flashCardUI.textInputTimer.width = 400
+   }
+
 
   },
   render: function() {
