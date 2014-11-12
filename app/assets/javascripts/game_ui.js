@@ -31,6 +31,8 @@ gameUI.spawnAliens = function(){
       alien.damage = 50
       alien.body.bounce.y = 1
       alien.body.bounce.x = 1
+      alien.anchor.x = 0.5
+      alien.anchor.y = 0.5
       game.physics.arcade.enable(alien)
     }
   }
@@ -71,7 +73,10 @@ gameUI.hitAlien = function(bullet, alien){
 }
 
 gameUI.killAlien = function(alien){
+  var explosion = gameState.groups.explosions.getFirstExists(false)
+  explosion.reset(alien.body.x, alien.body.y)
   alien.kill()
+  explosion.play('explosion', 30, false, true)
   gameUI.updateScore()
 }
 gameUI.wipeAlien = function(alien){

@@ -47,6 +47,15 @@ fight.prototype = {
 	  player.body.collideWorldBounds = true
 	  player.health = 100
 
+	  // create explosions
+	  var explosions = gameState.groups.explosions = game.add.group()
+    explosions.createMultiple(21, 'explosion')
+    explosions.forEach(setUpExplosion)
+
+    function setUpExplosion(explode){
+    	explode.animations.add('explosion')
+    }
+
 	  // create regular aliens
 	  aliens = gameState.groups.aliens = game.add.group()
 	  aliens.enableBody = true
