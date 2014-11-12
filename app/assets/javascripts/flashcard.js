@@ -4,6 +4,7 @@ flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
   	//resetting
+    gameState.currentDeck.roundComplete = false
   	gameState.currentDeck.currentIndex = 0
   	gameState.currentDeck.updateCurrentCard()
   	//--
