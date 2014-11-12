@@ -1,9 +1,9 @@
-function fight() {}
+	function fight() {}
 
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
-
+  	gameUI.alienScatterEnabled = true
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  starfieldBackground.create(game)
@@ -17,7 +17,7 @@ fight.prototype = {
 	  timer.create(game)
 
 	  // rain
-	  // rain.create(game)
+	  rain.create(game)
 
 	  // playerBullets
 	  playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -160,7 +160,7 @@ fight.prototype = {
 		    game.state.start('level_intro')
 		  }
 
-		  if (gameState.groups.aliens.x < 880){
+		  if (gameState.groups.aliens.x < 850){
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
   },

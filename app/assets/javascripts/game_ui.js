@@ -49,12 +49,12 @@ gameUI.scatterAliens = function(){
 }
 
 gameUI.sendAliens = function(){
-  var tween = game.add.tween(aliens).to(
-    { x: 60 },
-    20000,
+  var tween = game.add.tween(aliens)
+  .to(
+    { x: 90 },
+    2000,
     Phaser.Easing.Linear.None,
     true)
-  // gameState.groups.aliens.setAll('body.velocity.x', -200)
 }
 
 gameUI.updateScore = function(){
