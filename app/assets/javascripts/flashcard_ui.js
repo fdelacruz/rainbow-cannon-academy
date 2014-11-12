@@ -28,6 +28,8 @@ flashCardUI.wordKeysHandler = function(evt){
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Correct'
         gameState.questionsCorrect++
+        flashCardUI.upgradePlayer(gameState.questionsCorrect)
+
 
       } else {
         gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
@@ -38,10 +40,10 @@ flashCardUI.wordKeysHandler = function(evt){
         setTimeout(function(){game.state.start('fight')}, 1000)
         return
       }
-      
+
       // clear user input
       gameState.userGuess.text = ""
-      // update current card to the next card in the current round 
+      // update current card to the next card in the current round
       gameState.currentDeck.advanceToNextCard()
       // update cards remaining in the view
       gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
@@ -49,6 +51,17 @@ flashCardUI.wordKeysHandler = function(evt){
       gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
     }
   // }
+}
+
+flashCardUI.upgradePlayer = function(playerLevel) {
+  // Current level = playerLevel (for setting specific upgrades)
+  bullet = gameState.groups.flashcardPlayerBullets.getFirstExists(false)
+  bullet.reset(gameState.flashcardPlayer.body.x, gameState.flashcardPlayer.body.y)
+  gameState.groups.flashcardPlayerBullets.getFirstExists(false).body.velocity.x=1000
+  bullet.body.velocity.x = 200
+  bullet.lifespan = 4000
+  bullet.body.velocity.x = 1000
+
 }
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
