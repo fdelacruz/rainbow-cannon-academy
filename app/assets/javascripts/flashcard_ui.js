@@ -25,19 +25,21 @@ flashCardUI.wordKeysHandler = function(evt){
 
     if (evt.which === 13 /* enter */) {
       // update timer
-        flashCardUI.textInputTimer.x = 600
-        flashCardUI.textInputTimer.width = 400
+        flashCardUI.textInputTimer.x = 0
+        flashCardUI.textInputTimer.width = 1200
       //
       // update user feedback text
+
+      // correct answer case:
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
-        gameState.userFeedbackText.text = 'Correct'
+        gameState.userFeedbackText.text = 'Last: Correct'
         gameState.questionsCorrect++
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
 
+      // incorrect answer case:
       } else {
-        gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
+        gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
       }
-
       // break out of flashcard state if the user just pressed enter on the last card in the level
       if (gameState.currentDeck.currentIndex === 9 ) {
         if (gameState.finishingLevel) return
@@ -49,17 +51,7 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.finishingLevel = true
         return
       }
-
       gameUI.performCycleCardProcedure()
-
-      // // clear user input
-      // gameState.userGuess.text = ""
-      // // update current card to the next card in the current round
-      // gameState.currentDeck.advanceToNextCard()
-      // // update cards remaining in the view
-      // gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
-      // // update the current Question in the view
-      // gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
     }
   // }
 }

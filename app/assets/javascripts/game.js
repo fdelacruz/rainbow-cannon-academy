@@ -24,7 +24,7 @@ var states = {}
 states.preload =
 
 // overallUI
-overallUI.gameTimeRemaining = null
+// overallUI.gameTimeRemaining = null
 overallUI.flashCardRoundComplete = false
 
 

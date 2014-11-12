@@ -11,13 +11,13 @@ flashCard.prototype = {
 	  starfieldBackground.create(game)
 
 	  // input timer
-    flashCardUI.textInputTimer = new Phaser.Rectangle(600, 150, 400, 1)
+    flashCardUI.textInputTimer = new Phaser.Rectangle(0, 200, 1200, 1)
 
 	  // If game first starting, deck must be shuffled:
 	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
 
 	  // vector shapes
-	  flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
+	  // flashCardUI.textInputLine = new Phaser.Rectangle(0, 200, 1200, 1)
 
 	  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
 
@@ -48,25 +48,30 @@ flashCard.prototype = {
 	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
 	  // create text fields ------------------------------------------------
-	  overallUI.scoreObject = game.add.text(
-	    32, 32, // x coord, y coord
-	    'Score: ' + overallUI.score, // text field
-	    {fontSize: '32px', fill: '#ffffff'} // text styling
+	  gameUI.scoreObject = game.add.text(
+	    200, 32, // x coord, y coord
+	    'Score: ' + gameUI.score, // text field
+	    {font: '24px Helvetica', fill: '#ffffff'} // text styling
 	    )
+    gameUI.scoreObject.anchor.set(0.5)
 
 
 	  // answer input
-	  gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#ffffff'})
+	  gameState.userGuess = game.add.text(600, 150, '', {font: '24px Helvetica', fill: '#ffffff'})
+    gameState.userGuess.anchor.set(0.5)
 	  // flascard question
-	  gameState.currentQuestion = game.add.text(200, 128, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#ffffff'})
+	  gameState.currentQuestion = game.add.text(600, 100, gameState.currentDeck.currentCard.term , { fill: 'white', font: '24px Helvetica'})
+    gameState.currentQuestion.anchor.set(0.5)
 	  // current round remaining cards
 	  gameState.currentCardsRemaining = game.add.text(
-	    450, 50,
+	    600, 50,
 	    'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
-	    {fontSize: '32px', fill: '#ffffff'}
+	    {font: '24px Helvetica', fill: '#ffffff'}
 	  )
+    gameState.currentCardsRemaining.anchor.set(0.5)
 	  // feedback shown to user (ex: 'Correct' or 'Omaha')
-	  gameState.userFeedbackText = game.add.text(765, 165, '', {fontSize: '32px', fill: '#ffffff'})
+	  gameState.userFeedbackText = game.add.text(900, 32, '', {font: '24px Helvetica', fill: '#ffffff'})
+    gameState.userFeedbackText.anchor.set(0.5)
   },
 
   update: function() {
@@ -74,8 +79,8 @@ flashCard.prototype = {
 
   if (flashCardUI.textInputTimer.width <1) {
 
-    flashCardUI.textInputTimer.x = 600
-    flashCardUI.textInputTimer.width = 400
+    flashCardUI.textInputTimer.x = 0
+    flashCardUI.textInputTimer.width = 1200
 
     // prevents glitch on hitting multiple enter hits
       if (gameState.currentDeck.currentIndex === 9 ) {
@@ -89,7 +94,7 @@ flashCard.prototype = {
         return
       }
       // ---
-      gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
+      gameState.userFeedbackText.text = "Last: " + gameState.currentDeck.currentCard.definition
       gameUI.performCycleCardProcedure()
 
 

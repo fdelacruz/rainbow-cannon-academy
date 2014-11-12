@@ -4,3 +4,4 @@ phaserLifeCycleFunctions.render = function(phaserGame) {
   timer.render(phaserGame)
   game.debug.geom(flashCardUI.textInputTimer,'green')
 }
+

@@ -13,7 +13,7 @@ var timer = (function(){
 	}
 
 	exports.render = function(phaserGame){
-		phaserGame.debug.text('Seconds Remaining: ' + this._secondsRemaining, /* x: */ 450, /* y: */ 32)
+		// phaserGame.debug.text('Seconds Remaining: ' + this._secondsRemaining, /* x: */ 450, /* y: */ 32)
 	}
 
 	// ---
