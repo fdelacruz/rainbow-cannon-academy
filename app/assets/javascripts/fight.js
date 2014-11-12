@@ -10,7 +10,7 @@ fight.prototype = {
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  // scrolling tile sprite
-	  starfieldBackground.create(game)
+    var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
 
 	  // Ceiling visible line and collision detector
 	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
@@ -88,6 +88,9 @@ fight.prototype = {
 	  gameUI.spawnAliens()
   },
   update: function() {
+  	// scroll speed of background:
+  		gameState.planetBg.tilePosition.x -= 1 
+  		
   	 	var player = gameState.player
 		  var cursors = gameState.cursors
 		  var shootThePlayerGun = false
@@ -114,10 +117,6 @@ fight.prototype = {
 		  game.physics.arcade.overlap(player, gameState.groups.aliens, gameUI.hitPlayer, null, this)
 		  // Boss alien bullets damage player
 		  game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
-
-		  // set scroll speed of background
-		  // starfield.tilePosition.x -= 1
-		  starfieldBackground.update()
 
 		    if (cursors.left.isDown) {
 		      // player UP
