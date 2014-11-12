@@ -3,6 +3,8 @@ function fight() {}
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
+
+  	gameUI.alienScatterEnabled = true
     
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
@@ -17,7 +19,7 @@ fight.prototype = {
 	  timer.create(game)
 
 	  // rain
-	  // rain.create(game)
+	  rain.create(game)
 
 	  // playerBullets
 	  playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -46,6 +48,15 @@ fight.prototype = {
 	  player.body.bounce.y = 0.2
 	  player.body.collideWorldBounds = true
 	  player.health = 100
+
+	  // create explosions
+	  var explosions = gameState.groups.explosions = game.add.group()
+    explosions.createMultiple(21, 'explosion')
+    explosions.forEach(setUpExplosion)
+
+    function setUpExplosion(explode){
+    	explode.animations.add('explosion')
+    }
 
 	  // create regular aliens
 	  aliens = gameState.groups.aliens = game.add.group()
@@ -149,7 +160,7 @@ fight.prototype = {
 		    game.state.start('level_intro')
 		  }
 
-		  if (gameState.groups.aliens.x < 880){
+		  if (gameState.groups.aliens.x < 850){
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
   },

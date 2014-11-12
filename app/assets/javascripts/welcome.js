@@ -6,8 +6,11 @@ welcome.prototype = {
 
   create: function() {
     console.log(game.state.current)
-    var sprite = game.add.sprite(40, 40, 'invader')
-    this.tweenFadeState(sprite)
+    var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'phaser')
+
+    logo.anchor.x = 0.5
+    logo.anchor.y = 0.5
+    this.tweenLogo(logo)
   },
 
   update: function() {
@@ -16,13 +19,14 @@ welcome.prototype = {
   render: function(){
   },
 
-  tweenFadeState: function(sprite_object) {
-
+  tweenLogo: function(sprite_object) {
     var tween = game.add.tween(sprite_object)
-    tween.to({ x: 600 }, 200)
+    tween.from({ y: game.world.centerY + 10, alpha: 0 }, 1300) /* Beginning logo position, 2 seconds to create position */
     tween.start()
+    tween.to({x:game.world.centerX, y: game.world.centerY - 10}, 1300) /* Hold on logo, milliseconds */
     tween.onComplete.add(function() {
-        this.game.state.start('level_intro');
+      tween.to({x: game.world.centerX, y: game.world.centerY - 20, alpha: 0}, 1300) /* Fade out and move up, 2 seconds */
+      setTimeout(function(){game.state.start('level_intro')}, 3100) /* Go to first level */
       }, this)
   }
 }
