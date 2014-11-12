@@ -12,4 +12,9 @@
  *= require_tree .
  */
 
+ #testgoogle{
+  color: red;
+  font-family: 'Josefin Slab', serif;
+ }
+
 

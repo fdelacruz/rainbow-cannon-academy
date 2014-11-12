@@ -51,26 +51,26 @@ flashCard.prototype = {
 	  gameUI.scoreObject = game.add.text(
 	    200, 32, // x coord, y coord
 	    'Score: ' + gameUI.score, // text field
-	    {font: '24px Helvetica', fill: '#ffffff'} // text styling
+	    {font: '24px Josefin Slab', fill: '#ffffff'} // text styling
 	    )
     gameUI.scoreObject.anchor.set(0.5)
 
 
 	  // answer input
-	  gameState.userGuess = game.add.text(600, 150, '', {font: '24px Helvetica', fill: '#ffffff'})
+	  gameState.userGuess = game.add.text(600, 150, '', {font: '24px Josefin Slab', fill: '#ffffff'})
     gameState.userGuess.anchor.set(0.5)
 	  // flascard question
-	  gameState.currentQuestion = game.add.text(600, 100, gameState.currentDeck.currentCard.term , { fill: 'white', font: '24px Helvetica'})
+	  gameState.currentQuestion = game.add.text(600, 100, gameState.currentDeck.currentCard.term , { fill: 'white', font: '24px Josefin Slab'})
     gameState.currentQuestion.anchor.set(0.5)
 	  // current round remaining cards
 	  gameState.currentCardsRemaining = game.add.text(
 	    600, 50,
 	    'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
-	    {font: '24px Helvetica', fill: '#ffffff'}
+	    {font: '24px Josefin Slab', fill: '#ffffff'}
 	  )
     gameState.currentCardsRemaining.anchor.set(0.5)
 	  // feedback shown to user (ex: 'Correct' or 'Omaha')
-	  gameState.userFeedbackText = game.add.text(900, 32, '', {font: '24px Helvetica', fill: '#ffffff'})
+	  gameState.userFeedbackText = game.add.text(900, 32, '', {font: '24px Josefin Slab', fill: '#ffffff'})
     gameState.userFeedbackText.anchor.set(0.5)
   },
 
