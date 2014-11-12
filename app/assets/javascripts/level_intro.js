@@ -12,6 +12,10 @@ levelIntro.prototype = {
     )
     lvltext.anchor.set(0.5)
 
+    var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
+
+    enterKey.onDown.add(function(){ game.state.start('flashcard') }, this)
+
 
 
     this.tweenLevelIntro(lvltext)
