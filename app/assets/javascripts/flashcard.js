@@ -6,12 +6,12 @@ flashCard.prototype = {
   	//resetting
   	gameState.currentDeck.currentIndex = 0
   	gameState.currentDeck.updateCurrentCard()
-  	//-- 
+  	//--
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
 	  // populate deck
-	  
+
 	  // If game first starting, deck must be shuffled:
 	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
 
@@ -31,10 +31,11 @@ flashCard.prototype = {
 	  game.physics.arcade.enable(flashcardPlayer)
 
 	  // create boss alien - only visable to show upgrades
-	  flashcardBossAlien = game.add.sprite(900, 250, 'diamond')
+	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  flashcardBossAlien.scale.setTo(1,1)
+
 
 	  // create keyboard listeners
 	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
@@ -62,10 +63,9 @@ flashCard.prototype = {
   },
 
   update: function() {
-   	// var player = gameState.player
-
-	  // set scroll speed of background
-	  // starfieldBackground.update()
+    var questionsCorrect = gameState.currentDeck.cardsLeftInCurrentRound() + gameState.questionsCorrect
+    var s = gameUI.alienBossScale(questionsCorrect)
+    gameState.bossAlien.scale.setTo(s,s)
 
   },
   render: function() {

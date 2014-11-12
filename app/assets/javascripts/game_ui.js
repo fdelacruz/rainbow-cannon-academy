@@ -126,6 +126,11 @@ gameUI.shrinkBoss = function(boss, bullet){
   if (gameState.bossAlien.scale.x <= 1) boss.kill() // boss dies at scale 1
 }
 
+gameUI.growBoss = function(){
+  gameState.bossAlien.scale.x *= 1.25 // makes boss 125% of size
+  gameState.bossAlien.scale.y *= 1.25
+}
+
 gameUI.alienBossScale = function(questionsCorrect){
   if (questionsCorrect === 10) return 1
   return (1.25 * gameUI.alienBossScale(questionsCorrect+1))

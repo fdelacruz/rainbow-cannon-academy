@@ -38,10 +38,10 @@ flashCardUI.wordKeysHandler = function(evt){
         setTimeout(function(){game.state.start('fight')}, 1000)
         return
       }
-      
+
       // clear user input
       gameState.userGuess.text = ""
-      // update current card to the next card in the current round 
+      // update current card to the next card in the current round
       gameState.currentDeck.advanceToNextCard()
       // update cards remaining in the view
       gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
