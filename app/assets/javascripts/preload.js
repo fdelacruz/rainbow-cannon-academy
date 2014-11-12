@@ -11,7 +11,7 @@ preLoad.prototype = {
     game.load.image('diamond', '../assets/diamond.png')
     game.load.spritesheet('invader', '../assets/baddie.png', 32, 32)
     game.load.spritesheet('explosion', '../assets/explosion.png', 40, 40)
-    game.load.image('alienbullet', '../assets/bullet.png')
+    game.load.image('enemyBullet', '../assets/bullet.png')
   },
 
   create: function() {
