@@ -1,3 +1,6 @@
+var gameUI = {}
+
+
 gameUI.firePlayerBullet = function() {
   if (game.time.now > gameUI.bulletTime) {
     playerBullets = gameState.groups.playerBullets.getFirstExists(false)
@@ -19,6 +22,10 @@ gameUI.fireBossAlienBullet = function(){
     }
   }
 }
+
+
+
+
 
 gameUI.spawnAliens = function(){
   // position the block of aliens

@@ -14,7 +14,6 @@ fight.prototype = {
 	  gameUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
 	  gameUI.gameAreaCeiling.body.immovable = true
 
-	  timer.create(game)
 
 	  // rain
 	  rain.create(game)
@@ -92,6 +91,8 @@ fight.prototype = {
 
 		  // Player cannot pass through the game boundaries
 		  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
+		  // Player cannot pass through the game boundaries
+		  game.physics.arcade.collide(gameState.bossAlien, gameUI.gameAreaCeiling)
 		  // aliens cannot pass through game boundaries
 		  game.physics.arcade.collide(gameState.groups.aliens, gameUI.gameAreaCeiling)
 		  // boss alien cannot pass through game boundaries
@@ -182,7 +183,6 @@ fight.prototype = {
   },
   render: function() {
     game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
-  	timer.render(game)
   },
 
 }

@@ -1,3 +1,5 @@
+var flashCardUI = {}
+
 flashCardUI.appendLetterToAnswer = function(letter){
   gameState.userGuess.text += letter
 }
