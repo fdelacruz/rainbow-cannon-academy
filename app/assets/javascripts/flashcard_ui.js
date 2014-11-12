@@ -34,20 +34,25 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.questionsCorrect++
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
 
-
       } else {
         gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
       }
 
       // break out of flashcard state if the user just pressed enter on the last card in the level
       if (gameState.currentDeck.currentIndex === 9 ) {
-        setTimeout(function(){game.state.start('fight')}, 1000)
+        if (gameState.finishingLevel) return
+        // leave a second to view last incorrect answer
+        setTimeout(function(){
+          game.state.start('fight')
+          gameState.finishingLevel = false
+        }, 1000)
+        gameState.finishingLevel = true
         return
       }
 
       gameUI.performCycleCardProcedure()
 
-      // clear user input
+      // // clear user input
       // gameState.userGuess.text = ""
       // // update current card to the next card in the current round
       // gameState.currentDeck.advanceToNextCard()

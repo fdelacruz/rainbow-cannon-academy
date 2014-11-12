@@ -54,6 +54,7 @@ gameState.currentDeck = null
 gameState.currentLevel = 1
 gameState.questionsCorrect = 0
 gameState.firstTimeOnLevel = true
+gameState.finishingLevel = false
 
 // init all the globals
 function start(){

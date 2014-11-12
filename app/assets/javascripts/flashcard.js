@@ -13,10 +13,8 @@ flashCard.prototype = {
 	  // input timer
     flashCardUI.textInputTimer = new Phaser.Rectangle(600, 150, 400, 1)
 
-
 	  // If game first starting, deck must be shuffled:
 	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
-
 
 	  // vector shapes
 	  flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
@@ -76,12 +74,26 @@ flashCard.prototype = {
 
   if (flashCardUI.textInputTimer.width <1) {
 
-
-
-    gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
     flashCardUI.textInputTimer.x = 600
     flashCardUI.textInputTimer.width = 400
-    gameUI.performCycleCardProcedure()
+
+    // prevents glitch on hitting multiple enter hits
+      if (gameState.currentDeck.currentIndex === 9 ) {
+        if (gameState.finishingLevel) return
+        // leave a second to view last incorrect answer
+        setTimeout(function(){
+          game.state.start('fight')
+          gameState.finishingLevel = false
+        }, 1000)
+        gameState.finishingLevel = true
+        return
+      }
+      // ---
+      gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
+      gameUI.performCycleCardProcedure()
+
+
+
    }
 
 
