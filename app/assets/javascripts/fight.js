@@ -4,30 +4,20 @@ fight.prototype = {
   create: function() {
   	console.log(game.state.current)
     
-  	overallUI.flashCardRoundComplete = false  // game.stage.backgroundColor = '#FFF6E7'
-  // starfield = game.add.tileSprite(0, 200, 1200, 600, 'starfield');
-
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  starfieldBackground.create(game)
 
-	  // populate deck
-	  // gameState.currentDeck.populateCurrentRound()
-
-
-	  // vector shapes
-	  flashCardUI.textInputLine = new Phaser.Rectangle(600, 150, 400, 1)
-
-	  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
-	  overallUI.gameAreaCeiling = game.add.sprite(0,200,null)
-	  game.physics.enable(overallUI.gameAreaCeiling, Phaser.Physics.ARCADE)
-	  overallUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
-	  overallUI.gameAreaCeiling.body.immovable = true
+	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
+	  gameUI.gameAreaCeiling = game.add.sprite(0,200,null)
+	  game.physics.enable(gameUI.gameAreaCeiling, Phaser.Physics.ARCADE)
+	  gameUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
+	  gameUI.gameAreaCeiling.body.immovable = true
 
 	  timer.create(game)
 
 	  // rain
-	  rain.create(game)
+	  // rain.create(game)
 
 	  // playerBullets
 	  playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -49,21 +39,6 @@ fight.prototype = {
 	  bossAlienBullets.setAll('anchor.x', 0.5)
 	  bossAlienBullets.setAll('anchor.y', 0.5)
 	  bossAlienBullets.setAll('damage', 50)
-
-
-	  // create platforms (stuff the character can stand on)
-	  // var platforms = gameState.groups.platforms = game.add.group()
-	  // platforms.enableBody = true
-
-	  // var ground = platforms.create(0, game.world.height -30, 'ground')
-	  // ground.scale.setTo(4,1)
-	  // ground.body.immovable = true
-
-	  // var rightLedge = platforms.create(400, 400, 'ground')
-	  // rightLedge.body.immovable = true
-	  // var screenSplit = platforms.create(0, 200, 'ground')
-	  // screenSplit.scale.setTo(4,1)
-	  // screenSplit.body.immovable = true
 
 	  // create player object
 	  var player = gameState.player = game.add.sprite(32, game.world.height - 150, 'dude')
@@ -88,33 +63,15 @@ fight.prototype = {
 
 	  // create keyboard listeners
 	  gameState.cursors = game.input.keyboard.createCursorKeys()
-	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
 
 	  // create text fields ------------------------------------------------
-	  overallUI.scoreObject = game.add.text(
+	  gameUI.scoreObject = game.add.text(
 	    32, 32, // x coord, y coord
-	    'Score: ' + overallUI.score, // text field
+	    'Score: ' + gameUI.score, // text field
 	    {fontSize: '32px', fill: '#ffffff'} // text styling
 	    )
 
-
-	  // answer input
-	  gameState.userGuess = game.add.text(600, 122, '', {fontSize: '32px', fill: '#ffffff'})
-	  // flascard question
-	  gameState.currentQuestion = game.add.text(200, 128, gameState.currentDeck.currentCard.term , {fontSize: '32px', fill: '#ffffff'})
-	  // current round remaining cards
-	  gameState.currentCardsRemaining = game.add.text(
-	    450, 50,
-	    'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound(),
-	    {fontSize: '32px', fill: '#ffffff'}
-	  )
-	  // feedback shown to user (ex: 'Correct' or 'Omaha')
-	  gameState.userFeedbackText = game.add.text(765, 165, '', {fontSize: '32px', fill: '#ffffff'})
-
-
-
-    
-    gameState.player.health = 100
+	  gameUI.spawnAliens()
   },
   update: function() {
   	 	var player = gameState.player
@@ -123,9 +80,11 @@ fight.prototype = {
 		  var shootTheBossAlienGun = false
 
 		  // Player cannot pass through the game boundaries
-		  game.physics.arcade.collide(player, overallUI.gameAreaCeiling)
+		  game.physics.arcade.collide(player, gameUI.gameAreaCeiling)
 		  // aliens cannot pass through game boundaries
-		  game.physics.arcade.collide(gameState.groups.aliens, overallUI.gameAreaCeiling)
+		  game.physics.arcade.collide(gameState.groups.aliens, gameUI.gameAreaCeiling)
+		  // boss alien cannot pass through game boundaries
+		  game.physics.arcade.collide(gameState.bossAlien, gameUI.gameAreaCeiling)
 		  // aliens bounce off of each other
 		  game.physics.arcade.collide(gameState.groups.aliens, gameState.groups.aliens)
 		  // aliens bounce off of boss alien
@@ -143,10 +102,6 @@ fight.prototype = {
 		  // set scroll speed of background
 		  // starfield.tilePosition.x -= 1
 		  starfieldBackground.update()
-
-		  // ---
-
-		  // player.body.velocity.x = 5
 		  
 		    if (cursors.left.isDown) {
 		      // player UP
@@ -178,7 +133,8 @@ fight.prototype = {
 		    shootTheBossAlienGun = true
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
-		  if (shootTheBossAlienGun) {
+
+		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
 
@@ -196,11 +152,10 @@ fight.prototype = {
 		  if (gameState.groups.aliens.x < 880){
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
-
-  	
   },
   render: function() {
-    phaserLifeCycleFunctions.render(game)
+    game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
+  	timer.render(game)
   },
 
 }
