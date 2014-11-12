@@ -4,6 +4,7 @@ flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
   	//resetting
+    gameState.currentDeck.roundComplete = false
   	gameState.currentDeck.currentIndex = 0
   	gameState.currentDeck.updateCurrentCard()
   	//--
@@ -36,10 +37,6 @@ flashCard.prototype = {
     flashcardPlayerBullets.enableBody = true
     flashcardPlayerBullets.physicsBodyType = Phaser.Physics.ARCADE
     flashcardPlayerBullets.createMultiple(250, 'bullet')
-
-
-
-
 
 	  // create boss alien - only visable to show upgrades
 	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')

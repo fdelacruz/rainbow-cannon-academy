@@ -1,10 +1,15 @@
 function CardDeck(array_of_card_jsons){
 	this.deck = array_of_card_jsons
+	this.roundComplete = false
 	this.currentRound = []
 	this.currentIndex = 0
 	this.currentCard = null
 	this.cardsLeftInCurrentRound = function(){
-		return (this.currentRound.length - this.currentIndex)
+		if (this.roundComplete){
+				return 0
+			} else{
+				return (this.currentRound.length - this.currentIndex)
+			}
 	}
 	this.advanceToNextCard = function(){
 		this.currentIndex += 1
@@ -22,8 +27,6 @@ function CardDeck(array_of_card_jsons){
 	this.updateCurrentCard = function(){
 		this.currentCard = this.currentRound[this.currentIndex]
 	}
-
-
 }
 
 function shuffle(o){
