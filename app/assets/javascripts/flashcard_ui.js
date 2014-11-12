@@ -34,7 +34,10 @@ flashCardUI.wordKeysHandler = function(evt){
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
         gameState.userFeedbackText.text = 'Last: Correct'
         gameState.questionsCorrect++
+        // show upgrade text
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
+        var upgradeTextSprite = game.add.text(32, game.world.height - 150, '+1 Gun Level', {font: '12px Josefin Slab', fill: 'white'})
+        flashCardUI.tweenPlayerUpgrade(upgradeTextSprite)
 
       // incorrect answer case:
       } else {
@@ -61,10 +64,8 @@ flashCardUI.upgradePlayer = function(playerLevel) {
   bullet = gameState.groups.flashcardPlayerBullets.getFirstExists(false)
   bullet.reset(gameState.flashcardPlayer.body.x, gameState.flashcardPlayer.body.y)
   gameState.groups.flashcardPlayerBullets.getFirstExists(false).body.velocity.x=1000
-  bullet.body.velocity.x = 200
   bullet.lifespan = 4000
   bullet.body.velocity.x = 1000
-
 }
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {
@@ -80,4 +81,9 @@ flashCardUI.clearFlashCardText = function(){
   flashCardUI.textInputLine.height = 0
 }
 
-
+flashCardUI.tweenPlayerUpgrade = function(text_sprite){
+  console.log(text_sprite)
+  var tween = game.add.tween(text_sprite)
+  tween.to({y: game.world.height - 300, alpha: 0}, 2500)
+  tween.start()
+}

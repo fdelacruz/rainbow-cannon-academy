@@ -33,6 +33,9 @@ flashCard.prototype = {
     flashcardPlayerBullets.enableBody = true
     flashcardPlayerBullets.physicsBodyType = Phaser.Physics.ARCADE
     flashcardPlayerBullets.createMultiple(250, 'bullet')
+    flashcardPlayer.anchor.set(0.5)
+
+    this.tweenPlayerFlyIn(flashcardPlayer)
 
 
 
@@ -75,14 +78,13 @@ flashCard.prototype = {
   },
 
   update: function() {
-      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
+	  Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
 
-  if (flashCardUI.textInputTimer.width <1) {
+	  if (flashCardUI.textInputTimer.width <1) {
+	    flashCardUI.textInputTimer.x = 0
+	    flashCardUI.textInputTimer.width = 1200
 
-    flashCardUI.textInputTimer.x = 0
-    flashCardUI.textInputTimer.width = 1200
-
-    // prevents glitch on hitting multiple enter hits
+	    // prevents glitch on hitting multiple enter hits
       if (gameState.currentDeck.currentIndex === 9 ) {
         if (gameState.finishingLevel) return
         // leave a second to view last incorrect answer
@@ -93,18 +95,19 @@ flashCard.prototype = {
         gameState.finishingLevel = true
         return
       }
-      // ---
+	      // ---
       gameState.userFeedbackText.text = "Last: " + gameState.currentDeck.currentCard.definition
       gameUI.performCycleCardProcedure()
-
-
-
-   }
-
-
+	  }
   },
   render: function() {
     phaserLifeCycleFunctions.render(game)
   },
+
+  tweenPlayerFlyIn: function(player){
+  	var tween = game.add.tween(player)
+    tween.from({x: -100, alpha: 0}, 2500)
+    tween.start()
+  }
 
 }
