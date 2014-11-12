@@ -66,7 +66,7 @@ fight.prototype = {
 	  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
 	  // create boss alien
-	  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'diamond')
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
@@ -170,13 +170,14 @@ fight.prototype = {
 		  		gameState.firstTimeOnLevel = false
 		    	game.state.start('level_intro')
 		  	}
-
 		  }
 
 		  if (gameState.groups.aliens.x < 850){
-		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
+		    if (gameUI.alienScatterEnabled) {
+		    	gameUI.scatterAliens()
+		    	gameUI.sendBossAlien()
+		    }
 		  }
-
 
 		  gameState.groups.aliens.forEach(function(alien){
 		  	if (alien.body.x < 100) {

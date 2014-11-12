@@ -23,10 +23,6 @@ gameUI.fireBossAlienBullet = function(){
   }
 }
 
-
-
-
-
 gameUI.spawnAliens = function(){
   // position the block of aliens
   aliens.x = 1230
@@ -46,11 +42,14 @@ gameUI.spawnAliens = function(){
   gameUI.sendAliens()
 }
 
+gameUI.sendBossAlien = function(){
+  gameState.bossAlien.body.velocity.x = -30
+}
+
 gameUI.scatterAliens = function(){
   gameState.groups.aliens.forEach(function(alien){
     alien.body.velocity.y = gameUI.getRandomInt(-20, 20)
     alien.body.velocity.x = gameUI.getRandomInt(-30, -10)
-
   })
   gameState.groups.aliens.setAll('body.collideWorldBounds', true)
   gameUI.alienScatterEnabled = false
