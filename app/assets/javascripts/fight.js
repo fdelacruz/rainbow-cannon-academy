@@ -185,7 +185,7 @@ fight.prototype = {
 		  	gameUI.bossInGameArea = true
 		  	gameState.bossAlien.body.collideWorldBounds = true
 		  	gameState.bossAlien.body.velocity.x = 30
-		  	gameState.bossAlien.body.velocity.y = 30
+		  	gameState.bossAlien.body.velocity.y = gameUI.getRandomInt(0, 30)
 		  }
 
 		  gameState.groups.aliens.forEach(function(alien){
