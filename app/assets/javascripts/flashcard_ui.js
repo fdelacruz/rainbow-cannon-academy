@@ -1,3 +1,5 @@
+var flashCardUI = {}
+
 flashCardUI.appendLetterToAnswer = function(letter){
   gameState.userGuess.text += letter
 }
@@ -46,6 +48,7 @@ flashCardUI.wordKeysHandler = function(evt){
       }
       // break out of flashcard state if the user just pressed enter on the last card in the level
       if (gameState.currentDeck.currentIndex === 9 ) {
+        gameState.currentDeck.roundComplete = true
         if (gameState.finishingLevel) return
         // leave a second to view last incorrect answer
         setTimeout(function(){
@@ -92,7 +95,6 @@ flashCardUI.tweenPlayerUpgrade = function(text_sprite){
 }
 
 flashCardUI.performCycleCardProcedure = function(){
-  console.log(gameState.currentDeck.currentCard)
       gameState.userGuess.text = ""
       // update current card to the next card in the current round
       gameState.currentDeck.advanceToNextCard()

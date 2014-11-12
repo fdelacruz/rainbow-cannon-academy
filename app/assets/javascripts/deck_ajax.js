@@ -1,4 +1,3 @@
-
 function callAjaxToSetCurrentDeck(){
   var deck
     var deckId = $('[data-deck-id]').data().deckId

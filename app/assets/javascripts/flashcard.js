@@ -1,3 +1,4 @@
+
 function flashCard() {}
 
 flashCard.prototype = {
@@ -9,6 +10,7 @@ flashCard.prototype = {
     // var planet = gameState.planetBg = game.add.tileSprite(0, 0, 1200, 600, 'space_bg')
 
   	//resetting
+    gameState.currentDeck.roundComplete = false
   	gameState.currentDeck.currentIndex = 0
   	gameState.currentDeck.updateCurrentCard()
   	//--
@@ -27,9 +29,8 @@ flashCard.prototype = {
 	  // vector shapes
 	  // flashCardUI.textInputLine = new Phaser.Rectangle(0, 200, 1200, 1)
 
-	  overallUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
+	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
 
-	  timer.create(game)
 
 	  // rain
 	  // rain.create(game)
@@ -111,7 +112,9 @@ flashCard.prototype = {
   },
 
   render: function() {
-    phaserLifeCycleFunctions.render(game)
+    game.debug.geom(flashCardUI.textInputLine,'#FFFFFF')
+    game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
+    game.debug.geom(flashCardUI.textInputTimer,'green')
   },
 
   tweenPlayerFlyIn: function(player){
