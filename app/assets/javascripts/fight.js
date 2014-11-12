@@ -79,10 +79,12 @@ fight.prototype = {
 	  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
 	  // create boss alien
-	  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'diamond')
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
+	  bossAlien.body.bounce.x = .9
+	  bossAlien.body.bounce.y = .9
 	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
 	  bossAlien.scale.setTo(scale,scale)
 	  bossAlien.anchor.x = 0.5
@@ -162,14 +164,9 @@ fight.prototype = {
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
 
-
-
-
 		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
-
-
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
@@ -187,11 +184,21 @@ fight.prototype = {
 		  		gameState.firstTimeOnLevel = false
 		    	game.state.start('level_intro')
 		  	}
-
 		  }
 
 		  if (gameState.groups.aliens.x < 850){
-		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
+		    if (gameUI.alienScatterEnabled) {
+		    	gameUI.scatterAliens()
+		    	gameUI.sendBossAlien()
+		    }
+		  }
+
+
+		  if (gameState.bossAlien.x < 800 ){
+		  	gameUI.bossInGameArea = true
+		  	gameState.bossAlien.body.collideWorldBounds = true
+		  	gameState.bossAlien.body.velocity.x = 30
+		  	gameState.bossAlien.body.velocity.y = gameUI.getRandomInt(0, 30)
 		  }
 
 		  gameState.groups.aliens.forEach(function(alien){
