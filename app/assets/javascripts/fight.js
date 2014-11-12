@@ -188,16 +188,6 @@ fight.prototype = {
 		  	gameState.bossAlien.body.velocity.y = 30
 		  }
 
-		  // if (gameState.bossAlien.y > 500 && gameState.bossAlien.x < 900 && gameUI.bossInGameArea){
-		  // 	gameState.bossAlien.body.velocity.x = 100
-		  // 	gameState.bossAlien.body.velocity.y = -100
-		  // }
-
-		  // if (gameState.bossAlien.y < 300 && gameState.bossAlien.x < 900 && gameUI.bossInGameArea){
-		  // 	gameState.bossAlien.body.velocity.x = 10
-		  // 	gameState.bossAlien.body.velocity.y = 10
-		  // }
-
 		  gameState.groups.aliens.forEach(function(alien){
 		  	if (alien.body.x < 100) {
 		  		alien.body.velocity.x = 0}
