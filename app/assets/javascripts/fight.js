@@ -70,8 +70,8 @@ fight.prototype = {
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
-	  bossAlien.body.bounce.x = 1
-	  bossAlien.body.bounce.y = 1
+	  bossAlien.body.bounce.x = .9
+	  bossAlien.body.bounce.y = .9
 	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
 	  bossAlien.scale.setTo(scale,scale)
 	  bossAlien.anchor.x = 0.5
@@ -181,22 +181,22 @@ fight.prototype = {
 		    }
 		  }
 
-		  if (gameState.bossAlien.x < 600 ){
+		  if (gameState.bossAlien.x < 800 ){
 		  	gameUI.bossInGameArea = true
-		  	gameState.bossAlien.setAll('body.collideWorldBounds', true)
-		  	gameState.bossAlien.body.velocity.x = 100
-		  	gameState.bossAlien.body.velocity.y = 100
+		  	gameState.bossAlien.body.collideWorldBounds = true
+		  	gameState.bossAlien.body.velocity.x = 30
+		  	gameState.bossAlien.body.velocity.y = 30
 		  }
 
-		  if (gameState.bossAlien.y > 500 && gameState.bossAlien.x < 900 && gameUI.bossInGameArea){
-		  	gameState.bossAlien.body.velocity.x = 100
-		  	gameState.bossAlien.body.velocity.y = -100
-		  }
+		  // if (gameState.bossAlien.y > 500 && gameState.bossAlien.x < 900 && gameUI.bossInGameArea){
+		  // 	gameState.bossAlien.body.velocity.x = 100
+		  // 	gameState.bossAlien.body.velocity.y = -100
+		  // }
 
-		  if (gameState.bossAlien.y < 300 && gameState.bossAlien.x < 900 && gameUI.bossInGameArea){
-		  	gameState.bossAlien.body.velocity.x = 10
-		  	gameState.bossAlien.body.velocity.y = 10
-		  }
+		  // if (gameState.bossAlien.y < 300 && gameState.bossAlien.x < 900 && gameUI.bossInGameArea){
+		  // 	gameState.bossAlien.body.velocity.x = 10
+		  // 	gameState.bossAlien.body.velocity.y = 10
+		  // }
 
 		  gameState.groups.aliens.forEach(function(alien){
 		  	if (alien.body.x < 100) {
