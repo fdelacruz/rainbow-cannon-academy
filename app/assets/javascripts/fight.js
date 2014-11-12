@@ -3,17 +3,21 @@
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
+
+  	// Logic to only scatter aliens once, called in fight - update loop
   	gameUI.alienScatterEnabled = true
+
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
+	  // scrolling tile sprite
 	  starfieldBackground.create(game)
 
+	  // Ceiling visible line and collision detector
 	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
 	  gameUI.gameAreaCeiling = game.add.sprite(0,200,null)
 	  game.physics.enable(gameUI.gameAreaCeiling, Phaser.Physics.ARCADE)
 	  gameUI.gameAreaCeiling.body.setSize(1200, 1, 0, 0)
 	  gameUI.gameAreaCeiling.body.immovable = true
-
 
 	  // rain
 	  rain.create(game)
@@ -165,24 +169,14 @@ fight.prototype = {
 		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
 		  }
 
-		  // if (gameState.groups.aliens.x < 250){
-		  //   gameState.groups.aliens.forEach(function(alien){
-    // 			alien.body.velocity.x = 20
-		  //   alien.body.velocity.y = gameUI.getRandomInt(-20, 20)
-  		// 	})
-		  // }
-
 
 		  gameState.groups.aliens.forEach(function(alien){
 		  	if (alien.body.x < 100) {
 		  		alien.body.velocity.x = 0}
-		    // alien.body.velocity.x = gameUI.getRandomInt(-20, 0)
 		  })
-
 
   },
   render: function() {
     game.debug.geom(gameUI.gameAreaCeilingLine,'#FFFFFF')
   },
-
 }

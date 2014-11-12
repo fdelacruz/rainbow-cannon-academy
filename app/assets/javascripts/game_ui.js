@@ -50,6 +50,7 @@ gameUI.scatterAliens = function(){
   gameState.groups.aliens.forEach(function(alien){
     alien.body.velocity.y = gameUI.getRandomInt(-20, 20)
     alien.body.velocity.x = gameUI.getRandomInt(-30, -10)
+
   })
   gameState.groups.aliens.setAll('body.collideWorldBounds', true)
   gameUI.alienScatterEnabled = false
