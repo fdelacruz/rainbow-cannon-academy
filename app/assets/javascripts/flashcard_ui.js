@@ -41,6 +41,9 @@ flashCardUI.wordKeysHandler = function(evt){
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
         var upgradeTextSprite = game.add.text(0, game.world.height - 150, '+1 Gun Level', {font: '12px Josefin Slab', fill: 'green'})
         flashCardUI.tweenPlayerUpgrade(upgradeTextSprite)
+        // show correct text animation
+        var correctTextSprite = game.add.text(540, 150, gameState.userGuess.text, {font: '24px Josefin Slab', fill: 'green'})
+        flashCardUI.tweenRightAnswer(correctTextSprite)
 
       // incorrect answer case:
       } else {
@@ -88,9 +91,14 @@ flashCardUI.clearFlashCardText = function(){
 }
 
 flashCardUI.tweenPlayerUpgrade = function(text_sprite){
-  console.log(text_sprite)
   var tween = game.add.tween(text_sprite)
   tween.to({y: game.world.height - 300, alpha: 0}, 2500)
+  tween.start()
+}
+
+flashCardUI.tweenRightAnswer = function(text){
+  var tween = game.add.tween(text)
+  tween.to({y: 0, alpha: 0}, 1000)
   tween.start()
 }
 

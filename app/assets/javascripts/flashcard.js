@@ -4,10 +4,11 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
-  	// game.stage.backgroundColor = '#D95B43'
+  	game.stage.backgroundColor = '#D95B43'
 
   	// create planet
-    // var planet = gameState.planetBg = game.add.tileSprite(0, 0, 1200, 600, 'space_bg')
+    var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
+
 
   	//resetting
     gameState.currentDeck.roundComplete = false
@@ -15,7 +16,6 @@ flashCard.prototype = {
   	gameState.currentDeck.updateCurrentCard()
   	//--
   	gameState.questionsCorrect = 0
-	  starfieldBackground.create(game)
 
 	  // populate deck
 
