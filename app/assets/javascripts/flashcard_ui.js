@@ -24,18 +24,31 @@ flashCardUI.wordKeysHandler = function(evt){
     }
 
     if (evt.which === 13 /* enter */) {
+      // update timer
+        flashCardUI.textInputTimer.x = 0
+        flashCardUI.textInputTimer.width = 1200
+      //
       // update user feedback text
+
+      // correct answer case:
       if (flashCardUI.checkUserGuess(gameState.userGuess.text, gameState.currentDeck.currentCard.definition)){
-        gameState.userFeedbackText.text = 'Correct'
+        gameState.userFeedbackText.text = 'Last: Correct'
         gameState.questionsCorrect++
+        flashCardUI.upgradePlayer(gameState.questionsCorrect)
 
+      // incorrect answer case:
       } else {
-        gameState.userFeedbackText.text = gameState.currentDeck.currentCard.definition
+        gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
       }
-
       // break out of flashcard state if the user just pressed enter on the last card in the level
       if (gameState.currentDeck.currentIndex === 9 ) {
-        setTimeout(function(){game.state.start('fight')}, 1000)
+        if (gameState.finishingLevel) return
+        // leave a second to view last incorrect answer
+        setTimeout(function(){
+          game.state.start('fight')
+          gameState.finishingLevel = false
+        }, 1000)
+        gameState.finishingLevel = true
         return
       }
 
@@ -47,8 +60,22 @@ flashCardUI.wordKeysHandler = function(evt){
       gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
       // update the current Question in the view
       gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
+
+      gameUI.performCycleCardProcedure()
+
     }
   // }
+}
+
+flashCardUI.upgradePlayer = function(playerLevel) {
+  // Current level = playerLevel (for setting specific upgrades)
+  bullet = gameState.groups.flashcardPlayerBullets.getFirstExists(false)
+  bullet.reset(gameState.flashcardPlayer.body.x, gameState.flashcardPlayer.body.y)
+  gameState.groups.flashcardPlayerBullets.getFirstExists(false).body.velocity.x=1000
+  bullet.body.velocity.x = 200
+  bullet.lifespan = 4000
+  bullet.body.velocity.x = 1000
+
 }
 
 flashCardUI.isLetterKeyOrSpaceOrNumber =  function(keyCode) {

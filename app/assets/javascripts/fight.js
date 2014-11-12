@@ -1,4 +1,4 @@
-	function fight() {}
+function fight() {}
 
 fight.prototype = {
   create: function() {
