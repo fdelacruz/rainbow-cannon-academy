@@ -3,9 +3,7 @@ function fight() {}
 fight.prototype = {
   create: function() {
   	console.log(game.state.current)
-
   	gameUI.alienScatterEnabled = true
-    
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  starfieldBackground.create(game)
@@ -48,6 +46,7 @@ fight.prototype = {
 	  player.body.bounce.y = 0.2
 	  player.body.collideWorldBounds = true
 	  player.health = 100
+	  gameUI.upgradeGun(gameState.questionsCorrect)
 
 	  // create explosions
 	  var explosions = gameState.groups.explosions = game.add.group()
@@ -68,7 +67,8 @@ fight.prototype = {
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
-	  bossAlien.scale.setTo(1,1)
+	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
+	  bossAlien.scale.setTo(scale,scale)
 	  bossAlien.anchor.x = 0.5
 	  bossAlien.anchor.y = 0.5
 
@@ -113,7 +113,7 @@ fight.prototype = {
 		  // set scroll speed of background
 		  // starfield.tilePosition.x -= 1
 		  starfieldBackground.update()
-		  
+
 		    if (cursors.left.isDown) {
 		      // player UP
 		      player.body.velocity.y = -250;

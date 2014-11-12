@@ -51,7 +51,18 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.finishingLevel = true
         return
       }
+
+      // clear user input
+      gameState.userGuess.text = ""
+      // update current card to the next card in the current round
+      gameState.currentDeck.advanceToNextCard()
+      // update cards remaining in the view
+      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+      // update the current Question in the view
+      gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
+
       gameUI.performCycleCardProcedure()
+
     }
   // }
 }

@@ -111,9 +111,12 @@ gameUI.spawnAlienBoss = function(){
   true)
 }
 
-gameUI.upgradeGun= function(){
-  gameUI.gunLevel++
-  gameUI.firePlayerGunRate = Math.floor(gameUI.firePlayerGunRate * .75)+1
+gameUI.upgradeGun = function(questionsCorrect){
+  if (questionsCorrect === 10){
+    gameUI.firePlayerGunRate = 1
+  } else{
+    gameUI.firePlayerGunRate = Math.ceil((11 - questionsCorrect) * 6)
+  }
 }
 
 gameUI.shrinkBoss = function(boss, bullet){
@@ -126,6 +129,11 @@ gameUI.shrinkBoss = function(boss, bullet){
 gameUI.growBoss = function(){
   gameState.bossAlien.scale.x *= 1.25 // makes boss 125% of size
   gameState.bossAlien.scale.y *= 1.25
+}
+
+gameUI.alienBossScale = function(questionsCorrect){
+  if (questionsCorrect === 10) return 1
+  return (1.25 * gameUI.alienBossScale(questionsCorrect+1))
 }
 
 gameUI.hitPlayer = function(player, objectThatHits){

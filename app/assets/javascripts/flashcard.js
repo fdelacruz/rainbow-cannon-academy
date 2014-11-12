@@ -10,8 +10,11 @@ flashCard.prototype = {
   	gameState.questionsCorrect = 0
 	  starfieldBackground.create(game)
 
+	  // populate deck
+
 	  // input timer
     flashCardUI.textInputTimer = new Phaser.Rectangle(0, 200, 1200, 1)
+
 
 	  // If game first starting, deck must be shuffled:
 	  if (gameState.firstTimeOnLevel) gameState.currentDeck.populateCurrentRound()
@@ -39,10 +42,11 @@ flashCard.prototype = {
 
 
 	  // create boss alien - only visable to show upgrades
-	  flashcardBossAlien = game.add.sprite(900, 250, 'diamond')
+	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  flashcardBossAlien.scale.setTo(1,1)
+
 
 	  // create keyboard listeners
 	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
@@ -75,6 +79,11 @@ flashCard.prototype = {
   },
 
   update: function() {
+
+    var questionsCorrect = gameState.currentDeck.cardsLeftInCurrentRound() + gameState.questionsCorrect
+    var s = gameUI.alienBossScale(questionsCorrect)
+    gameState.bossAlien.scale.setTo(s,s)
+
       Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
 
   if (flashCardUI.textInputTimer.width <1) {
@@ -96,11 +105,7 @@ flashCard.prototype = {
       // ---
       gameState.userFeedbackText.text = "Last: " + gameState.currentDeck.currentCard.definition
       gameUI.performCycleCardProcedure()
-
-
-
    }
-
 
   },
   render: function() {
