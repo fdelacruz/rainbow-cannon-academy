@@ -79,7 +79,7 @@ fight.prototype = {
 	  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
 	  // create boss alien
-	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'diamond')
+	  bossAlien = gameState.bossAlien = game.add.sprite(1350, 350, 'diamond')
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
