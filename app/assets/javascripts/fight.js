@@ -104,8 +104,8 @@ fight.prototype = {
   },
   update: function() {
   	// scroll speed of background:
-  		gameState.planetBg.tilePosition.x -= 1 
-  		
+  		gameState.planetBg.tilePosition.x -= 1
+
   	 	var player = gameState.player
 		  var cursors = gameState.cursors
 		  var shootThePlayerGun = false
@@ -179,6 +179,7 @@ fight.prototype = {
 		  	gameState.lifes -= 1
 		  	if (gameState.lifes <= 0){
 		  		console.log('game over')
+		  		game.state.start('game_over')
 		  		// gameState.firstTimeOnLevel = false
 		  		// game.state.start('game_over')
 		  	} else {
