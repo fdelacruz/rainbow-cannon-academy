@@ -39,7 +39,7 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.questionsCorrect++
         // show upgrade text
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
-        var upgradeTextSprite = game.add.text(0, game.world.height - 150, '+1 Gun Level', {font: '24px Josefin Slab', fill: '#8CC97A'})
+        var upgradeTextSprite = game.add.text(0, 400, '+1 Gun Level', {font: '24px Josefin Slab', fill: '#8CC97A'})
         flashCardUI.tweenPlayerUpgrade(upgradeTextSprite)
         // show correct text animation
         var correctTextSprite = game.add.text(600, 150, gameState.userGuess.text, {font: '24px Josefin Slab', fill: '#8CC97A'})
@@ -56,6 +56,10 @@ flashCardUI.wordKeysHandler = function(evt){
         var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: '#B5413E'})
         wrongTextSprite.anchor.set(0.5)
         flashCardUI.tweenWrongAnswer(wrongTextSprite)
+
+        var bossLol = game.add.text(950, 300, "HA! HA! HA!!1", {font:'24px Josefin Slab', fill:'#B5413E'})
+        bossLol.anchor.set(0.5)
+        flashCardUI.tweenBossLol(bossLol)
       }
       // break out of flashcard state if the user just pressed enter on the last card in the level
       if (gameState.currentDeck.currentIndex === 9 ) {
@@ -98,29 +102,43 @@ flashCardUI.clearFlashCardText = function(){
   flashCardUI.textInputLine.height = 0
 }
 
+/* Player flies in from the left on flashcard mode start */
 flashCardUI.tweenPlayerFlyIn = function(player){
   var tween = game.add.tween(player)
   tween.from({x: -100, alpha: 0}, 3000)
   tween.start()
 },
 
+
+/* Boss flies in from right on flashcard mode start */
 flashCardUI.tweenBossFlyIn = function(boss){
   var tween = game.add.tween(boss)
   tween.from({x: 1300, alpha: 1}, 3000)
   tween.start()
 }
 
+/* +1 gun level text floats above player on correct answer */
 flashCardUI.tweenPlayerUpgrade = function(text_sprite){
   var tween = game.add.tween(text_sprite)
   tween.to({y: game.world.height - 300, alpha: 0}, 2000)
   tween.start()
 }
 
+/*  */
+flashCardUI.tweenBossLol = function(text_sprite){
+  var tween = game.add.tween(text_sprite)
+  tween.to({y: 250, alpha: 0}, 2000)
+  tween.start()
+}
+
+/* Answer turns green and floats right if correct */
 flashCardUI.tweenRightAnswer = function(text){
   var tween = game.add.tween(text)
   tween.to({x: 800, alpha: 0}, 1000)
   tween.start()
 }
+
+
 
 flashCardUI.tweenWrongAnswer = function(text){
   var tween = game.add.tween(text)
