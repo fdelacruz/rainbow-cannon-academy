@@ -23,7 +23,7 @@ fight.prototype = {
 	  game.physics.startSystem(Phaser.Physics.ARCADE)
 
 	  // scrolling tile sprite
-	  starfieldBackground.create(game)
+    var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
 
 	  // Ceiling visible line and collision detector
 	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
@@ -79,10 +79,12 @@ fight.prototype = {
 	  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
 	  // create boss alien
-	  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'diamond')
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
+	  bossAlien.body.bounce.x = .9
+	  bossAlien.body.bounce.y = .9
 	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
 	  bossAlien.scale.setTo(scale,scale)
 	  bossAlien.anchor.x = 0.5
@@ -101,6 +103,9 @@ fight.prototype = {
 	  gameUI.spawnAliens()
   },
   update: function() {
+  	// scroll speed of background:
+  		gameState.planetBg.tilePosition.x -= 1 
+  		
   	 	var player = gameState.player
 		  var cursors = gameState.cursors
 		  var shootThePlayerGun = false
@@ -128,10 +133,6 @@ fight.prototype = {
 		  // Boss alien bullets damage player
 		  game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
 
-		  // set scroll speed of background
-		  // starfield.tilePosition.x -= 1
-		  starfieldBackground.update()
-
 		    if (cursors.left.isDown) {
 		      // player UP
 		      player.body.velocity.y = -250;
@@ -157,20 +158,16 @@ fight.prototype = {
 		    gameUI.firePlayerBullet()
 		  }
 
+		  // gameState.bossAlien.rotation = game.physics.arcade.angleBetween(gameState.bossAlien, gameState.player)
 		  gameUI.fireBossAlienGunCounter += 1
 		  if (gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate){
 		    shootTheBossAlienGun = true
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
 
-
-
-
 		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
 		    gameUI.fireBossAlienBullet()
 		  }
-
-
 
 		  if (gameUI.aliensDead()) {
 		    gameState.currentLevel++
@@ -188,11 +185,21 @@ fight.prototype = {
 		  		gameState.firstTimeOnLevel = false
 		    	game.state.start('level_intro')
 		  	}
-
 		  }
 
 		  if (gameState.groups.aliens.x < 850){
-		    if (gameUI.alienScatterEnabled) gameUI.scatterAliens()
+		    if (gameUI.alienScatterEnabled) {
+		    	gameUI.scatterAliens()
+		    	gameUI.sendBossAlien()
+		    }
+		  }
+
+
+		  if (gameState.bossAlien.x < 800 ){
+		  	gameUI.bossInGameArea = true
+		  	gameState.bossAlien.body.collideWorldBounds = true
+		  	gameState.bossAlien.body.velocity.x = 30
+		  	gameState.bossAlien.body.velocity.y = gameUI.getRandomInt(0, 30)
 		  }
 
 		// Kamikazee Behavior
