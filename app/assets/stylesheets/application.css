@@ -8,6 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require basscss
  *= require_self
  *= require_tree .
  */
@@ -20,5 +21,47 @@
  .gfont{
   font-family: 'Josefin Slab', serif;
  }
+
+ /*.user-decks{
+  height: 50px;
+ }
+
+ .dd-style{
+  height: 60px;
+  font-size: 20px;
+ }
+
+.dd-submit{
+    /*bottom: -2px;*/
+    margin-bottom: 15px;
+    background-color:#00CF26;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    border:1px solid #dcdcdc;
+    /*display:inline-block;*/
+    color:#fafafa;
+    font-family:arial;
+    font-size:12px;
+    font-weight:bold;
+    padding:18px 50px;
+    text-decoration:none;
+    text-shadow:0px 0px 0px #70706f;
+}
+
+.dd-submit-div{
+  max-width: 500px;
+  display: block;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+ .dd-select-container{
+  max-width: 500px;
+  height: 200px;
+  display:block;
+ }
+*/
+
 
 

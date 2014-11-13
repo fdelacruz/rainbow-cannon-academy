@@ -1,6 +1,12 @@
-<div>
-  <%= form_for "choice", url: "decks/selection" do |f| %>
-    <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id) %>
-    <%= f.submit %>
-  <% end %>
+<div class="clearfix mxn2">
+  <div class="col-12 px2 outline-blue">
+    <center>
+      <%= form_for "choice", url: "decks/selection", :html => { :class => "sm-col-6"} do |f| %>
+      <fieldset class="fieldset-reset center">
+        <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id) %>
+      </fieldset>
+      <%= button_tag(type: 'submit', :class => "inline-block button-large white bg-blue rounded") {content_tag(:strong, 'Submit')} %>
+      <% end %>
+    </center>
+  </div>
 </div>
