@@ -125,7 +125,7 @@ fight.prototype = {
 	  gameUI.scoreObject = game.add.text(
 	    32, 32, // x coord, y coord
 	    'Score: ' + gameUI.score, // text field
-	    {fontSize: '32px', fill: '#ffffff'} // text styling
+	    {font: '24px Josefin Slab', fill: '#ffffff'}  // text styling
 	    )
 
 	  gameUI.spawnAliens()

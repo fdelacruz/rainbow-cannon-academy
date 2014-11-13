@@ -29,15 +29,16 @@ function gameOver (){}
     var lvltext = game.add.text(
       game.world.centerX,
       game.world.centerY, "Game Over \n You lost on level" + gameState.currentLevel + "\n Press enter to play again",
-      { font: '24px Arial', fill: 'white'}
+      { font: '24px Josefin Slab', fill: 'white'}
     )
     lvltext.anchor.set(0.5)
 
-    var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
+    // var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
 
-    enterKey.onDown.add(function(){ game.state.start('welcome') }, this)
+    // enterKey.onDown.add(function(){ game.state.start('welcome') }, this)
 
     this.tweenLevelIntro(lvltext)
+    this.tweenLevelIntro(worstFiveCardsText)
   },
 
   update: function() {
