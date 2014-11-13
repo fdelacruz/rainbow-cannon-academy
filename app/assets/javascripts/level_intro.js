@@ -10,7 +10,7 @@ levelIntro.prototype = {
     var lvltext = game.add.text(
       game.world.centerX,
       game.world.centerY, "Level " + gameState.currentLevel,
-      { font: '68px Arial', fill: 'white'}
+      { font: '68px Josefin Slab', fill: 'white'}
     )
     lvltext.anchor.set(0.5)
 
