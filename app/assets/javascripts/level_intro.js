@@ -5,7 +5,7 @@ levelIntro.prototype = {
   },
 
   create: function() {
-    game.stage.backgroundColor = '#231825'
+    game.stage.backgroundColor = '#1E1B2B'
 
     var lvltext = game.add.text(
       game.world.centerX,
