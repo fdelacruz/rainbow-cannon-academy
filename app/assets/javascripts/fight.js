@@ -28,6 +28,7 @@ fight.prototype = {
 
 	  // scrolling tile sprite
     var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
+    flashCardUI.tweenBgFadeIn(planet)
 
 	  // Ceiling visible line and collision detector
 	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
