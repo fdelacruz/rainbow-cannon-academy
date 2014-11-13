@@ -4,7 +4,7 @@
   <br>
   <%= link_to "Signout", "/session/destroy" %>
   <br>
-  <h2>Play one of your Quizlet decks!<h2>
+  <h2>Play one of your Quizlet decks!</h2>
   <%= render partial: "user_decks", locals: { signed_in_user_id: session[:user_id]} %>
 
   <h2>Or try a sample deck</h2>
