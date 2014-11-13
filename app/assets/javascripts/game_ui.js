@@ -4,7 +4,7 @@ gameUI.firePlayerBullet = function() {
   if (game.time.now > gameUI.bulletTime) {
     playerBullets = gameState.groups.playerBullets.getFirstExists(false)
     if (playerBullets) {
-      playerBullets.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
+      playerBullets.reset(gameState.player.body.x + 36, gameState.player.body.y + 20)
       playerBullets.lifespan = 4000
       playerBullets.checkWorldBounds = true
       playerBullets.outOfBoundsKill = true
@@ -102,7 +102,7 @@ gameUI.aliensDead = function(){
 }
 
 gameUI.spawnAlienBoss = function(){
-  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'boss_alien')
   game.physics.arcade.enable(bossAlien)
   bossAlien.enableBody = true
   game.physics.arcade.enable(bossAlien)
@@ -136,13 +136,9 @@ gameUI.shrinkBoss = function(boss, bullet){
 }
 
 gameUI.growBoss = function(){
-  gameState.bossAlien.scale.x *= 1.25 // makes boss 125% of size
-  gameState.bossAlien.scale.y *= 1.25
-}
-
-gameUI.alienBossScale = function(questionsCorrect){
-  if (questionsCorrect === 10) return 1
-  return (1.25 * gameUI.alienBossScale(questionsCorrect+1))
+  gameState.bossAlien.scale.x *= 1.2 // makes boss 125% of size
+  gameState.bossAlien.scale.y *= 1.2
+  gameState.bossAlienScale = gameState.bossAlien.scale.x
 }
 
 gameUI.hitPlayer = function(player, objectThatHits){

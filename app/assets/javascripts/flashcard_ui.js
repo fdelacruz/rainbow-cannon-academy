@@ -39,20 +39,21 @@ flashCardUI.wordKeysHandler = function(evt){
         gameState.questionsCorrect++
         // show upgrade text
         flashCardUI.upgradePlayer(gameState.questionsCorrect)
-        var upgradeTextSprite = game.add.text(0, game.world.height - 150, '+1 Gun Level', {font: '12px Josefin Slab', fill: 'green'})
+        var upgradeTextSprite = game.add.text(0, game.world.height - 150, '+1 Gun Level', {font: '24px Josefin Slab', fill: '#8CC97A'})
         flashCardUI.tweenPlayerUpgrade(upgradeTextSprite)
         // show correct text animation
-        var correctTextSprite = game.add.text(600, 150, gameState.userGuess.text, {font: '24px Josefin Slab', fill: 'green'})
+        var correctTextSprite = game.add.text(600, 150, gameState.userGuess.text, {font: '24px Josefin Slab', fill: '#8CC97A'})
         correctTextSprite.anchor.set(0.5)
         flashCardUI.tweenRightAnswer(correctTextSprite)
 
       // incorrect answer case:
       } else {
+        gameUI.growBoss()
         gameState.wrongAnswerCards.push(gameState.currentDeck.currentCard)
         gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
 
         // show incorrect text animation
-        var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: 'red'})
+        var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: '#B5413E'})
         wrongTextSprite.anchor.set(0.5)
         flashCardUI.tweenWrongAnswer(wrongTextSprite)
       }
@@ -97,9 +98,21 @@ flashCardUI.clearFlashCardText = function(){
   flashCardUI.textInputLine.height = 0
 }
 
+flashCardUI.tweenPlayerFlyIn = function(player){
+  var tween = game.add.tween(player)
+  tween.from({x: -100, alpha: 0}, 3000)
+  tween.start()
+},
+
+flashCardUI.tweenBossFlyIn = function(boss){
+  var tween = game.add.tween(boss)
+  tween.from({x: 1300, alpha: 1}, 3000)
+  tween.start()
+}
+
 flashCardUI.tweenPlayerUpgrade = function(text_sprite){
   var tween = game.add.tween(text_sprite)
-  tween.to({y: game.world.height - 300, alpha: 0}, 2500)
+  tween.to({y: game.world.height - 300, alpha: 0}, 2000)
   tween.start()
 }
 
@@ -114,6 +127,7 @@ flashCardUI.tweenWrongAnswer = function(text){
   tween.to({x: 800, alpha: 0}, 1400)
   tween.start()
 }
+
 
 flashCardUI.performCycleCardProcedure = function(){
       gameState.userGuess.text = ""

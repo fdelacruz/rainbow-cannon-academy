@@ -4,6 +4,10 @@ fight.prototype = {
   create: function() {
   	console.log(game.state.current)
 
+  	// create HUD Display
+    var hud = game.add.sprite(0, 0, 'hud')
+    hud.width = 1200
+    hud.height = 200
 
   	// Enemy Bullets
     enemyBullets = game.add.group();
@@ -33,7 +37,7 @@ fight.prototype = {
 	  gameUI.gameAreaCeiling.body.immovable = true
 
 	  // rain
-	  rain.create(game)
+	  // rain.create(game)
 
 	  // playerBullets
 	  playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -64,6 +68,14 @@ fight.prototype = {
 	  player.health = 100
 	  gameUI.upgradeGun(gameState.questionsCorrect)
 
+	  // create lives
+
+	  for (var y = 1; y < gameState.lifes + 1; y++) {
+	  	var life = game.add.sprite(y*48, 130, 'dude')
+	  	life.angle = -90
+	  	life.scale.setTo(0.75,0.75)
+	  } 
+
 	  // create explosions
 	  var explosions = gameState.groups.explosions = game.add.group()
     explosions.createMultiple(21, 'explosion')
@@ -79,14 +91,13 @@ fight.prototype = {
 	  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
 	  // create boss alien
-	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'diamond')
+	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'boss_alien')
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  bossAlien.body.bounce.x = .9
 	  bossAlien.body.bounce.y = .9
-	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
-	  bossAlien.scale.setTo(scale,scale)
+	  bossAlien.scale.setTo(gameState.bossAlienScale,gameState.bossAlienScale)
 	  bossAlien.anchor.x = 0.5
 	  bossAlien.anchor.y = 0.5
 
