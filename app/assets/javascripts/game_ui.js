@@ -132,7 +132,7 @@ gameUI.shrinkBoss = function(boss, bullet){
   bullet.kill()
   gameState.bossAlien.scale.x *= .8 // makes boss 80% of size when hit
   gameState.bossAlien.scale.y *= .8
-  if (gameState.bossAlien.scale.x <= 1) boss.kill() // boss dies at scale 1
+  if (gameState.bossAlien.scale.x <= 0.25) boss.kill() // boss dies at scale 1
 }
 
 gameUI.growBoss = function(){
@@ -142,6 +142,10 @@ gameUI.growBoss = function(){
 }
 
 gameUI.hitPlayer = function(player, objectThatHits){
+  var dh = gameState.groups.dude_hit.getFirstExists(false)
+  dh.reset(gameState.player.body.x, gameState.player.body.y)
+  dh.play('dude_hit', 20, false, true)
+
   objectThatHits.kill() // object that collides with player
   player.health -= objectThatHits.damage
   // if Player dies, kill him/her & reset the round & subtract 10% points

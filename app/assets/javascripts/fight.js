@@ -65,7 +65,7 @@ fight.prototype = {
 	  game.physics.arcade.enable(player)
 	  player.body.bounce.y = 0.2
 	  player.body.collideWorldBounds = true
-	  player.health = 100
+	  player.health = 150
 	  gameUI.upgradeGun(gameState.questionsCorrect)
 
 	  // create lives
@@ -84,6 +84,19 @@ fight.prototype = {
     function setUpExplosion(explode){
     	explode.animations.add('explosion')
     }
+    // ---
+
+    // create dude hit animation
+
+    var dude_hit = gameState.groups.dude_hit = game.add.group()
+    dude_hit.createMultiple(21, 'dude_hit')
+    dude_hit.forEach(setUpDudeHit)
+
+    function setUpDudeHit(dude_hit){
+    	dude_hit.animations.add('dude_hit')
+    }
+
+    // ---
 
 	  // create regular aliens
 	  aliens = gameState.groups.aliens = game.add.group()
@@ -93,6 +106,7 @@ fight.prototype = {
 	  // create boss alien
 
 	  bossAlien = gameState.bossAlien = game.add.sprite(1350, 350, 'boss_alien')
+	  // gameState.bossAlienScale = 0.25
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
@@ -214,19 +228,19 @@ fight.prototype = {
 
 
 		  gameState.groups.aliens.forEach(function(alien){
-		  	if (alien.body.x  < 150.5 & alien.body.x  > 149.5  ) {
+		  	if (alien.body.x  < 200.5 & alien.body.x  > 199.5  ) {
 		  		alien.body.velocity.x = 0}
 		  	if (alien.body.x === 0) {
 		  		alien.body.velocity.x = 50}
 		  })
 
 		  gameState.groups.aliens.forEach(function(alien){
-		  	if (alien.body.x <151 && alien.body.x >149 ) gameUI.kamikazeCounter++
+		  	if (alien.body.x <201 && alien.body.x >199 ) gameUI.kamikazeCounter++
 		  })
 
 		  if (gameUI.kamikazeCounter > 1) {
 		  	gameState.groups.aliens.forEach(function(alien){
-		  		if (alien.body.x <151 && alien.body.x >149)  {
+		  		if (alien.body.x <201 && alien.body.x >199)  {
 		  			alien.body.velocity.x = -300
 		  			gameUI.kamikazeCounter = 0
 		  		}

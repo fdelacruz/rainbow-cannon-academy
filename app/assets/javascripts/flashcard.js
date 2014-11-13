@@ -53,6 +53,7 @@ flashCard.prototype = {
 
 	  // create boss alien - only visable to show upgrades
 	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(950, 350, 'boss_alien')
+    gameState.bossAlienScale = 0.25
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
     flashcardBossAlien.scale.setTo(0.25, 0.25)
