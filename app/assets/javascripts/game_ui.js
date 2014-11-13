@@ -17,7 +17,7 @@ gameUI.fireBossAlienBullet = function(){
   if (game.time.now > gameUI.bulletTime) {
     bossAlienBullets = gameState.groups.bossAlienBullets.getFirstExists(false)
     if (bossAlienBullets) {
-      bossAlienBullets.reset(gameState.bossAlien.body.x, gameState.bossAlien.body.y + (gameState.bossAlien.height*(1/2)))
+      bossAlienBullets.reset(gameState.bossAlien.body.x + (gameState.bossAlien.width*(1/2)), gameState.bossAlien.body.y + (gameState.bossAlien.height*(1/2)))
       bossAlienBullets.lifespan = 4000
       bossAlienBullets.body.velocity.x = -500
       bossAlienBullets.body.velocity.y = bossAlienBullets.body.velocity.x * Math.tan(gameState.bossAlien.rotation)
