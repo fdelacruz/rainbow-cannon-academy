@@ -151,24 +151,17 @@ fight.prototype = {
 		  // fire!
 		  gameUI.firePlayerGunCounter += 1
 		  if (gameUI.firePlayerGunCounter >= gameUI.firePlayerGunRate){
-		    // shootThePlayerGun = true
-		    gameUI.firePlayerBullet()
+		  	if (!gameUI.alienScatterEnabled){
+		  		gameUI.firePlayerBullet()
 		    gameUI.firePlayerGunCounter = 0
-		  }
-		  if (shootThePlayerGun) {
-		    gameUI.firePlayerBullet()
+		  	}
 		  }
 
 		  // gameState.bossAlien.rotation = game.physics.arcade.angleBetween(gameState.bossAlien, gameState.player)
 		  gameUI.fireBossAlienGunCounter += 1
 		  if ((gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate) && gameState.bossAlien.inWorld){
 		    gameUI.fireBossAlienBullet()
-		    // shootTheBossAlienGun = true
 		    gameUI.fireBossAlienGunCounter = 0
-		  }
-
-		  if (shootTheBossAlienGun && gameState.bossAlien.alive) {
-		    gameUI.fireBossAlienBullet()
 		  }
 
 		  if (gameUI.aliensDead()) {
@@ -226,9 +219,6 @@ fight.prototype = {
 		  			gameUI.kamikazeCounter = 0
 		  		}
 		  	})
-
-
-		  	console.log("kamikaze")
 		  }
 		  gameUI.kamikazeCounter = 0
 
