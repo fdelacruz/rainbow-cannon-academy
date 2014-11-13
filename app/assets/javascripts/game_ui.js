@@ -6,6 +6,8 @@ gameUI.firePlayerBullet = function() {
     if (playerBullets) {
       playerBullets.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
       playerBullets.lifespan = 4000
+      playerBullets.checkWorldBounds = true
+      playerBullets.outOfBoundsKill = true
       playerBullets.body.velocity.x = 1000
     }
   }
