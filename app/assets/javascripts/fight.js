@@ -61,9 +61,9 @@ fight.prototype = {
 	  // create lives
 
 	  for (var y = 1; y < gameState.lifes + 1; y++) {
-	  	var life = game.add.sprite(y*48, 130, 'dude')
+	  	var life = game.add.sprite((y*48)+100, 60, 'dude')
 	  	life.angle = -90
-	  	life.scale.setTo(0.75,0.75)
+	  	life.scale.setTo(0.6,0.6)
 	  }
 
 	  // create explosions
@@ -112,7 +112,7 @@ fight.prototype = {
 	  // create text fields ------------------------------------------------
 	  gameUI.scoreObject = game.add.text(
 	    32, 32, // x coord, y coord
-	    'Score: ' + gameUI.score, // text field
+	    gameUI.score.toString(), // text field
 	    {font: '24px Josefin Slab', fill: '#ffffff'}  // text styling
 	    )
 

@@ -1,13 +1,14 @@
+<div>
 <% if session[:user_id] %>
-  <p>You are logged in </p>
-  Hi <%= current_user.uid %>
+  <h1 class="gfont">Hi <%= current_user.uid %></h1>
   <br>
-  <%= link_to "Signout", "/session/destroy" %>
+  <%= link_to "Signout", "/session/destroy", {:class => "gfont"} %>
   <br>
-  <h2>Play one of your Quizlet decks!<h2>
+  <h2 class="gfont">Play one of your Quizlet decks!<h2>
   <%= render partial: "user_decks", locals: { signed_in_user_id: session[:user_id]} %>
 
-  <h2>Or try a sample deck</h2>
+  <h2 class="gfont">Or try a sample deck</h2>
   <%= render partial: "list_of_included_decks" %>
 
 <% end %>
+</div>
