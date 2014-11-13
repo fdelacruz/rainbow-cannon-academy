@@ -48,6 +48,7 @@ flashCardUI.wordKeysHandler = function(evt){
 
       // incorrect answer case:
       } else {
+        gameState.wrongAnswerCards.push(gameState.currentDeck.currentCard)
         gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
 
         // show incorrect text animation
