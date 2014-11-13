@@ -6,6 +6,8 @@ gameUI.firePlayerBullet = function() {
     if (playerBullets) {
       playerBullets.reset(gameState.player.body.x + 16, gameState.player.body.y + 16)
       playerBullets.lifespan = 4000
+      playerBullets.checkWorldBounds = true
+      playerBullets.outOfBoundsKill = true
       playerBullets.body.velocity.x = 1000
     }
   }
@@ -18,7 +20,7 @@ gameUI.fireBossAlienBullet = function(){
       bossAlienBullets.reset(gameState.bossAlien.body.x, gameState.bossAlien.body.y + (gameState.bossAlien.height / 2))
       bossAlienBullets.lifespan = 4000
       bossAlienBullets.body.velocity.x = -500
-      bossAlienBullets.body.velocity.y = bossAlienBullets.body.velocity.x * (Math.tan(gameState.bossAlien.rotation + Math.PI))
+      bossAlienBullets.body.velocity.y = bossAlienBullets.body.velocity.x * (Math.tan(game.physics.arcade.angleBetween(gameState.bossAlien, gameState.player) + Math.PI))
     }
   }
 }
