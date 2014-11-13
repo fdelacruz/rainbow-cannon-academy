@@ -48,13 +48,14 @@ flashCard.prototype = {
     flashcardPlayerBullets.physicsBodyType = Phaser.Physics.ARCADE
     flashcardPlayerBullets.createMultiple(250, 'bullet')
     flashcardPlayer.anchor.set(0.5)
+
     flashCardUI.tweenPlayerFlyIn(flashcardPlayer)
 
 	  // create boss alien - only visable to show upgrades
 	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(950, 350, 'boss_alien')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
-    flashcardBossAlien.scale.set(0.5,0.5)
+    flashcardBossAlien.scale.setTo(0.25, 0.25)
 	  flashcardBossAlien.anchor.set(0.5,0.5)
     flashCardUI.tweenBossFlyIn(flashcardBossAlien)
 
@@ -91,14 +92,12 @@ flashCard.prototype = {
 
   update: function() {
     var questionsCorrect = gameState.currentDeck.cardsLeftInCurrentRound() + gameState.questionsCorrect
-    var s = gameUI.alienBossScale(questionsCorrect)
-    gameState.bossAlien.scale.setTo(s,s)
 
       Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-5/gameState.currentDeck.currentCard.definition.length)), 0)
 
   if (flashCardUI.textInputTimer.width <1) {
   	// player got the question wrong, play wrong answer animation
-  	var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: 'red'})
+  	var wrongTextSprite = game.add.text(600, 150, gameState.currentDeck.currentCard.definition, {font: '24px Josefin Slab', fill: '#B5413E'})
     wrongTextSprite.anchor.set(0.5)
     flashCardUI.tweenWrongAnswer(wrongTextSprite)
 

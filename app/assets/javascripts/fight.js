@@ -68,6 +68,14 @@ fight.prototype = {
 	  player.health = 100
 	  gameUI.upgradeGun(gameState.questionsCorrect)
 
+	  // create lives
+
+	  for (var y = 1; y < gameState.lifes + 1; y++) {
+	  	var life = game.add.sprite(y*48, 130, 'dude')
+	  	life.angle = -90
+	  	life.scale.setTo(0.75,0.75)
+	  } 
+
 	  // create explosions
 	  var explosions = gameState.groups.explosions = game.add.group()
     explosions.createMultiple(21, 'explosion')
@@ -89,8 +97,7 @@ fight.prototype = {
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  bossAlien.body.bounce.x = .9
 	  bossAlien.body.bounce.y = .9
-	  var scale = gameUI.alienBossScale(gameState.questionsCorrect)
-	  bossAlien.scale.setTo(scale,scale)
+	  bossAlien.scale.setTo(gameState.bossAlienScale,gameState.bossAlienScale)
 	  bossAlien.anchor.x = 0.5
 	  bossAlien.anchor.y = 0.5
 
