@@ -1,6 +1,10 @@
-<div>
+<div class="dd-select-container">
   <%= form_for "choice", url: "decks/selection", :html => {:class => "user-decks"} do |f| %>
+    <div class="dd-select-div center">
     <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id), {}, {:class => 'dd-style'} %>
-    <%= f.submit "Play", {:class => "dd-style"} %>
+    </div>
+    <div class="dd-submit-div center">
+    <%= f.submit "Play", :class => "dd-submit" %>
+    </div>
   <% end %>
 </div>
