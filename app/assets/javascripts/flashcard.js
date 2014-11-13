@@ -4,7 +4,7 @@ function flashCard() {}
 flashCard.prototype = {
   create: function() {
   	console.log(game.state.current)
-  	game.stage.backgroundColor = '#231825'
+  	game.stage.backgroundColor = '#1E1B2B'
 
   	// create planet
     var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
@@ -41,7 +41,7 @@ flashCard.prototype = {
 	  // rain.create(game)
 
 	  // create flashcardPlayer object - only visable to show upgrades
-	  var flashcardPlayer = gameState.flashcardPlayer = game.add.sprite(32, game.world.height - 150, 'dude')
+	  var flashcardPlayer = gameState.flashcardPlayer = game.add.sprite(64, game.world.height - 150, 'dude')
 	  game.physics.arcade.enable(flashcardPlayer)
     flashcardPlayerBullets = gameState.groups.flashcardPlayerBullets = game.add.group()
     flashcardPlayerBullets.enableBody = true
