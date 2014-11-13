@@ -68,7 +68,7 @@ gameUI.sendAliens = function(){
 
 gameUI.updateScore = function(){
    gameUI.score += 10
-   gameUI.scoreObject.text = "Score: " + gameUI.score
+   gameUI.scoreObject.text = gameUI.score.toString()
  }
 
 gameUI.aliensExist = function(){
