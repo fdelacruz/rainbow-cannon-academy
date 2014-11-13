@@ -9,7 +9,7 @@ flashCardUI.deleteLetterFromAnswer = function(){
 }
 
 flashCardUI.checkUserGuess = function(guess, currentAnswer){
-  return (guess === " " + currentAnswer)
+  return (guess.toUpperCase() === " " + currentAnswer.toUpperCase())
 }
 
 flashCardUI.wordKeysHandler = function(evt){
