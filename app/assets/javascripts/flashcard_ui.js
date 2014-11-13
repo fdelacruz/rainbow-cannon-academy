@@ -96,9 +96,21 @@ flashCardUI.clearFlashCardText = function(){
   flashCardUI.textInputLine.height = 0
 }
 
+flashCardUI.tweenPlayerFlyIn = function(player){
+  var tween = game.add.tween(player)
+  tween.from({x: -100, alpha: 0}, 3000)
+  tween.start()
+},
+
+flashCardUI.tweenBossFlyIn = function(boss){
+  var tween = game.add.tween(boss)
+  tween.from({x: 1300, alpha: 1}, 3000)
+  tween.start()
+}
+
 flashCardUI.tweenPlayerUpgrade = function(text_sprite){
   var tween = game.add.tween(text_sprite)
-  tween.to({y: game.world.height - 300, alpha: 0}, 2500)
+  tween.to({y: game.world.height - 300, alpha: 1}, 2000)
   tween.start()
 }
 
@@ -113,6 +125,7 @@ flashCardUI.tweenWrongAnswer = function(text){
   tween.to({x: 800, alpha: 0}, 1400)
   tween.start()
 }
+
 
 flashCardUI.performCycleCardProcedure = function(){
       gameState.userGuess.text = ""

@@ -48,13 +48,15 @@ flashCard.prototype = {
     flashcardPlayerBullets.physicsBodyType = Phaser.Physics.ARCADE
     flashcardPlayerBullets.createMultiple(250, 'bullet')
     flashcardPlayer.anchor.set(0.5)
-    this.tweenPlayerFlyIn(flashcardPlayer)
+    flashCardUI.tweenPlayerFlyIn(flashcardPlayer)
 
 	  // create boss alien - only visable to show upgrades
-	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'boss_alien')
+	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(950, 350, 'boss_alien')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
-	  flashcardBossAlien.scale.setTo(1,1)
+    flashcardBossAlien.scale.set(0.5,0.5)
+	  flashcardBossAlien.anchor.set(0.5,0.5)
+    flashCardUI.tweenBossFlyIn(flashcardBossAlien)
 
 	  // create keyboard listeners
 	  game.input.keyboard.addCallbacks(this, flashCardUI.wordKeysHandler)
@@ -126,10 +128,6 @@ flashCard.prototype = {
     game.debug.geom(flashCardUI.textInputTimer,'#C02942')
   },
 
-  tweenPlayerFlyIn: function(player){
-  	var tween = game.add.tween(player)
-    tween.from({x: -100, alpha: 0}, 1500)
-    tween.start()
-  },
+
 
 }
