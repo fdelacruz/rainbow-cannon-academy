@@ -9,18 +9,6 @@ fight.prototype = {
     hud.width = 1200
     hud.height = 200
 
-  	// Enemy Bullets
-    enemyBullets = game.add.group();
-    enemyBullets.enableBody = true;
-    enemyBullets.physicsBodyType = Phaser.Physics.ARCADE;
-    enemyBullets.createMultiple(30, 'enemyBullet');
-    enemyBullets.setAll('anchor.x', 0.5);
-    enemyBullets.setAll('anchor.y', 1);
-    enemyBullets.setAll('outOfBoundsKill', true);
-    enemyBullets.setAll('checkWorldBounds', true);
-
-
-
   	// Logic to only scatter aliens once, called in fight - update loop
   	gameUI.alienScatterEnabled = true
 
@@ -56,7 +44,7 @@ fight.prototype = {
 	  bossAlienBullets.enableBody = true
 	  bossAlienBullets.physicsBodyType = Phaser.Physics.ARCADE
 	   // All 100 of them
-	  bossAlienBullets.createMultiple(250, 'bullet')
+	  bossAlienBullets.createMultiple(250, 'plasma')
 
 	  bossAlienBullets.setAll('anchor.x', 0.5)
 	  bossAlienBullets.setAll('anchor.y', 0.5)
