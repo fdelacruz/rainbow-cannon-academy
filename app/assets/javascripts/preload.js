@@ -8,10 +8,12 @@ preLoad.prototype = {
     game.load.image('phaser', '../assets/phaser.png') /* placeholder for logo */
     game.load.image('bullet', '../assets/rainbow_cannon.png')
     game.load.image('dude', '../assets/dude.png')
-    game.load.image('boss_alien', '../assets/boss.png')
     game.load.spritesheet('invader', '../assets/baddie.png', 32, 32)
     game.load.spritesheet('explosion', '../assets/explosion.png', 40, 40)
     game.load.image('enemyBullet', '../assets/bullet.png')
+    game.load.image('boss_alien', '../assets/boss.png')
+    game.load.image('happyBoss', '../assets/happyboss.png')
+    game.load.image('deadBoss', '../assets/deadBoss.png')
   },
 
   create: function() {

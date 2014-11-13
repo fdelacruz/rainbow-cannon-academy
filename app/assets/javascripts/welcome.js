@@ -6,6 +6,7 @@ welcome.prototype = {
 
   create: function() {
     console.log(game.state.current)
+    game.stage.backgroundColor = '#231825'
 
     /* Create logo and fade in & out while scrolling up */
     var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'phaser')
