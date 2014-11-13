@@ -10,6 +10,7 @@
 //=require flashcard
 //=require fight
 //=require level_intro
+//=require game_over
 //=require welcome
 
 
@@ -44,7 +45,7 @@ gameUI.kamikazeCounter = 0
 // gameState --------------------------------------------------------
 var gameState = {}
 gameState.player = null // phaser sprite object
-gameState.lifes = 3
+gameState.lifes = 2
 gameState.bossAlien = null // phaser sprite object
 gameState.cursors = null
 gameState.groups = {}
@@ -55,6 +56,7 @@ gameState.currentLevel = 1
 gameState.questionsCorrect = 0
 gameState.firstTimeOnLevel = true
 gameState.finishingLevel = false
+gameState.wrongAnswerCards = []
 
 // init all the globals
 function start(){
@@ -75,6 +77,7 @@ function start(){
   game.state.add('level_intro', levelIntro)
   game.state.add('flashcard', flashCard)
   game.state.add('fight', fight)
+  game.state.add('game_over', gameOver)
   game.state.start('preload')
 }
 
