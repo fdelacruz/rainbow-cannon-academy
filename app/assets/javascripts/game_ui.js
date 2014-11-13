@@ -100,7 +100,7 @@ gameUI.aliensDead = function(){
 }
 
 gameUI.spawnAlienBoss = function(){
-  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+  bossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'boss_alien')
   game.physics.arcade.enable(bossAlien)
   bossAlien.enableBody = true
   game.physics.arcade.enable(bossAlien)

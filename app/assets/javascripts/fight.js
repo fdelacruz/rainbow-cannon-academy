@@ -4,6 +4,10 @@ fight.prototype = {
   create: function() {
   	console.log(game.state.current)
 
+  	// create HUD Display
+    var hud = game.add.sprite(0, 0, 'hud')
+    hud.width = 1200
+    hud.height = 200
 
   	// Enemy Bullets
     enemyBullets = game.add.group();
@@ -33,7 +37,7 @@ fight.prototype = {
 	  gameUI.gameAreaCeiling.body.immovable = true
 
 	  // rain
-	  rain.create(game)
+	  // rain.create(game)
 
 	  // playerBullets
 	  playerBullets = gameState.groups.playerBullets = game.add.group()
@@ -79,7 +83,7 @@ fight.prototype = {
 	  aliens.physicsBodyType = Phaser.Physics.ARCADE
 
 	  // create boss alien
-	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'diamond')
+	  bossAlien = gameState.bossAlien = game.add.sprite(1500, 350, 'boss_alien')
 	  game.physics.arcade.enable(bossAlien)
 	  bossAlien.enableBody = true
 	  bossAlien.physicsBodyType = Phaser.Physics.ARCADE

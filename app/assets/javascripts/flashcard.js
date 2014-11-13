@@ -51,7 +51,7 @@ flashCard.prototype = {
     this.tweenPlayerFlyIn(flashcardPlayer)
 
 	  // create boss alien - only visable to show upgrades
-	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'diamond')
+	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(900, 250, 'boss_alien')
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
 	  flashcardBossAlien.scale.setTo(1,1)
