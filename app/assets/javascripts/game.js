@@ -45,7 +45,7 @@ gameUI.kamikazeCounter = 0
 // gameState --------------------------------------------------------
 var gameState = {}
 gameState.player = null // phaser sprite object
-gameState.lifes = 2
+// gameState.lifes = null
 gameState.bossAlien = null // phaser sprite object
 gameState.cursors = null
 gameState.groups = {}
