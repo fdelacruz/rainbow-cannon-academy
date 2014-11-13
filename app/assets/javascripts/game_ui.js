@@ -60,7 +60,7 @@ gameUI.scatterAliens = function(){
 gameUI.sendAliens = function(){
   var tween = game.add.tween(aliens)
   .to(
-    { x: 400 },
+    { x: 450 },
     20000,
     Phaser.Easing.Linear.None,
     true)

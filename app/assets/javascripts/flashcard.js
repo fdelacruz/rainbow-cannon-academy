@@ -94,7 +94,7 @@ flashCard.prototype = {
     var s = gameUI.alienBossScale(questionsCorrect)
     gameState.bossAlien.scale.setTo(s,s)
 
-      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-3/gameState.currentDeck.currentCard.definition.length)), 0)
+      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-5/gameState.currentDeck.currentCard.definition.length)), 0)
 
   if (flashCardUI.textInputTimer.width <1) {
   	// player got the question wrong, play wrong answer animation
