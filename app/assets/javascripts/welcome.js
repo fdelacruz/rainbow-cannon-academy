@@ -8,7 +8,7 @@ welcome.prototype = {
 
   create: function() {
     console.log(game.state.current)
-    game.stage.backgroundColor = '#231825'
+    game.stage.backgroundColor = '#1E1B2B'
 
     // Reset globals level in case of game over
     gameState.lifes = 2

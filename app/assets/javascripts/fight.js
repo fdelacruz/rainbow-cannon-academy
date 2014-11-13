@@ -44,7 +44,8 @@ fight.prototype = {
 	  playerBullets.enableBody = true
 	  playerBullets.physicsBodyType = Phaser.Physics.ARCADE
 	   // All 100 of them
-	  playerBullets.createMultiple(250, 'bullet')
+	  if (gameState.questionsCorrect === 10) playerBullets.createMultiple(250, 'rainbowCannon')
+	  else playerBullets.createMultiple(250, 'bullet')
 
 	  playerBullets.setAll('anchor.x', 0.5)
 	  playerBullets.setAll('anchor.y', 0.5)
