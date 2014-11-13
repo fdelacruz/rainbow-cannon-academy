@@ -146,6 +146,12 @@ flashCardUI.tweenWrongAnswer = function(text){
   tween.start()
 }
 
+flashCardUI.tweenBgFadeIn = function(bg){
+  var tween = game.add.tween(bg)
+  tween.from({alpha: 0}, 1400)
+  tween.start()
+}
+
 
 flashCardUI.performCycleCardProcedure = function(){
       gameState.userGuess.text = ""

@@ -8,6 +8,7 @@ flashCard.prototype = {
 
   	// create planet
     var planet = gameState.planetBg = game.add.tileSprite(0, 200, 1200, 600, 'planet_bg')
+    flashCardUI.tweenBgFadeIn(planet)
 
     // create HUD Display
     var hud = game.add.sprite(0, 0, 'hud')
