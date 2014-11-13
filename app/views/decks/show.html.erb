@@ -1,6 +1,4 @@
-<h1>Deck Show</h1>
-<span data-deck-id="<%= @deck.id %>"></span>
-<%= @deck.title %>
-<p id="testgoogle" style="display: none">hi</p>
+<span id="gfont" data-deck-id="<%= @deck.id %>"></span>
+<p id="gfont"> <%= @deck.title %> </p>
 
 <%= javascript_include_tag "game.js" %>

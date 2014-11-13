@@ -16,6 +16,7 @@ welcome.prototype = {
     gameState.firstTimeOnLevel = true
     gameState.wrongAnswerCards = []
     gameState.currentLevel = 1
+    gameUI.score = 0
     // gameState.player.health = 150
 
     // --
