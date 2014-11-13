@@ -159,7 +159,7 @@ fight.prototype = {
 
 		  // gameState.bossAlien.rotation = game.physics.arcade.angleBetween(gameState.bossAlien, gameState.player)
 		  gameUI.fireBossAlienGunCounter += 1
-		  if ((gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate) && gameState.bossAlien.inWorld){
+		  if ((gameUI.fireBossAlienGunCounter >= gameUI.fireBossAlienGunRate) && gameState.bossAlien.inWorld && gameState.bossAlien.alive){
 		    gameUI.fireBossAlienBullet()
 		    gameUI.fireBossAlienGunCounter = 0
 		  }
@@ -188,7 +188,6 @@ fight.prototype = {
 		    	gameUI.sendBossAlien()
 		    }
 		  }
-
 
 		  if (gameState.bossAlien.x < 800 ){
 		  	gameUI.bossInGameArea = true
