@@ -92,7 +92,10 @@ flashCard.prototype = {
     var s = gameUI.alienBossScale(questionsCorrect)
     gameState.bossAlien.scale.setTo(s,s)
 
-      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-5/gameState.currentDeck.currentCard.definition.length)), 0)
+
+    // Word timer algorithm is too fast for short words.  Making the max speed like a 5 letter word
+    wordLengthUsedForTimer = Math.max(3,gameState.currentDeck.currentCard.definition.length)
+    Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-8/wordLengthUsedForTimer)), 0)
 
   if (flashCardUI.textInputTimer.width <1) {
   	// player got the question wrong, play wrong answer animation
