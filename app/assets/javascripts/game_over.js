@@ -1,7 +1,4 @@
 
-
-
-
 function gameOver (){}
 
   gameOver.prototype = {
@@ -12,33 +9,21 @@ function gameOver (){}
 
     wrongAnswerStrings = []
     for( var i=0, l=gameState.wrongAnswerCards.length; i<l; i++ ) {
-        wrongAnswerStrings.push( gameState.wrongAnswerCards[i]["term"]+":\t"+gameState.wrongAnswerCards[i]["definition"] );
+        wrongAnswerStrings.push( gameState.wrongAnswerCards[i]["term"]+":\t\t\t\t\t\t"+gameState.wrongAnswerCards[i]["definition"] );
     }
     var worstFiveCards = sortByFrequencyAndRemoveDuplicates(wrongAnswerStrings).slice(0, 5)
-    // console.log(worstFiveCards.join("\n"))
+    var gameOverDisplay = "You may want to focus on these: \n\n"+worstFiveCards.join("\n") + "\n\nFinal Score: " + gameUI.score
+    var playerTween = game.add.sprite(-300, 700, 'dude')
 
     worstFiveCardsText =game.add.text(
       game.world.centerX,
-      100, "You may want to focus on these: \n"+worstFiveCards.join("\n"),
+      300, gameOverDisplay,
       { font: '24px Josefin Slab', fill: 'white'}
     )
     worstFiveCardsText.anchor.set(0.5)
 
-
-
-    var lvltext = game.add.text(
-      game.world.centerX,
-      game.world.centerY, "Game Over \n You lost on level" + gameState.currentLevel + "\n Press enter to play again",
-      { font: '24px Josefin Slab', fill: 'white'}
-    )
-    lvltext.anchor.set(0.5)
-
-    // var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
-
-    // enterKey.onDown.add(function(){ game.state.start('welcome') }, this)
-
-    this.tweenLevelIntro(lvltext)
-    this.tweenLevelIntro(worstFiveCardsText)
+    // this.showStats(worstFiveCardsText)
+    this.moveTweenAcrossScreen(playerTween)
   },
 
   update: function() {
@@ -47,15 +32,20 @@ function gameOver (){}
   render: function(){
   },
 
-  tweenLevelIntro: function(text) {
+  showStats: function(text) {
     var tween = game.add.tween(text)
-    tween.from({alpha: 0}, 1000)
+    tween.from({alpha: 0}, 5000)
     tween.start()
     .onComplete.add(function(){
-      tween.to({alpha:1}, 1000)
-      setTimeout(function(){game.state.start('welcome')}, 10000)
-      tween.to({alpha: 0}, 500)
+      tween.to({alpha:1}, 5000)
+      // setTimeout(function(){game.state.start('welcome')}, 10000)
     }, this)
+  },
+
+  moveTweenAcrossScreen: function(player) {
+    console.log('player should be entering')
+    var tween = game.add.tween(player)
+    tween.to({x: 1000, y: 700}, 5000)
   }
 }
 
