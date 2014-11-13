@@ -12,7 +12,12 @@
  *= require_tree .
  */
 
- #gfont{
+.testclass{
+  color: red;
+}
+
+
+ .gfont{
   font-family: 'Josefin Slab', serif;
  }
 
