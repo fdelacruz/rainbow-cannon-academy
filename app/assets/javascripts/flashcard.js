@@ -53,6 +53,7 @@ flashCard.prototype = {
 
 	  // create boss alien - only visable to show upgrades
 	  flashcardBossAlien = gameState.bossAlien = game.add.sprite(950, 350, 'boss_alien')
+    gameState.bossAlienScale = 0.25
 	  game.physics.arcade.enable(flashcardBossAlien)
 	  flashcardBossAlien.physicsBodyType = Phaser.Physics.ARCADE
     flashcardBossAlien.scale.setTo(0.25, 0.25)
@@ -93,7 +94,10 @@ flashCard.prototype = {
   update: function() {
     var questionsCorrect = gameState.currentDeck.cardsLeftInCurrentRound() + gameState.questionsCorrect
 
-      Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-5/gameState.currentDeck.currentCard.definition.length)), 0)
+
+    // Word timer algorithm is too fast for short words.  Making the max speed like a 5 letter word
+    wordLengthUsedForTimer = Math.max(3,gameState.currentDeck.currentCard.definition.length)
+    Phaser.Rectangle.inflate(flashCardUI.textInputTimer, ((-8/wordLengthUsedForTimer)), 0)
 
   if (flashCardUI.textInputTimer.width <1) {
   	// player got the question wrong, play wrong answer animation

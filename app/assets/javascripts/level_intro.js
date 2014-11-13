@@ -30,12 +30,6 @@ levelIntro.prototype = {
     }
     // -------
 
-    // var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
-
-    // enterKey.onDown.add(function(){ game.state.start('flashcard') }, this)
-
-
-
     this.tweenLevelIntro(alienMockingYou)
     this.tweenLevelIntro(lvltext)
     // var logo = game.add.sprite(200, 200, 'phaser')

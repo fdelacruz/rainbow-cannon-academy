@@ -1,5 +1,7 @@
 function welcome (){}
 
+
+
 welcome.prototype = {
   preload: function() {
   },
@@ -7,6 +9,16 @@ welcome.prototype = {
   create: function() {
     console.log(game.state.current)
     game.stage.backgroundColor = '#231825'
+
+    // Reset globals level in case of game over
+    gameState.lifes = 2
+    gameState.currentLevel = 1
+    gameState.firstTimeOnLevel = true
+    gameState.wrongAnswerCards = []
+    gameState.currentLevel = 1
+    // gameState.player.health = 150
+
+    // --
 
     /* Create logo and fade in & out while scrolling up */
     var logo = game.add.sprite(game.world.centerX, game.world.centerY, 'phaser')
