@@ -1,7 +1,8 @@
 <div>
 <% if !session[:user_id] %>
-  <%= link_to "Sign in with quizlet", "/auth/quizlet", {:class => "gfont testclass"} %>
-  <h2 class="gfont">No Quizlet? Play an Included Deck!</h2>
+
+  <%= link_to "Sign in with Quizlet", "/auth/quizlet", {:class => "gfont testclass"} %>
+  <h2 class="gfont">No Quizlet? Play a Sample Deck!</h2>
   <%= render partial: "list_of_included_decks" %>
 
 <% end %>

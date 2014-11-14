@@ -159,7 +159,7 @@ flashCardUI.performCycleCardProcedure = function(){
       // update current card to the next card in the current round
       gameState.currentDeck.advanceToNextCard()
       // update cards remaining in the view
-      gameState.currentCardsRemaining.text = 'Cards Remaining: ' + gameState.currentDeck.cardsLeftInCurrentRound()
+      gameState.currentCardsRemaining.text = gameState.currentDeck.cardsLeftInCurrentRound()+" remaining"
       // update the current Question in the view
       gameState.currentQuestion.text = gameState.currentDeck.currentCard.term
 }

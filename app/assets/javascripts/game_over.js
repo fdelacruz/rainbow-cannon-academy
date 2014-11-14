@@ -12,7 +12,12 @@ function gameOver (){}
         wrongAnswerStrings.push( gameState.wrongAnswerCards[i]["term"]+":\t\t\t\t\t\t"+gameState.wrongAnswerCards[i]["definition"] );
     }
     var worstFiveCards = sortByFrequencyAndRemoveDuplicates(wrongAnswerStrings).slice(0, 5)
-    var gameOverDisplay = "You may want to focus on these: \n\n"+worstFiveCards.join("\n") + "\n\nFinal Score: " + gameUI.score
+
+    for (var i = 0; i < worstFiveCards.length; i++) {
+    worstFiveCards[i] = (i+1)+". "+worstFiveCards[i]
+    }
+
+    var gameOverDisplay = "You may want to focus on these: \n\n\n"+worstFiveCards.join("\n\n") + "\n\n\nFinal Score: " + gameUI.score
     var playerTween = game.add.sprite(-300, 700, 'dude')
 
     worstFiveCardsText =game.add.text(
@@ -22,8 +27,8 @@ function gameOver (){}
     )
     worstFiveCardsText.anchor.set(0.5)
 
-    // this.showStats(worstFiveCardsText)
-    this.moveTweenAcrossScreen(playerTween)
+    this.showStats(worstFiveCardsText)
+    // this.moveTweenAcrossScreen(playerTween)
   },
 
   update: function() {
