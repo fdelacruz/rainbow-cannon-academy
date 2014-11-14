@@ -17,11 +17,13 @@ body {
 .gamewrapper {
 	background-color: #1D1D1E;
 	padding: 20px;
+	width: 100%;
 }
 
 .log-in {
 	background-color: #1D1D1E;
 	padding: 20px;
+	width: 100%;
 }
 
 .gfont{
