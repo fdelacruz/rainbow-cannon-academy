@@ -5,7 +5,7 @@
       <fieldset class="fieldset-reset center">
         <%= f.select :quiz_selection, all_decks_in_nested_array_form(current_user.id) %>
       </fieldset>
-      <%= button_tag(type: 'submit', :class => "inline-block button-large white bg-blue rounded") {content_tag(:strong, 'Submit')} %>
+      <%= button_tag(type: 'submit', :class => "inline-block button-large white bg-blue rounded") {content_tag(:strong, 'Play')} %>
       <% end %>
     </center>
   </div>
