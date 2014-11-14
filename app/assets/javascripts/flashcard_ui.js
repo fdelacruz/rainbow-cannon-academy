@@ -25,8 +25,9 @@ flashCardUI.wordKeysHandler = function(evt){
       return
     }
 
-    if (evt.which === 13 /* enter */) {
+    if (evt.which === 13 && game.state.current==="flashcard"/* enter */) {
       console.log(gameState.currentDeck.currentCard)
+
       // update timer
         flashCardUI.textInputTimer.x = 0
         flashCardUI.textInputTimer.width = 1200

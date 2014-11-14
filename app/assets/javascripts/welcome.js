@@ -11,7 +11,7 @@ welcome.prototype = {
     game.stage.backgroundColor = '#1E1B2B'
 
     // Reset globals level in case of game over
-    gameState.lifes = 2
+    gameState.lifes = 1
     gameState.currentLevel = 1
     gameState.firstTimeOnLevel = true
     gameState.wrongAnswerCards = []
@@ -28,9 +28,9 @@ welcome.prototype = {
     this.tweenLogo(logo)
 
     /* Allow user to skip with enter key */
-    var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
+    // var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER)
 
-    enterKey.onDown.add(function(){ game.state.start('level_intro') }, this)
+    // enterKey.onDown.add(function(){ game.state.start('level_intro') }, this)
 
 
   },

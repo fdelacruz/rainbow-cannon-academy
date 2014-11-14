@@ -215,8 +215,6 @@ fight.prototype = {
 
 		// Kamikazee Behavior
 
-
-
 		  gameState.groups.aliens.forEach(function(alien){
 		  	if (alien.body.x  < 200.5 & alien.body.x  > 199.5  ) {
 		  		alien.body.velocity.x = 0}
