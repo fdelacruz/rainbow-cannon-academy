@@ -26,7 +26,7 @@ flashCard.prototype = {
 	  // populate deck
 
 	  // input timer
-    flashCardUI.textInputTimer = new Phaser.Rectangle(0, 200, 1200, 1)
+    flashCardUI.textInputTimer = new Phaser.Rectangle(0, 200, 1200, 2)
 
 
 	  // If game first starting, deck must be shuffled:
@@ -35,7 +35,7 @@ flashCard.prototype = {
 	  // vector shapes
 	  // flashCardUI.textInputLine = new Phaser.Rectangle(0, 200, 1200, 1)
 
-	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 1)
+	  gameUI.gameAreaCeilingLine = new Phaser.Rectangle(0,200, 1200, 2)
 
 
 	  // rain

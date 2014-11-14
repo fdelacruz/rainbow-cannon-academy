@@ -1,11 +1,15 @@
 <span data-deck-id="<%= @deck.id %>"></span>
-<center><h2 class="gfont"> <%= @deck.title %> </h2></center>
-
-<%= javascript_include_tag "game.js" %>
-<br>
-<center>
-	<div class="gamewrapper">		
-		<div id="gamediv">
+<div class="gamepage">
+	<br>
+	<br>
+	<br>
+	<center><h2 class="gfont"> <%= @deck.title %> </h2></center>
+		<%= javascript_include_tag "game.js" %>
+		<br>
+	<center>
+		<div class="gamewrapper">		
+			<div id="gamediv">
+			</div>
 		</div>
-	</div>
-</center>
+	</center>
+</div>
