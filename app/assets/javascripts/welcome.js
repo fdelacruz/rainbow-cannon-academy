@@ -11,7 +11,7 @@ welcome.prototype = {
     game.stage.backgroundColor = '#1E1B2B'
 
     // Reset globals level in case of game over
-    gameState.lifes = 1
+    gameState.lifes = 2
     gameState.currentLevel = 1
     gameState.firstTimeOnLevel = true
     gameState.wrongAnswerCards = []
