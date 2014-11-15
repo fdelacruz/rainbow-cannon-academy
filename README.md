@@ -1,11 +1,11 @@
-flashforward
+Rainbow Cannon Academy
 ============
 
-flashcard memorization plus game
+flashcard memorization game
 
 Project intention:
 
-Flashforward is a web application designed to make the painstaking process of studying flashcards more enjoyable by adding a game component.
+Rainbow Cannon Academy is a web application designed to make the painstaking process of studying flashcards more enjoyable by adding a game component.
 
 Technology used:
 - Rails
