@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: flashforward_test
   pool: 5
-  username: 
+  username:
   password:
 
 production:

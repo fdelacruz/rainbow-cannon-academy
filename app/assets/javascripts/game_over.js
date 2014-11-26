@@ -17,7 +17,7 @@ function gameOver (){}
     worstFiveCards[i] = (i+1)+". "+worstFiveCards[i]
     }
 
-    var gameOverDisplay = "You may want to focus on these: \n\n\n"+worstFiveCards.join("\n\n") + "\n\n\nFinal Score: " + gameUI.score
+    var gameOverDisplay = "You may want to focus on these: \n\n\n" + worstFiveCards.join("\n\n") + "\n\n\nFinal Score: " + gameUI.score
     var playerTween = game.add.sprite(-300, 700, 'dude')
 
     worstFiveCardsText =game.add.text(
