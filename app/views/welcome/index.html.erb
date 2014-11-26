@@ -1,17 +1,28 @@
+<div id="openModal" class="modalDialog">
+    <div>	<a href="#close" title="Close" class="close">X</a>
+
+        	<h2>Modal Box</h2>
+
+        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+    </div>
+</div>
 <br>
 <br>
 <%= image_tag("phaser.png") %>
-<div id="gamediv"></div>
+
+
+
+
 <center>
 	<div class="log-in">
+	<a href="#openModal" class="log-in" >Open Modal</a>
 		<%= render partial: "logged_in" %>
 		<%= render partial: "logged_out" %>
 	</div>
-
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myFaqModal">
-  FAQ
-</button>
- <%= render partial: "faq_modal" %>
 
 
 </center>
