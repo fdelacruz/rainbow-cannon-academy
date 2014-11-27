@@ -149,11 +149,11 @@ fight.prototype = {
 		  // Boss alien bullets damage player
 		  game.physics.arcade.overlap(player, gameState.groups.bossAlienBullets, gameUI.hitPlayer, null, this)
 
-		    if (cursors.left.isDown) {
+		    if (cursors.left.isDown || cursors.up.isDown) {
 		      // player UP
 		      player.body.velocity.y = -250;
 		      // player.animations.play('up')
-		    } else if (cursors.right.isDown){
+		    } else if (cursors.right.isDown || cursors.down.isDown){
 		      // player DOWN
 		      player.body.velocity.y = 250;
 		      // player.animations.play('down')
