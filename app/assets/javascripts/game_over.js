@@ -18,6 +18,7 @@ function gameOver (){}
     }
 
     var gameOverDisplay = "You may want to focus on these: \n\n\n" + worstFiveCards.join("\n\n") + "\n\n\nFinal Score: " + gameUI.score
+    var playAgainURL = ""
     var playerTween = game.add.sprite(-300, 700, 'dude')
 
     worstFiveCardsText =game.add.text(
@@ -25,6 +26,10 @@ function gameOver (){}
       300, gameOverDisplay,
       { font: '24px Josefin Slab', fill: 'white'}
     )
+
+    var button = game.add.button(game.world.centerX - 95, 400, 'dude', console.log('button clicked'), this, 2, 1, 0);
+    // button.onInputUp.add(restartGame, this);
+
     worstFiveCardsText.anchor.set(0.5)
 
     this.showStats(worstFiveCardsText)
@@ -36,6 +41,10 @@ function gameOver (){}
 
   render: function(){
   },
+
+  // restartGame: function(){
+  //   console.log('restart game')
+  // },
 
   showStats: function(text) {
     var tween = game.add.tween(text)
