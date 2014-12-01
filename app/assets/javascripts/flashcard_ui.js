@@ -49,6 +49,13 @@ flashCardUI.wordKeysHandler = function(evt){
 
       // incorrect answer case:
       } else {
+
+        // prevent boss from growing after 10 cards finished
+        if (gameState.currentDeck.cardsLeftInCurrentRound() === 0){
+          return
+        }
+
+
         gameUI.growBoss()
         gameState.wrongAnswerCards.push(gameState.currentDeck.currentCard)
         gameState.userFeedbackText.text = "Last: "+ gameState.currentDeck.currentCard.definition
