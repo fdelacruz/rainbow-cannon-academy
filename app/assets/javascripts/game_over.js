@@ -27,7 +27,7 @@ function gameOver (){}
       { font: '24px Josefin Slab', fill: 'white'}
     )
 
-    var button = game.add.button(game.world.centerX - 95, 400, 'dude', this.restartGame(), this);
+    var button = game.add.button(game.world.centerX - 95, 400, 'dude', this.restartGame, this);
     // button.onInputUp.add(restartGame, this);
 
     worstFiveCardsText.anchor.set(0.5)
