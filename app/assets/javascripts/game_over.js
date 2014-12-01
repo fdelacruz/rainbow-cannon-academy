@@ -27,7 +27,7 @@ function gameOver (){}
       { font: '24px Josefin Slab', fill: 'white'}
     )
 
-    var button = game.add.button(game.world.centerX - 95, 400, 'dude', console.log('button clicked'), this, 2, 1, 0);
+    var button = game.add.button(game.world.centerX - 95, 400, 'dude', this.restartGame(), this);
     // button.onInputUp.add(restartGame, this);
 
     worstFiveCardsText.anchor.set(0.5)
@@ -42,9 +42,10 @@ function gameOver (){}
   render: function(){
   },
 
-  // restartGame: function(){
-  //   console.log('restart game')
-  // },
+  restartGame: function(){
+    console.log('restart game')
+    window.location.reload()
+  },
 
   showStats: function(text) {
     var tween = game.add.tween(text)
