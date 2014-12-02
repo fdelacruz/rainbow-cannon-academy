@@ -18,6 +18,9 @@ preLoad.prototype = {
     game.load.image('boss_alien', '../assets/boss.png')
     game.load.image('happyBoss', '../assets/happyboss.png')
     game.load.image('deadBoss', '../assets/deadBoss.png')
+    game.load.image('play_again', '../assets/play_again.png')
+    game.load.image('home', '../assets/home.png')
+
   },
 
   create: function() {
