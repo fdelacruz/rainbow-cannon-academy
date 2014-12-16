@@ -17,7 +17,7 @@ quizlet_deck_ids = [
 quizlet_deck_ids.each do |deck_number|
 
 ## ACCESS TOKEN FOR NEXT LINE IS NEEDED FOR SEEDING ##
-sets = JSON.parse(`curl -H "Authorization: Bearer uNDRvDSHK6nfvGcXrA47jMRvTAWRe28avfFnNmwD" "https://api.quizlet.com/2.0/sets/#{deck_number}"`)
+sets = JSON.parse(`curl -H "Authorization: Bearer cPS5WhskX674ZGqef3sJ3qkYExwVa6S8eDyDZmTh" "https://api.quizlet.com/2.0/sets/#{deck_number}"`)
 cards =  sets["terms"].map { |hash| {"term" => hash["term"] , "definition"=> hash["definition"]} }
 IncludedDeck.create(title: sets["title"], term_count: sets["term_count"], cards: cards)
 
